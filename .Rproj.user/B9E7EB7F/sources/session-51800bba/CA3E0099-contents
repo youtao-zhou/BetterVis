@@ -1,0 +1,398 @@
+library(data.table)
+# a <- fread("hmk/data/resdata/exacer_as_res.txt")
+library(tidyr)
+library(dplyr)
+library(stringr)
+
+a <- data.frame()
+file_list <- dir("hmk/data/resdata/",pattern = "*.txt")
+for (i in file_list) {
+  a1 <- fread(paste0("hmk/data/resdata/",i))
+  a <- rbind(a,a1)
+}
+
+
+a <- a[a$V7 == "PASS",]
+
+
+# 按照';'分割V6列的内容
+split_columns <- str_split(a$V8, ";")
+
+# 将分割后的列添加到原始数据框中
+split_columns_df <- as.data.frame(do.call(rbind, split_columns))
+head(split_columns_df)
+colnames(split_columns_df) <- paste0("split_column_", seq_along(split_columns_df))
+
+# 将新的列合并到原数据框中
+a <- cbind(a, split_columns_df)
+
+
+# 去掉开头的 'FUNCOTATION=[' 和结尾的 ']'，然后按照 '|' 分割
+a$split_column_6 <- str_replace(a$split_column_6, "^FUNCOTATION=\\[|\\]$", "")
+split_columns <- str_split(a$split_column_6, "\\|")
+
+# 将分割后的列转为数据框并命名列名
+column_names <- c(
+  "Gencode_43_hugoSymbol", "Gencode_43_ncbiBuild", "Gencode_43_chromosome", "Gencode_43_start",
+  "Gencode_43_end", "Gencode_43_variantClassification", "Gencode_43_secondaryVariantClassification",
+  "Gencode_43_variantType", "Gencode_43_refAllele", "Gencode_43_tumorSeqAllele1", "Gencode_43_tumorSeqAllele2",
+  "Gencode_43_genomeChange", "Gencode_43_annotationTranscript", "Gencode_43_transcriptStrand",
+  "Gencode_43_transcriptExon", "Gencode_43_transcriptPos", "Gencode_43_cDnaChange", "Gencode_43_codonChange",
+  "Gencode_43_proteinChange", "Gencode_43_gcContent", "Gencode_43_referenceContext", "Gencode_43_otherTranscripts",
+  "ACMGLMMLof_LOF_Mechanism", "ACMGLMMLof_Mode_of_Inheritance", "ACMGLMMLof_Notes",
+  "ACMG_recommendation_Disease_Name", "ClinVar_VCF_AF_ESP", "ClinVar_VCF_AF_EXAC", "ClinVar_VCF_AF_TGP",
+  "ClinVar_VCF_ALLELEID", "ClinVar_VCF_CLNDISDB", "ClinVar_VCF_CLNDISDBINCL", "ClinVar_VCF_CLNDN",
+  "ClinVar_VCF_CLNDNINCL", "ClinVar_VCF_CLNHGVS", "ClinVar_VCF_CLNREVSTAT", "ClinVar_VCF_CLNSIG",
+  "ClinVar_VCF_CLNSIGCONF", "ClinVar_VCF_CLNSIGINCL", "ClinVar_VCF_CLNVC", "ClinVar_VCF_CLNVCSO",
+  "ClinVar_VCF_CLNVI", "ClinVar_VCF_DBVARID", "ClinVar_VCF_GENEINFO", "ClinVar_VCF_MC", "ClinVar_VCF_ORIGIN",
+  "ClinVar_VCF_RS", "ClinVar_VCF_ID", "ClinVar_VCF_FILTER", "LMMKnown_LMM_FLAGGED", "LMMKnown_ID", "LMMKnown_FILTER"
+)
+
+# 将分割后的列转为数据框
+split_columns_df <- as.data.frame(do.call(rbind, split_columns))
+colnames(split_columns_df) <- column_names
+
+# 将分割后的列添加到原数据框中
+a <- cbind(a, split_columns_df)
+
+# 显示前几行数据
+head(a)
+
+
+
+
+# 假设a是您的数据框
+filtered_data <- a %>%
+  filter(
+    # ASXL1的筛选条件
+    (Gencode_43_hugoSymbol == "ASXL1" &
+       Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS", "FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") &
+       Gencode_43_transcriptExon %in% c(12, 13)) |
+      # ATM的筛选条件
+      (Gencode_43_hugoSymbol == "ATM" &
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE")) |
+      # BCOR的筛选条件
+      (Gencode_43_hugoSymbol == "BCOR" &
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS", "FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE")) |
+      # BCORL1的筛选条件
+      (Gencode_43_hugoSymbol == "BCORL1" &
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE")) |
+      # BRAF的筛选条件
+      (Gencode_43_hugoSymbol == "BRAF" &
+         str_detect(Gencode_43_proteinChange, paste(c("G464E", "G464V", "G466E", "G466V", "G469", "G469R", "G469E", "G469A", "G469V",
+                                                      "V471F", "V472S", "L485W", "N581S", "I582M", "I592M", "I592V", "D594N", "D594G",
+                                                      "D594V", "D594E", "F595L", "F595S", "G596R", "L597V", "L597S", "L597Q", "L597R",
+                                                      "A598V", "V600M", "V600L", "V600K", "V600R", "V600E", "V600A", "V600G", "V600D",
+                                                      "K601E", "K601N", "R603*", "W604R", "W604G", "S605G", "S605F", "S605N", "G606E",
+                                                      "G606A", "G606V", "H608R", "H608L", "G615R", "S616P", "S616F", "L618S", "L618W"),
+                                                    collapse = "|"))) |
+      # BRCC3的筛选条件
+      (Gencode_43_hugoSymbol == "BRCC3" &
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE")) |
+      # CARL的筛选条件
+      (Gencode_43_hugoSymbol == "CARL" &
+         Gencode_43_variantClassification  %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL") & Gencode_43_transcriptExon == 9) |
+      # CBL的筛选条件
+      (Gencode_43_hugoSymbol == "CBL" &
+         Gencode_43_variantClassification == "MISSENSE" &
+         # 对CBL的proteinChange进行范围筛选
+         as.numeric(str_extract(Gencode_43_proteinChange, "(?<=p\\.\\w)(\\d+)")) >= 345 &
+         as.numeric(str_extract(Gencode_43_proteinChange, "(?<=p\\.\\w)(\\d+)")) <= 434) |
+      # CSF1R的筛选条件
+      (Gencode_43_hugoSymbol == "CSF1R" &
+         Gencode_43_variantClassification == "MISSENSE" &
+         str_detect(Gencode_43_proteinChange, paste(c("L301", "Y969"), collapse = "|"))) |
+      # DNMT3A的筛选条件
+      (Gencode_43_hugoSymbol == "DNMT3A" &
+         (
+           Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") |
+             str_detect(Gencode_43_proteinChange, paste(c(
+               "F290I", "F290C", "V296M", "P307S", "P307R", "R326H", "R326L", "R326C", "R326S", "G332R", "G332E",
+               "V339A", "V339M", "V339G", "L344Q", "L344P", "R366P", "R366H", "R366G", "A368T", "A368V", "R379H",
+               "R379C", "I407T", "I407N", "I407S", "F414L", "F414S", "F414C", "A462V", "K468R", "C497G", "C497Y",
+               "Q527H", "Q527P", "Y533C", "S535F", "C537G", "C537R", "G543A", "G543S", "G543C", "L547H", "L547P",
+               "L547F", "M548I", "M548K", "G550R", "W581R", "W581G", "W581C", "R604Q", "R604W", "R635W", "R635Q",
+               "R635P", "S638F", "G646V", "G646E", "L653W", "L653F", "I655N", "V657A", "V657M", "R659H", "Y660C",
+               "V665G", "V665L", "M674V", "R676W", "R676Q", "G685R", "G685E", "G685A", "D686Y", "D686G", "R688H",
+               "G699R", "G699S", "G699D", "P700L", "P700S", "P700R", "P700Q", "P700T", "P700A", "D702N", "D702Y",
+               "V704M", "V704G", "I705F", "I705T", "I705S", "I705N", "G707D", "G707V", "C710S", "C710Y", "S714C",
+               "V716D", "V716F", "V716I", "N717S", "N717I", "P718L", "R720H", "R720G", "K721R", "K721T", "Y724C",
+               "R729Q", "R729W", "R729G", "F731C", "F731L", "F731Y", "F731I", "F732del", "F732C", "F732S", "F732L",
+               "E733G", "E733A", "F734L", "F734C", "Y735C", "Y735N", "Y735S", "R736H", "R736C", "R736P", "L737H",
+               "L737V", "L737F", "L737R", "A741V", "P742P", "P743R", "P743L", "R749C", "R749L", "R749H", "R749G",
+               "F751L", "F751C", "F752del", "F752C", "F752L", "F752I", "F752V", "W753G", "W753C", "W753R", "L754P",
+               "L754R", "L754H", "F755S", "F755I", "F755L", "M761I", "M761V", "G762C", "V763I", "S770L", "S770W",
+               "S770P", "R771Q", "F772I", "F772V", "L773R", "L773V", "E774K", "E774D", "E774G", "I780T", "D781G",
+               "R792H", "W795C", "W795L", "G796D", "G796V", "N797Y", "N797H", "N797S", "P799S", "P799R", "P799H",
+               "R803S", "R803W", "P804L", "P804S", "K826R", "S828N", "K829R", "T835M", "N838D", "K841Q", "Q842E",
+               "P849L", "D857N", "W860R", "E863D", "F868S", "G869S", "G869V", "M880V", "S881R", "S881I", "R882",
+               "A884P", "A884V", "Q886R", "L889P", "L889R", "G890D", "G890R", "G890S", "V895M", "P896L", "V897G",
+               "V897D", "R899L", "R899H", "R899C", "L901R", "L901H", "P904L", "F909C", "P904Q", "A910P", "C911R",
+               "C911Y"), collapse = "|"))
+         )
+      ) |
+      # EZH2的筛选条件
+      (Gencode_43_hugoSymbol == "EZH2" &
+         (
+           Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") |
+             str_detect(Gencode_43_proteinChange, paste(c(
+               "Q62R", "N102S", "F145S", "F145C", "F145Y", "F145L", "G159R", "E164D", "R202Q", "K238E", "E244K",
+               "R283Q", "H292R", "P488S", "R497Q", "R561H", "T568I", "K629E", "Y641N", "Y641H", "Y641S", "Y641C",
+               "Y641F", "D659Y", "D659G", "V674M", "A677G", "A677V", "R679C", "R679H", "R685C", "R685H", "A687V",
+               "N688I", "N688K", "H689Y", "S690P", "I708V", "I708T", "I708M", "E720K", "E740K"), collapse = "|"))
+         )
+      ) |
+      # FLT3的筛选条件
+      (Gencode_43_hugoSymbol == "FLT3" &
+         (str_detect(Gencode_43_proteinChange, paste(c(
+           "V579A", "V592A", "V592I", "F594L", "D835Y", "D835H", "D835E", "835del"), collapse = "|")) |
+            as.numeric(str_extract(Gencode_43_proteinChange, "(?<=p\\.\\w)(\\d+)")) >= 590 &
+            as.numeric(str_extract(Gencode_43_proteinChange, "(?<=p\\.\\w)(\\d+)")) <= 591)
+      ) |
+    # GNAS的筛选条件
+    (Gencode_43_hugoSymbol == "GNAS" &
+        str_detect(Gencode_43_proteinChange, paste(c("R201", "Q227", "R374"), collapse = "|"))) |
+      # GNB1的筛选条件
+      (Gencode_43_hugoSymbol == "GNB1" &
+         str_detect(Gencode_43_proteinChange, paste(c("K57", "D76", "K78", "I80", "N88", "K89"), collapse = "|"))) |
+      # IDH1的筛选条件
+      (Gencode_43_hugoSymbol == "IDH1" &
+         str_detect(Gencode_43_proteinChange, paste(c("R132", "V178I"), collapse = "|"))) |
+      # IDH2的筛选条件
+      (Gencode_43_hugoSymbol == "IDH2" &
+         str_detect(Gencode_43_proteinChange, paste(c("R140", "R172"), collapse = "|"))) |
+      # JAK2的筛选条件
+      (Gencode_43_hugoSymbol == "JAK2" &
+         (
+           str_detect(Gencode_43_proteinChange, paste(c("N533D", "N533Y", "N533S", "H538R", "K539E", "K539L", "I540T", "I540V", "V617F", "R683S", "R683G"), collapse = "|")) |
+             (Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS", "FRAME_SHIFT_DEL", "IN_FRAME_INS", "IN_FRAME_DEL") &
+                as.numeric(str_extract(Gencode_43_proteinChange, "(?<=p\\.\\w)(\\d+)")) >= 537 &
+                as.numeric(str_extract(Gencode_43_proteinChange, "(?<=p\\.\\w)(\\d+)")) <= 547
+         ))) |
+      # KDM6A的筛选条件
+      (Gencode_43_hugoSymbol == "KDM6A" &
+         (Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") |
+            str_detect(Gencode_43_proteinChange, "419del"))) |
+      # KIT的筛选条件
+      (Gencode_43_hugoSymbol == "KIT" & (Gencode_43_variantClassification  %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL") |
+         str_detect(Gencode_43_proteinChange, paste(c("ins503", "V559A", "V559D", "V559G", "V559I", "V560D", "V560A", "V560G", "V560E", "560del",
+                                                      "E561K", "579del", "P627L", "P627T", "R634W", "K642E", "K642Q", "V654A", "V654E",
+                                                      "H697Y", "H697D", "E761D", "K807R", "D816H", "D816Y", "D816F", "D816I", "D816V",
+                                                      "D816H",  "560del", "551del", "552del", "553del", "554del", "555del", "556del", "557del", "558del", "559del"), collapse = "|")))) |
+      # KRAS的筛选条件
+      (Gencode_43_hugoSymbol == "KRAS" &
+         str_detect(Gencode_43_proteinChange, paste(c("G12", "G13", "V14I", "T58I", "G60", "Q61", "K117", "A146"), collapse = "|"))) |
+      # MPL的筛选条件
+      (Gencode_43_hugoSymbol == "MPL" &
+         str_detect(Gencode_43_proteinChange, paste(c("S505G", "S505N", "S505C", "L510P", "513del", "W515A", "W515R", "W515K", "W515S",
+                                                      "W515L", "A519T", "A519V", "Y591D", "W515"), collapse = "|"))) |
+      # MYD88的筛选条件
+      (Gencode_43_hugoSymbol == "MYD88" &
+         str_detect(Gencode_43_proteinChange, paste(c("L265", "V217F", "S219C", "M240T", "S251N", "P266", "L273P"), collapse = "|"))) |
+      # NPM1的筛选条件-----
+      (Gencode_43_hugoSymbol == "NPM1" &
+         Gencode_43_proteinChange == "p.W288fs") |
+      # NRAS的筛选条件
+      (Gencode_43_hugoSymbol == "NRAS" &
+         str_detect(Gencode_43_proteinChange, paste(c("G12", "G13", "G60", "Q61", "T74P", "A146"), collapse = "|"))) |
+      # PHF6的筛选条件
+      (Gencode_43_hugoSymbol == "PHF6" &
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE")) |
+      # PIGA的筛选条件
+      (Gencode_43_hugoSymbol == "PIGA" &
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE")) |
+      # PPM1D的筛选条件
+      (Gencode_43_hugoSymbol == "PPM1D" &
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") &
+         Gencode_43_transcriptExon %in% c(5, 6)) |
+
+     # PRPF40B的筛选条件
+    (Gencode_43_hugoSymbol == "PRPF40B" &
+       (
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") |
+         str_detect(Gencode_43_proteinChange, paste(c("P15H", "M58I", "P405L", "P562S"), collapse = "|"))
+       )
+    ) |
+    # RAD21的筛选条件
+    (Gencode_43_hugoSymbol == "RAD21" &
+       (
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") |
+         str_detect(Gencode_43_proteinChange, paste(c("R65Q", "H208R", "Q474R"), collapse = "|"))
+       )
+    ) |
+    # RUNX1的筛选条件
+    (Gencode_43_hugoSymbol == "RUNX1" &
+       (
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") |
+         str_detect(Gencode_43_proteinChange, paste(c(
+           "S73F", "H78Q", "H78L", "R80C", "R80P", "R80H", "L85Q", "P86L", "P86H",
+           "S114L", "D133Y", "L134P", "R135G", "R135K", "R135S", "R139Q", "R142S",
+           "A165V", "R174Q", "R177L", "R177Q", "A224T", "D171G", "D171V", "D171N",
+           "R205W", "R223C"
+         ), collapse = "|"))
+       )
+    ) |
+    # SF1的筛选条件
+    (Gencode_43_hugoSymbol == "SF1" &
+       (
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") |
+         str_detect(Gencode_43_proteinChange, paste(c("T454M", "Y476C", "A508G"), collapse = "|"))
+       )
+    ) |
+    # SF3A1的筛选条件
+    (Gencode_43_hugoSymbol == "SF3A1" &
+       (
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") |
+         str_detect(Gencode_43_proteinChange, paste(c("A57S", "M117I", "K166T", "Y271C"), collapse = "|"))
+       )
+    ) |
+    # SF3B1的筛选条件
+    (Gencode_43_hugoSymbol == "SF3B1" &
+       str_detect(Gencode_43_proteinChange, paste(c(
+         "G347V", "R387W", "R387Q", "E592K", "E622D", "Y623C", "R625",
+         "H662Q", "H662D", "T663I", "K666N", "K666T", "K666E", "K666R",
+         "K666Q", "K700E", "V701F", "A708T", "G740R", "G740E", "G742D",
+         "A744P", "D781G", "E783K", "R831Q", "L833F", "E862K", "R957Q"
+       ), collapse = "|"))
+    ) |
+    # SMC1A的筛选条件
+    (Gencode_43_hugoSymbol == "SMC1A" &
+       str_detect(Gencode_43_proteinChange, paste(c(
+         "R96", "K190T", "R586", "M689V", "R807H", "R1090H", "R1090C"
+       ), collapse = "|"))
+    ) |
+    # SMC3的筛选条件
+    (Gencode_43_hugoSymbol == "SMC3" &
+       (
+         Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") |
+         str_detect(Gencode_43_proteinChange, paste(c("R155I", "Q367E", "D392V", "K571R", "R661P", "G662C"), collapse = "|"))
+       )
+    ) |
+    # SRSF2的筛选条件
+    (Gencode_43_hugoSymbol == "SRSF2" &
+       str_detect(Gencode_43_proteinChange, paste(c("Y44H", "P95", "P107H"), collapse = "|"))
+    ) |
+    # STAG2的筛选条件
+    (Gencode_43_hugoSymbol == "STAG2" &
+       Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS","FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE")
+    ) |
+    # STAT3的筛选条件
+    (Gencode_43_hugoSymbol == "STAT3" &
+       str_detect(Gencode_43_proteinChange, paste(c(
+         "M206K", "G618R", "Y640F", "N642H", "N647I", "D661N", "D661H", "D661Y", "D661V"
+       ), collapse = "|"))
+    ) |
+
+      # TET2的筛选条件
+    (Gencode_43_hugoSymbol == "TET2" &
+         (
+           Gencode_43_variantClassification %in% c("NONSENSE", "SPLICE_SITE", "FRAME_SHIFT_DEL", "FRAME_SHIFT_INS") |
+             (
+               Gencode_43_variantClassification == "MISSENSE" &
+                 (
+                   # 提取蛋白变化中的数字并筛选
+                   as.numeric(str_extract(Gencode_43_proteinChange, "(?<=p\\.\\w)(\\d+)")) >= 1104 &
+                     as.numeric(str_extract(Gencode_43_proteinChange, "(?<=p\\.\\w)(\\d+)")) <= 1481 |
+                     as.numeric(str_extract(Gencode_43_proteinChange, "(?<=p\\.\\w)(\\d+)")) >= 1843 &
+                     as.numeric(str_extract(Gencode_43_proteinChange, "(?<=p\\.\\w)(\\d+)")) <= 2002
+                 )
+             )
+      )) |
+      (Gencode_43_hugoSymbol == "TP53" &
+         (
+           Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS", "FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") |
+             str_detect(Gencode_43_proteinChange, paste(c(
+               "S46F", "G105C", "G105R", "G105D", "G108S", "G108C", "R110L", "R110C", "T118A", "T118R", "T118I",
+               "S127F", "S127Y", "L130V", "L130F", "K132Q", "K132E", "K132W", "K132R", "K132M", "K132N", "F134V",
+               "F134L", "F134S", "C135W", "C135S", "C135F", "C135G", "C135Y", "Q136K", "Q136E", "Q136P", "Q136R",
+               "Q136L", "Q136H", "A138P", "A138V", "A138A", "A138T", "T140I", "C141R", "C141G", "C141A", "C141Y",
+               "C141S", "C141F", "C141W", "V143M", "V143A", "V143E", "L145Q", "W146C", "W146L", "L145R", "V147G",
+               "P151T", "P151A", "P151S", "P151H", "P151R", "P152S", "P152R", "P152L", "T155P", "T155A", "V157F",
+               "R158H", "R158L", "A159V", "A159P", "A159S", "A159D", "A161T", "A161D", "Y163N", "Y163H", "Y163D",
+               "Y163S", "Y163C", "K164E", "K164M", "K164N", "K164P", "H168Y", "H168P", "H168R", "H168L", "H168Q",
+               "M169I", "M169T", "M169V", "E171K", "E171Q", "E171G", "E171A", "E171V", "E171D", "V172D", "V173M",
+               "V173L", "V173G", "R174W", "R175G", "R175C", "R175H", "C176R", "C176G", "C176Y", "C176F", "C176S",
+               "P177R", "P177R", "P177L", "H178D", "H178P", "H178Q", "H179Y", "H179R", "H179Q", "R181C", "R181Y",
+               "D186G", "G187S", "P190L", "P190T", "H193N", "H193P", "H193L", "H193R", "L194F", "L194R", "I195F",
+               "I195N", "I195T", "R196P", "V197L", "G199V", "Y205N", "Y205C", "Y205H", "D208V", "R213Q", "R213P",
+               "R213L", "R213Q", "H214D", "H214R", "S215G", "S215I", "S215R", "V216M", "V217G", "Y220N", "Y220H",
+               "Y220S", "Y220C", "E224D", "I232F", "I232N", "I232T", "I232S", "Y234N", "Y234H", "Y234S", "Y234C",
+               "Y236N", "Y236H", "Y236C", "M237V", "M237K", "M237I", "C238R", "C238G", "C238Y", "C238W", "N239T",
+               "N239S", "S241Y", "S241C", "S241F", "C242G", "C242Y", "C242S", "C242F", "G244S", "G244C", "G244D",
+               "G245S", "G245R", "G245C", "G245D", "G245A", "G245V", "M246V", "M246K", "M246R", "M246I", "N247I",
+               "R248W", "R248G", "R248Q", "R249G", "R249W", "R249T", "R249M", "P250L", "I251N", "L252P", "I254S",
+               "I255F", "I255N", "I255S", "L257Q", "L257P", "E258K", "E258Q", "D259Y", "S261T", "G262D", "G262V",
+               "L265P", "G266R", "G266E", "G266V", "R267W", "R267Q", "R267P", "E271K", "V272M", "V272L", "R273S",
+               "R273G", "R273C", "R273H", "R273P", "R273L", "V274F", "V274D", "V274A", "V274G", "V274L", "C275Y",
+               "C275S", "C275F", "A276P", "C277F", "C277Y", "P278T", "P278A", "P278S", "P278H", "P278R", "P278L",
+               "G279E", "R280G", "R280K", "R280T", "R280I", "R280S", "D281N", "D281H", "D281Y", "D281G", "D281E",
+               "R282G", "R282W", "R282Q", "R282P", "E285K", "E285V", "E286G", "E286V", "E286K", "K320N", "L330R",
+               "G334V", "R337C", "R337L", "A347T", "L348F", "T377P"
+             ), collapse = "|"))
+         )
+      ) |
+      # U2AF1的筛选条件
+      (Gencode_43_hugoSymbol == "U2AF1" &
+         str_detect(Gencode_43_proteinChange, paste(c(
+           "D14G", "S34F", "S34Y", "R35L", "R156H", "R156Q", "Q157R", "Q157P"
+         ), collapse = "|"))
+      ) |
+      # U2AF2的筛选条件
+      (Gencode_43_hugoSymbol == "U2AF2" &
+         str_detect(Gencode_43_proteinChange, paste(c(
+           "R18W", "Q143L", "M144I", "L187V", "Q190L"
+         ), collapse = "|"))
+      ) |
+      # ZRSR2的筛选条件
+      (Gencode_43_hugoSymbol == "ZRSR2" &
+         (
+           Gencode_43_variantClassification %in% c("FRAME_SHIFT_INS", "FRAME_SHIFT_DEL", "NONSENSE", "SPLICE_SITE") |
+             str_detect(Gencode_43_proteinChange, paste(c(
+               "R126P", "E133G", "C181F", "H191Y", "I202N", "F239V", "F239Y", "N261Y",
+               "C280R", "C302R", "C326R", "H330R", "N382K"
+             ), collapse = "|"))
+         )
+      )
+   )
+
+
+
+# # 假设a是您的数据框
+# filtered_data <- a %>%
+#   filter(
+#     )
+
+# 显示过滤后的数据
+head(filtered_data)
+
+
+
+length(unique(filtered_data$V11))
+length(unique(a$V11))
+
+
+
+
+fwrite(filtered_data,"hmk/test/all_washed.csv")
+fwrite(a,"hmk/test/all.txt",row.names = FALSE, col.names = F)
+
+# max_lengths <- max(sapply(strsplit(a$V8, ";"), length))
+# # 假设数据存储在 data.table 格式的变量 a 中
+# # 将其转为 data.frame 以便使用 tidyr 的函数
+# a <- as.data.frame(a)
+#
+# # 使用 separate 分割 V8 列
+# a1 <- separate(a, V8, into = paste0("V8_", 1:17), sep = ";", fill = "right")
+#
+# # 1. 删除 FUNCOTATION=[]
+# # a2 <- a1 %>%
+# #   mutate(V8_6 = gsub("^FUNCOTATION=\\[|\\]$", "", V8_6))
+# #
+# # max_lengths <- max(sapply(strsplit(a2$V8_6, "/"), length))
+#
+#
+# a2 <- a1 %>%
+#   mutate(V8_cleaned = gsub("^FUNCOTATION=\\[", "", V8_6)) %>%  # 去除 "FUNCOTATION=[" 前缀
+#   mutate(V8_cleaned = gsub("\\].*$", "", V8_cleaned)) %>%   # 去除 "]" 和后面的部分
+#   mutate(V8_cleaned = sub("\\|.*$", "", V8_cleaned))        # 仅保留 "|" 前的内容
+

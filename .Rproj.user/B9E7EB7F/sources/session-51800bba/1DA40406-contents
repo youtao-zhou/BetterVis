@@ -1,0 +1,24 @@
+Package: BetterVis
+Type: Package
+Title: Better Visualization for 'ggplot2' in r language
+Version: 1.0.0
+Date: 2025-01-24
+Author: Youtao Zhou [aut, cre], Zikai Lin [aut, cre]
+Depends:
+    R (>= 4.1.0)
+Maintainer: Youtao Zhou <zytzyt66@163.com>  
+Imports:
+    tibble,
+    magrittr,
+    dplyr,
+    ggplot2,
+    ggpubr,
+    cowplot,
+    RColorBrewer
+URL: https://github.com/youtao-zhou/BetterVis
+Description: Provides enhanced visualization tools for data analysis, including advanced plotting techniques and custom themes. 
+             Ideal for researchers and analysts looking to improve data presentation.  
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.3.1

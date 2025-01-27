@@ -1,0 +1,4 @@
+library(data.table)
+a <- fread("~/hmk/test/all.txt")
+eid <- a[!duplicated(a$V11),"V11"]
+fwrite(eid,"~/hmk/test/all_eid.txt",row.names = FALSE, col.names = F)

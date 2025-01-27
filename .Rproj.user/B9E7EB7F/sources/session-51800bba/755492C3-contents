@@ -1,0 +1,68 @@
+library(ggpubr)
+library(ggplot2)
+library(RColorBrewer)
+library(dplyr)
+library(cowplot)
+
+df<-read.table("BetterVis/01_Boxplot/boxplot_example_1.txt",header=T,sep = ",")
+df$supp<-as.factor(df$supp)
+df$dose<-as.factor(df$dose)
+
+set.seed(123)  # 设置随机种子以保证结果可复现
+random_sample <- sample(1:40000, 1000, replace = FALSE)
+df <- data.frame(
+  dose = c(rep("dose1",30), rep("dose2",30),rep("dose3",30),rep("dose1",30), rep("dose2",30),rep("dose3",30)),
+  supp = c(rep("OJ",90),rep("VC",90)),
+  len = c(sample(1:100, 90),sample(200:300, 90))
+  )
+
+
+
+
+
+
+BetterVis_Boxplot1(
+  df, x_var = "supp", y_var = "len", fill_var = "dose", 
+  use_facet = F, 
+  title = "",
+  x_label_angle = 45, 
+  x_label_bold = TRUE, 
+  y_label_bold = FALSE, 
+  axis_titles = c("X Axis", "Y Axis"), 
+  axis_title_bold = TRUE, 
+  custom_colors = c("#FC5D5C", "#4B6A9D", "#167D7D"), 
+  jitter = TRUE, 
+  jitter_color = c("black", "black", "black"),
+  legend_show = TRUE, 
+  legend_title = "", 
+  box_width = 0.6, 
+  comparison_col = "supp",
+  comparison = list(c("OJ", "VC")), 
+  comparison_method = "t.test", 
+  box_background = T,background_color = "white",background_border = T,sig_type = "SYMBOL"
+)
+
+BetterVis_Boxplot1(
+  data=df, x_var = "supp", y_var = "len", fill_var = "dose", 
+  use_facet = T, 
+  title = "",
+  x_label_angle = 45, 
+  x_label_bold = TRUE, 
+  y_label_bold = TRUE, 
+  axis_titles = c("X Axis", "Y Axis"), 
+  axis_title_bold = TRUE, 
+  custom_colors = c("#FC5D5C", "#4B6A9D", "#167D7D"), 
+  jitter = TRUE, 
+  jitter_color = c("#FC5D5C", "#4B6A9D", "#167D7D"),
+  jitter_width = 1,
+  jitter_alpha = 1,
+  jitter_size = 2,
+  legend_show = F, 
+  legend_title = "", 
+  box_width = 0.6, 
+  comparison_col = "dose",
+  comparison = list(c("dose_1", "dose_2"),c("dose_1", "dose_3"),c("dose_2", "dose_3")),
+  comparison_method = "t.test", 
+  box_background = F,background_color = "white",background_border = T,sig_type = "p.signif",violin = T
+)
+# +theme(axis.title.x = element_blank())+guides(fill=F) 

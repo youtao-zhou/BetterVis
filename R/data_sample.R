@@ -14,3 +14,19 @@ NULL
 #' }
 #' @source Simulated example data.
 "Boxplot_Experiment_example"
+
+
+#' Accumulative Barplot Example Data
+#'
+#' A dataset to demonstrate the functionality of creating accumulative bar plots.
+#' It contains cell count and percentage data for various cell types across different patients.
+#'
+#' @format A data frame with 50 rows and 4 variables:
+#' \describe{
+#'   \item{Patient}{Character. Identifier for the patient, with levels including \code{"P21"}, \code{"P48"}, \code{"P53"}, \code{"P54"}, \code{"P08"}.}
+#'   \item{celltype}{Factor. Type of cell being measured, including \code{"Plasmacytoid DCs"}, \code{"B cells"}, \code{"Treg cells"}, \code{"Plasma cells"}, \code{"Monocytes"}, \code{"Endothelial cells"}, \code{"Cancer cells"}, \code{"Fibroblasts"}, \code{"Columner epithelial cells"}.}
+#'   \item{cell_num}{Numeric. Number of cells counted for each patient and cell type.}
+#'   \item{percent}{Numeric. Proportion of the total cell count represented by this cell type for each patient.}
+#' }
+#' @source Simulated example data for visualization examples.
+"BetterVis_Barplot_Accumulative_example"

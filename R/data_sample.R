@@ -30,3 +30,17 @@ NULL
 #' }
 #' @source Simulated example data for visualization examples.
 "BetterVis_Barplot_Accumulative_example"
+
+#' Bidirectional Barplot Example Dataset
+#'
+#' A dataset designed to illustrate the use of bidirectional bar plots. It includes example data on different pathways, groupings, species, and their respective contribution percentages.
+#'
+#' @format A data frame with 10 rows and 4 variables:
+#' \describe{
+#'   \item{pathway}{Character. Name of the biochemical pathway, indicating the specific pathway being referenced.}
+#'   \item{group}{Character. Defines the enrichment group for the dataset, specifying categories such as \code{"Enriched in stable low DDS"}.}
+#'   \item{Species}{Character. Represents the species involved, such as \code{"Bacteroides massiliensis"}, \code{"Escherichia coli"}, and others.}
+#'   \item{Percentage}{Numeric. The percentage contribution of each species to the pathway, which can be both positive or negative to indicate directionality.}
+#' }
+#' @source Simulated data for visualization examples.
+"BetterVis_Barplot_Bidirectional_example"

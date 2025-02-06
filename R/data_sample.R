@@ -13,4 +13,4 @@ NULL
 #'   \item{dose}{Factor. Dose level of the supplement (\code{"dose_1"}, \code{"dose_2"}, or \code{"dose_3"}).}
 #' }
 #' @source Simulated example data.
-"boxplot_example_1"
+"Boxplot_Experiment_example"

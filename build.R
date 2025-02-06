@@ -1,6 +1,6 @@
 # 创建数据
-boxplot_example_1 <- fread("~/BetterVis/01_Boxplot/boxplot_example_1.txt")
-usethis::use_data(boxplot_example_1)
+Boxplot_Experiment_example <- boxplot_example_1
+usethis::use_data(Boxplot_Experiment_example,overwrite = TRUE)
 
 
 # 最后运行编写文档

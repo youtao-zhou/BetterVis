@@ -1,5 +1,5 @@
 #' #' BetterVis Boxplot Function
-#' @name BetterVis_Boxplot1
+#' @name BetterVis_Boxplot_Experiment
 #' @description Creates enhanced boxplots with customization options for ggplot2.
 #' @param data A data frame.
 #' @param x_var A string specifying the x-axis variable.
@@ -50,11 +50,11 @@
 #' library(RColorBrewer)
 #' library(dplyr)
 #' library(cowplot)
-#'
 #' library(BetterVis)
 #'
-#' data("boxplot_example_1", package = "BetterVis")
-#' df <- boxplot_example_1
+#' ##示例数据1
+#' data("Boxplot_Experiment_example", package = "BetterVis")
+#' df <- Boxplot_Experiment_example
 #' df$supp<-as.factor(df$supp)
 #' df$dose<-as.factor(df$dose)
 #'
@@ -71,7 +71,7 @@
 #'
 #'
 #'
-#' BetterVis_Boxplot1(
+#' BetterVis_Boxplot_Experiment(
 #'   df, x_var = "supp", y_var = "len", fill_var = "dose",
 #'   use_facet = FALSE,
 #'   title = "",
@@ -92,7 +92,7 @@
 #'   box_background = TRUE,background_color = "white",background_border = TRUE,sig_type = "SYMBOL"
 #' )
 #'
-#' BetterVis_Boxplot1(
+#' BetterVis_Boxplot_Experiment(
 #'   data=df, x_var = "supp", y_var = "len", fill_var = "dose",
 #'   use_facet = TRUE,
 #'   title = "",
@@ -115,13 +115,13 @@
 #'   comparison_method = "t.test",
 #'   box_background = FALSE,background_color = "white",background_border = TRUE,sig_type = "p.signif",violin = TRUE
 #' )
-# +theme(axis.title.x = element_blank())+guides(fill=FALSE)
+#' # +theme(axis.title.x = element_blank())+guides(fill=FALSE)
 
 #' @export
 
 
 utils::globalVariables(".data")
-BetterVis_Boxplot1 <- function(data, x_var, y_var, fill_var, use_facet = FALSE,
+BetterVis_Boxplot_Experiment <- function(data, x_var, y_var, fill_var, use_facet = FALSE,
                                title = NULL, x_label_angle = 45, x_label_bold = FALSE, y_label_bold = FALSE,
                                axis_titles = c("", ""), axis_title_bold = FALSE, custom_colors = NULL,
                                jitter = TRUE, jitter_color = NULL, jitter_width = 0.1, jitter_alpha = 1, jitter_size = 1,

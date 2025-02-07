@@ -44,3 +44,32 @@ NULL
 #' }
 #' @source Simulated data for visualization examples.
 "BetterVis_Barplot_Bidirectional_example"
+
+
+#' KEGG Pathway Enrichment Data for Horizontal Barplot
+#'
+#' This dataset provides information on various KEGG pathways, associated gene counts, and statistical measures. It is designed for illustrating horizontal barplots depicting enrichment analysis results.
+#'
+#' @format A data frame with 14 rows and 13 variables:
+#' \describe{
+#'   \item{Category}{Character. Category of the pathway, typically indicating it's a KEGG pathway.}
+#'   \item{Description}{Character. Description of the specific pathway, including KEGG identifiers.}
+#'   \item{Count}{Numeric. Number of genes associated with the pathway.}
+#'   \item{\%}{Numeric. Percentage of total genes related to the pathway.}
+#'   \item{PValue}{Numeric. Statistical p-value indicating the significance of the pathway's enrichment.}
+#'   \item{Genes}{Character. List of gene identifiers associated with the pathway, separated by commas.}
+#'   \item{List Total}{Numeric. Total number of genes in the list being analyzed.}
+#'   \item{Pop Hits}{Numeric. Number of pathway hits in the population.}
+#'   \item{Pop Total}{Numeric. Total number of genes in the population.}
+#'   \item{Fold Enrichment}{Numeric. Measure of the fold increase in pathway representation.}
+#'   \item{Bonferroni}{Numeric. Bonferroni-adjusted p-value for multiple comparisons correction.}
+#'   \item{Benjamini}{Numeric. Benjamini-adjusted value for false discovery rate control.}
+#'   \item{FDR}{Numeric. False discovery rate-adjusted p-value.}
+#' }
+#' @source Simulated data for demonstrating horizontal barplot functionality.
+"BetterVis_Barplot_Horizontal_example"
+
+
+
+
+

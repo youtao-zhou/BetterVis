@@ -29,7 +29,17 @@ Imports:
     ComplexHeatmap,
     scales,
     ggbeeswarm,
-    Hmisc
+    Hmisc,
+    ggExtra,
+    tidyselect,
+    ggprism,
+    paletteer,
+    ggtern,
+    MetBrewer,
+    geomtextpath,
+    linkET,
+    ggnewscale,
+    patchwork
 URL: https://github.com/youtao-zhou/BetterVis
 Description: Provides enhanced visualization tools for data analysis, including advanced plotting techniques and custom themes. 
              Ideal for researchers and analysts looking to improve data presentation.  
@@ -38,5 +48,6 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.3.1
 Suggests: 
+    MASS,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3

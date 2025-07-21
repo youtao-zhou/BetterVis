@@ -89,20 +89,85 @@ NULL
 
 
 
+#' Example Data for a Bi-Continuous Heatmap
+#'
+#' A dataset in long format suitable for creating a tile-based heatmap with
+#' `BetterVis_Heatmap_Bicontinuous`.
+#'
+#' @format A data frame with columns:
+#' \describe{
+#'   \item{ID}{A variable for the x-axis.}
+#'   \item{name}{A variable for the y-axis.}
+#'   \item{value}{A continuous variable for the fill color.}
+#' }
+#' @source Simulated data for visualization examples, originally from a CSV file.
+"BetterVis_Heatmap_Bicontinuous_example"
+
+
+#' Example Data for a Circular Heatmap
+#'
+#' A dataset in long format suitable for creating a circular heatmap with
+#' `BetterVis_Heatmap_Circle`.
+#'
+#' @format A data frame with columns:
+#' \describe{
+#'   \item{value}{A continuous variable for the fill color.}
+#'   \item{id}{A categorical variable for the outer ring labels.}
+#'   \item{name}{A categorical variable for the inner rings.}
+#' }
+#' @source Simulated data for visualization examples, originally from a CSV file.
+"BetterVis_Heatmap_Circle_example"
+
+
+#' Example Data for a Common Heatmap
+#'
+#' A numeric data frame in wide format suitable for creating a heatmap with
+#' `BetterVis_Heatmap_Common`. Rows and columns represent different features
+#' or samples, and the cells contain numeric values.
+#'
+#' @format A data frame with numeric values.
+#' @source Simulated data for visualization examples, originally from a CSV file.
+"BetterVis_Heatmap_Common_example"
 
 
 
 
+#' Example Expression Data for Mantel Test Heatmap
+#'
+#' An example numeric data frame representing expression data, suitable for the
+#' `expression_data` argument in `BetterVis_Heatmap_Mantel`.
+#'
+#' @format A data frame with numeric values.
+#' @source Simulated data for visualization examples.
+"BetterVis_Heatmap_Mantel_example1"
+
+#' Example Phenotype Data for Mantel Test Heatmap
+#'
+#' An example data frame representing clinical or phenotype data, suitable for the
+#' `phenotype_data` argument in `BetterVis_Heatmap_Mantel`.
+#'
+#' @format A data frame with various clinical indicators.
+#' @source Simulated data for visualization examples.
+"BetterVis_Heatmap_Mantel_example2"
 
 
 
-
-
-
-
-
-
-
+#' Example Data for a Multi-Layered Heatmap
+#'
+#' A dataset containing a mix of numeric and categorical variables suitable for
+#' creating a composite heatmap with `BetterVis_Heatmap_Multi`.
+#'
+#' @format A data frame with columns for sample IDs, numeric values, and
+#'   categorical annotations.
+#' \describe{
+#'   \item{case.ID}{Character. A unique identifier for each sample on the x-axis.}
+#'   \item{Primary Metastasis}{Character. An example annotation variable.}
+#'   \item{Consensus classification}{Character. An example annotation variable.}
+#'   \item{UNC classification}{Character. An example annotation variable.}
+#'   \item{...}{Other columns are numeric variables for the main heatmap.}
+#' }
+#' @source Simulated data for visualization examples, originally from a CSV file.
+"BetterVis_Heatmap_Multi_example"
 
 
 
@@ -136,9 +201,71 @@ NULL
 "BetterVis_Dotplot_Beeswarm_example"
 
 
+#' Example Data for a Mixed Dot Plot and Bar Plot
+#'
+#' A dataset containing measurements for different species of penguins, suitable
+#' for creating a scatter plot with `BetterVis_Dotplot_Mixbar`. This data is
+#' derived from the `palmerpenguins` package.
+#'
+#' @format A data frame with columns including:
+#' \describe{
+#'   \item{species}{A character string indicating the penguin species.}
+#'   \item{bill_length_mm}{A numeric variable for the x-axis.}
+#'   \item{bill_depth_mm}{A numeric variable for the y-axis.}
+#'   \item{body_mass_g}{A numeric variable for point size.}
+#' }
+#' @source Data originally from the `palmerpenguins` package, by way of a CSV file.
+"BetterVis_Dotplot_Mixbar_example"
+
+
+#' Example Data for a Multi-Faceted Dot Plot
+#'
+#' A dataset containing the classic `iris` measurements, suitable for creating
+#' a matrix of scatter plots with `BetterVis_Dotplot_Multifacet`.
+#'
+#' @format A data frame with 150 rows and 5 columns:
+#' \describe{
+#'   \item{Sepal.Length}{Numeric. Length of the sepal.}
+#'   \item{Sepal.Width}{Numeric. Width of the sepal.}
+#'   \item{Petal.Length}{Numeric. Length of the petal.}
+#'   \item{Petal.Width}{Numeric. Width of the petal.}
+#'   \item{Species}{Factor. The species of iris.}
+#' }
+#' @source The base R `iris` dataset, by way of a CSV file.
+"BetterVis_Dotplot_Multifacet_example"
+
+
+#' Example Data for a Smoothline Dot Plot
+#'
+#' A dataset containing the classic `iris` measurements, suitable for creating
+#' a scatter plot with smoothed lines using `BetterVis_Dotplot_Smoothline`.
+#'
+#' @format A data frame with 150 rows and 5 columns:
+#' \describe{
+#'   \item{Sepal.Length}{Numeric. Length of the sepal.}
+#'   \item{Sepal.Width}{Numeric. Width of the sepal.}
+#'   \item{Petal.Length}{Numeric. Length of the petal.}
+#'   \item{Petal.Width}{Numeric. Width of the petal.}
+#'   \item{Species}{Factor. The species of iris.}
+#' }
+#' @source The base R `iris` dataset, by way of a CSV file.
+"BetterVis_Dotplot_Smoothline_example"
 
 
 
+#' Example Data for a Ternary Plot
+#'
+#' A dataset containing three compositional variables (x, y, z) that sum to a
+#' constant, plus a fourth variable ('size') for mapping to point aesthetics.
+#' This data is suitable for use with `BetterVis_Dotplot_Ternary`.
+#'
+#' @format A data frame with columns:
+#' \describe{
+#'   \item{x, y, z}{Numeric. The three compositional variables for the ternary axes.}
+#'   \item{size}{Numeric. A variable to be mapped to point size and color.}
+#' }
+#' @source Simulated data for visualization examples, originally from a CSV file.
+"BetterVis_Dotplot_Ternary_example"
 
 
 

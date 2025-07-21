@@ -12,7 +12,7 @@ usethis::use_data(BetterVis_Barplot_Bidirectional_example,overwrite = TRUE)
 
 
 BetterVis_Barplot_Circle_example <- fread("~/test/BetterVis_Example/02_Barplot/BetterVis_Barplot_Circle_example.csv")
-usethis::use_data(BetterVis_Barplot_Circle_example)
+usethis::use_data(BetterVis_Barplot_Circle_example, overwrite = TRUE)
 
 
 BetterVis_Barplot_Horizontal_example <- fread("~/test/BetterVis_Example/02_Barplot/BetterVis_Barplot_Horizontal.csv")
@@ -25,6 +25,30 @@ usethis::use_data(BetterVis_Ring_example)
 
 
 
+BetterVis_Heatmap_Bicontinuous_example <-  fread("~/test/BetterVis_Example/04_Heatmap/BetterVis_Heatmap_Bicontinuous_example.csv")
+usethis::use_data(BetterVis_Heatmap_Bicontinuous_example, overwrite = TRUE)
+
+
+
+
+BetterVis_Heatmap_Circle_example <-  fread("~/test/BetterVis_Example/04_Heatmap/BetterVis_Heatmap_Circle_example.csv")
+usethis::use_data(BetterVis_Heatmap_Circle_example, overwrite = TRUE)
+
+
+BetterVis_Heatmap_Common_example <-  fread("~/test/BetterVis_Example/04_Heatmap/BetterVis_Heatmap_Common_example.csv")
+usethis::use_data(BetterVis_Heatmap_Common_example, overwrite = TRUE)
+
+
+
+BetterVis_Heatmap_Mantel_example1 <-  fread("~/test/BetterVis_Example/04_Heatmap/BetterVis_Heatmap_Mantel_example1.csv")
+usethis::use_data(BetterVis_Heatmap_Mantel_example1, overwrite = TRUE)
+
+
+BetterVis_Heatmap_Mantel_example2 <-  fread("~/test/BetterVis_Example/04_Heatmap/BetterVis_Heatmap_Mantel_example2.csv")
+usethis::use_data(BetterVis_Heatmap_Mantel_example2, overwrite = TRUE)
+
+BetterVis_Heatmap_Multi_example <-  fread("~/test/BetterVis_Example/04_Heatmap/BetterVis_Heatmap_Multi_example.csv")
+usethis::use_data(BetterVis_Heatmap_Multi_example, overwrite = TRUE)
 
 
 BetterVis_DotPlot_Heatmap_example <-  fread("~/test/BetterVis_Example/05_Dotplot/BetterVis_DotPlot_Heatmap_example.csv")
@@ -35,8 +59,21 @@ BetterVis_Dotplot_Beeswarm_example  <-  fread("~/test/BetterVis_Example/05_Dotpl
 usethis::use_data(BetterVis_Dotplot_Beeswarm_example, overwrite = TRUE)
 
 
+BetterVis_Dotplot_Mixbar_example   <-  fread("~/test/BetterVis_Example/05_Dotplot/BetterVis_Dotplot_Mixbar_example.csv")
+usethis::use_data(BetterVis_Dotplot_Mixbar_example, overwrite = TRUE)
+
+BetterVis_Dotplot_Multifacet_example   <-  fread("~/test/BetterVis_Example/05_Dotplot/BetterVis_Dotplot_Multifacet_example.csv")
+usethis::use_data(BetterVis_Dotplot_Multifacet_example, overwrite = TRUE)
 
 
+
+BetterVis_Dotplot_Smoothline_example   <-  fread("~/test/BetterVis_Example/05_Dotplot/BetterVis_Dotplot_Smoothline_example.csv")
+usethis::use_data(BetterVis_Dotplot_Smoothline_example, overwrite = TRUE)
+
+
+
+BetterVis_Dotplot_Ternary_example   <-  fread("~/test/BetterVis_Example/05_Dotplot/BetterVis_Dotplot_Ternary.csv")
+usethis::use_data(BetterVis_Dotplot_Ternary_example, overwrite = TRUE)
 
 
 BetterVis_Ridgeline_Facet_example <-  fread("~/test/BetterVis_Example/06_Ridgeline/BetterVis_Ridgeline_Facet_example.csv")
@@ -95,11 +132,40 @@ usethis::use_package("Hmisc")    # For median_hilow()
 usethis::use_package("ComplexHeatmap")
 usethis::use_package("circlize") # for colorRamp2
 usethis::use_package("scales")   # for hue_pal, rescale
-
+usethis::use_package("ggExtra")
 # 示例中使用的包，建议作为 "Suggests"
 usethis::use_package("RColorBrewer")
+usethis::use_package("tidyselect")
 
+usethis::use_package("cowplot")
+usethis::use_package("scales")
 
+# 由于 MASS 包仅在示例中使用，我们将其添加到 "Suggests" 字段
+usethis::use_package("MASS", type = "Suggests")
+usethis::use_package("ggprism")
+usethis::use_package("paletteer")
+# ggpubr is likely already a dependency, but it's good practice to ensure it's there
+usethis::use_package("ggpubr")
+usethis::use_package("ggtern")
+usethis::use_package("MetBrewer")
+usethis::use_package("MetBrewer")
+usethis::use_package("ggtext")
+usethis::use_package("geomtextpath")
+usethis::use_package("MetBrewer") # Likely already a dependency, but good to ensure
+
+usethis::use_package("tidyr")
+usethis::use_package("tibble")
+usethis::use_package("magrittr")
+usethis::use_package("MetBrewer") # Likely already a dependency, but good to ensure
+
+usethis::use_package("linkET")
+usethis::use_package("scales")
+usethis::use_package("RColorBrewer") # Also used in the function signature
+
+usethis::use_package("ggnewscale")
+usethis::use_package("patchwork")
+usethis::use_package("scales") # For brewer_pal
+usethis::use_package("tidyselect") # For the where() helper
 # 最后运行编写文档
 roxygen2::roxygenise()
 

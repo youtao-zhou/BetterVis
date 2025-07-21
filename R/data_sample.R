@@ -72,4 +72,155 @@ NULL
 
 
 
+#' Ring Example Data
+#'
+#' A dataset to demonstrate the functionality of creating circular dendrogram plots.
+#' It contains hierarchical data representing relationships between traits, SNPs, and genes.
+#'
+#' @format A data frame with example rows and 4 variables:
+#' \describe{
+#'   \item{trait}{Character. The highest level of the hierarchy, e.g., a disease or trait.}
+#'   \item{SNP}{Character. Single Nucleotide Polymorphism identifier, the second level.}
+#'   \item{Gene}{Character. Gene identifier, the lowest level of the hierarchy.}
+#'   \item{value}{Numeric. A value associated with each record, used to determine node size.}
+#' }
+#' @source Simulated data for visualization examples.
+"BetterVis_Ring_example"
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#' Example Data for a Dot Plot / Heatmap
+#'
+#' A numeric matrix representing gene expression data, suitable for use with
+#' `BetterVis_DotPlot_Heatmap`. Rows represent genes and columns represent
+#' cell types or sample groups.
+#'
+#' @format A numeric matrix.
+#' @source Simulated data for visualization examples, originally from a CSV file.
+"BetterVis_DotPlot_Heatmap_example"
+
+
+
+#' Example Data for a Beeswarm Plot
+#'
+#' A dataset containing city miles per gallon (MPG) for various vehicle types,
+#' suitable for creating a beeswarm plot with `BetterVis_Dotplot_Beeswarm`.
+#'
+#' @format A data frame with columns including:
+#' \describe{
+#'   \item{Type}{A categorical variable for the x-axis, representing vehicle type.}
+#'   \item{MPG.city}{A numeric variable for the y-axis, representing city MPG.}
+#' }
+#' @source Simulated data for visualization examples, originally from a CSV file.
+"BetterVis_Dotplot_Beeswarm_example"
+
+
+
+
+
+
+
+
+
+
+
+#' Example Data for a Faceted Ridgeline Plot
+#'
+#' A dataset containing numeric scores and multiple categorical groupings
+#' suitable for creating a faceted ridgeline plot with
+#' `BetterVis_Ridgeline_Facet`.
+#'
+#' @format A data frame with columns including:
+#' \describe{
+#'   \item{CytoTRACEScore}{A numeric variable for the x-axis.}
+#'   \item{patient}{A categorical variable for the y-axis, defining the ridges.}
+#'   \item{smoking1}{A categorical variable for faceting.}
+#'   \item{Group}{Another categorical variable for faceting.}
+#'   \item{mutationGroup}{An additional categorical variable for annotation.}
+#' }
+#' @source Simulated data for visualization examples, originally from a CSV file.
+"BetterVis_Ridgeline_Facet_example"
+
+
+#' Example Data for a Single Ridgeline Plot
+#'
+#' A dataset containing numeric scores and categorical groupings suitable for
+#' creating a ridgeline plot with `BetterVis_Ridgeline_Single`.
+#'
+#' @format A data frame with columns including:
+#' \describe{
+#'   \item{CytoTRACEScore}{A numeric variable for the x-axis.}
+#'   \item{patient}{A categorical variable for the y-axis, defining the ridges.}
+#'   \item{mutationGroup}{An additional categorical variable for annotation.}
+#' }
+#' @source Simulated data for visualization examples, originally from a CSV file.
+"BetterVis_Ridgeline_Single_example"
+
+
+#' Example Data for UpSet Plot
+#'
+#' A named list of character vectors, where each vector represents a set of
+#' elements. This dataset is used to demonstrate the functionality of
+#' `BetterVis_Venn_UpsetR`.
+#'
+#' @format A named list with multiple elements, each being a character vector.
+#' @source Simulated data for visualization examples, originally stored in an .rds file.
+"BetterVis_Venn_UpsetR_example"
+
+
+#' Example Data for Circos Interaction Plot (Sectors)
+#'
+#' A dataset containing the primary sector and annotation track information
+#' for demonstrating `BetterVis_Circos_Interaction`.
+#'
+#' @format A data frame with columns:
+#' \describe{
+#'   \item{ID_Gene}{Character. Unique identifiers for the main sectors.}
+#'   \item{type_main}{Character. A classification for coloring the main sectors.}
+#'   \item{type_col1}{Character. Classification for the first annotation track.}
+#'   \item{type_col2}{Character. Classification for the second annotation track.}
+#' }
+#' @source Simulated data for visualization examples.
+"BetterVis_Circos_Interaction_example1"
+
+
+
+
+
+
+
+#' Example Data for Circos Interaction Plot (Links)
+#'
+#' A dataset containing interaction data (links) for demonstrating
+#' the chord diagram functionality in `BetterVis_Circos_Interaction`.
+#'
+#' @format A data frame with columns:
+#' \describe{
+#'   \item{ID}{Character. The source of the interaction link.}
+#'   \item{Gene}{Character. The target of the interaction link.}
+#'   \item{Correlation}{Numeric. The strength of the interaction, used for link width.}
+#'   \item{Pvalue}{Numeric. The statistical significance of the interaction.}
+#' }
+#' @source Simulated data for visualization examples.
+"BetterVis_Circos_Interaction_example2"

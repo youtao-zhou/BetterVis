@@ -54,6 +54,9 @@ options for aesthetic customization.
 \examples{
 if (requireNamespace("MetBrewer", quietly = TRUE)) {
   # Load example data
+  library(magrittr)
+  library(MetBrewer)
+  library(ggplot2)
   data("BetterVis_Heatmap_Common_example", package = "BetterVis")
 
   # Example 1: Basic usage

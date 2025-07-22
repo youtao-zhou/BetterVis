@@ -5,7 +5,8 @@ Version: 1.2.0
 Date: 2025-01-24
 Author: Youtao Zhou [aut, cre], Zikai Lin [aut, cre]
 Depends:
-    R (>= 4.1.0)
+    R (>= 4.1.0),
+    tidyverse
 Maintainer: Youtao Zhou <zytzyt66@163.com>  
 Imports:
     tibble,

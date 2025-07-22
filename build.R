@@ -35,7 +35,7 @@ BetterVis_Heatmap_Circle_example <-  fread("~/test/BetterVis_Example/04_Heatmap/
 usethis::use_data(BetterVis_Heatmap_Circle_example, overwrite = TRUE)
 
 
-BetterVis_Heatmap_Common_example <-  fread("~/test/BetterVis_Example/04_Heatmap/BetterVis_Heatmap_Common_example.csv")
+BetterVis_Heatmap_Common_example <-  read.csv("~/test/BetterVis_Example/04_Heatmap/BetterVis_Heatmap_Common_example.csv",row.names = 1)
 usethis::use_data(BetterVis_Heatmap_Common_example, overwrite = TRUE)
 
 
@@ -161,9 +161,10 @@ usethis::use_package("MetBrewer") # Likely already a dependency, but good to ens
 usethis::use_package("linkET")
 usethis::use_package("scales")
 usethis::use_package("RColorBrewer") # Also used in the function signature
-
+usethis::use_package("tidyverse")
 usethis::use_package("ggnewscale")
 usethis::use_package("patchwork")
+usethis::use_package("tidyverse", type = "depends")
 usethis::use_package("scales") # For brewer_pal
 usethis::use_package("tidyselect") # For the where() helper
 # 最后运行编写文档

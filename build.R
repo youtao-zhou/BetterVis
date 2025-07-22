@@ -102,13 +102,16 @@ BetterVis_Circos_Interaction_example2 <- fread("~/test/BetterVis_Example/09_Circ
 usethis::use_data(BetterVis_Circos_Interaction_example2)
 
 
+BetterVis_LinePlot_Chart_example <- fread("~/test/BetterVis_Example/10_Lineplot/BetterVis_LinePlot_Chart_example.csv")
+usethis::use_data(BetterVis_LinePlot_Chart_example)
+
+BetterVis_Pie_Single_example <- fread("~/test/BetterVis_Example/11_Pie/BetterVis_Pie_Single_example.csv")
+usethis::use_data(BetterVis_Pie_Single_example)
 
 
 
-
-
-
-
+usethis::use_package("ggtext")
+usethis::use_package("scales")
 
 # Run these lines in your console
 usethis::use_package("ggraph")
@@ -166,6 +169,7 @@ usethis::use_package("ggnewscale")
 usethis::use_package("patchwork")
 usethis::use_package("tidyverse", type = "depends")
 usethis::use_package("scales") # For brewer_pal
+usethis::use_package("Hmisc")
 usethis::use_package("tidyselect") # For the where() helper
 # 最后运行编写文档
 roxygen2::roxygenise()

@@ -351,3 +351,35 @@ NULL
 #' }
 #' @source Simulated data for visualization examples.
 "BetterVis_Circos_Interaction_example2"
+
+
+
+#' Example Data for a Summary Line Plot
+#'
+#' A dataset in long format showing values over several days for different
+#' treatment and experimental groups. Suitable for use with `BetterVis_LinePlot_Chart`.
+#'
+#' @format A data frame with columns:
+#' \describe{
+#'   \item{Day}{Numeric. The time point for the measurement.}
+#'   \item{value}{Numeric. The measured value to be summarized.}
+#'   \item{Treatment}{Character. The primary grouping variable for coloring.}
+#'   \item{Group}{Character. A secondary grouping variable for faceting.}
+#' }
+#' @source Simulated data for visualization examples, originally from a CSV file.
+"BetterVis_LinePlot_Chart_example"
+
+
+
+#' Example Data for a Pie Chart
+#'
+#' A dataset showing the market share of different companies, suitable for
+#' creating a pie chart with `BetterVis_Pie_Single`.
+#'
+#' @format A data frame with columns:
+#' \describe{
+#'   \item{Company}{Character. The categorical variable defining the pie slices.}
+#'   \item{Share}{Numeric. The numeric variable defining the slice proportions.}
+#' }
+#' @source Simulated data for visualization examples, originally from a CSV file.
+"BetterVis_Pie_Single_example"

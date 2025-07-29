@@ -52,8 +52,14 @@ or a concentric pie chart. It uses the `jjPlot` package for the pie chart
 geometry and `ggnewscale` to handle multiple fill scales.
 }
 \examples{
-\dontrun{
 if (requireNamespace("jjPlot", quietly = TRUE) && requireNamespace("ggnewscale", quietly = TRUE)) {
+library(tidyverse)
+library(ggtext)
+library(dplyr)
+library(ggplot2)
+library(scales)
+library(MetBrewer)
+
   # Load example data
   data("BetterVis_Pie_Multi_example_in", package = "BetterVis")
   data("BetterVis_Pie_Multi_example_out", package = "BetterVis")
@@ -81,6 +87,5 @@ if (requireNamespace("jjPlot", quietly = TRUE) && requireNamespace("ggnewscale",
     out_color = color2,
     draw_outer_pie = TRUE
   )
-}
 }
 }

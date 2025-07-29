@@ -27,23 +27,28 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' library(linkET)
+#' library(dplyr)
+#' library(ggplot2)
+#' library(tidyverse)
+#' library(RColorBrewer)
+#' library(vegan)
 #' if (requireNamespace("linkET", quietly = TRUE)) {
 #'   # Load example data
-#'   data("BetterVis_Heatmap_Mantel_phenotype", package = "BetterVis")
-#'   data("BetterVis_Heatmap_Mantel_expression", package = "BetterVis")
+#'   data("BetterVis_Heatmap_Mantel_example1", package = "BetterVis")
+#'   data("BetterVis_Heatmap_Mantel_example2", package = "BetterVis")
 #'
 #'   # Example 1: Basic usage
 #'   BetterVis_Heatmap_Mantel(
-#'     phenotype_data = BetterVis_Heatmap_Mantel_phenotype,
-#'     expression_data = BetterVis_Heatmap_Mantel_expression,
+#'     phenotype_data = BetterVis_Heatmap_Mantel_example2,
+#'     expression_data = BetterVis_Heatmap_Mantel_example1,
 #'     spec_select = c("stage", "age", "gender", "CA125", "CEA", "CA15.3")
 #'   )
 #'
 #'   # Example 2: More customized plot
 #'   BetterVis_Heatmap_Mantel(
-#'     phenotype_data = BetterVis_Heatmap_Mantel_phenotype,
-#'     expression_data = BetterVis_Heatmap_Mantel_expression,
+#'     phenotype_data = BetterVis_Heatmap_Mantel_example2,
+#'     expression_data = BetterVis_Heatmap_Mantel_example1,
 #'     spec_select = c("stage", "age", "gender", "CA125", "CEA", "CA15.3"),
 #'     significant_symbol = TRUE,
 #'     heatmap_color = brewer.pal(11, "RdYlBu"),
@@ -53,7 +58,6 @@
 #'   ) +
 #'   theme(legend.text = element_text(size = 16), legend.title = element_text(size = 18))
 #' }
-#'}
 BetterVis_Heatmap_Mantel <- function(phenotype_data, expression_data, spec_select,
                                      significant_symbol = TRUE,
                                      heatmap_color = RColorBrewer::brewer.pal(11, "PuOr"),

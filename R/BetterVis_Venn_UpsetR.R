@@ -30,7 +30,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' library(UpSetR)
 #' # Load example data from the package
 #' data("BetterVis_Venn_UpsetR_example", package = "BetterVis")
 #'
@@ -52,7 +52,6 @@
 #'   point.size = 5,
 #'   line.size = 2
 #' )
-#' }
 BetterVis_Venn_UpsetR <- function(input_list,
                                   ratio = c(0.7, 0.3),
                                   point.size = 3,

@@ -31,13 +31,19 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' library(ggplot2)
+#' library(ggpubr)
+#' library(cowplot)
+#' library(grid)
+#' library(gridExtra)
+#' library(MASS)
+#'
 #' # Example 1: Using the iris dataset (as `BetterVis_Dotplot_Multifacet_example`)
 #' data("BetterVis_Dotplot_Multifacet_example", package = "BetterVis")
 #' BetterVis_Dotplot_Multifacet(
 #'   df = BetterVis_Dotplot_Multifacet_example,
 #'   classified_var = "Species",
-#'   color = c("#BEBADA", "#80B1D3", "#FDB462"),
+#'   color = c("#BEBADA", "#80B1D3", "#FDB462","#FB8072"),
 #'   ncol = 3
 #' )
 #'
@@ -57,13 +63,12 @@
 #' BetterVis_Dotplot_Multifacet(
 #'   df = BetterVis_Dotplot_Multifacet_example,
 #'   classified_var = "Species",
-#'   color = c("#BEBADA", "#80B1D3", "#FDB462"),
+#'   color = c("#BEBADA", "#80B1D3", "#FDB462","#FB8072"),
 #'   ncol = 3,
 #'   subset_display = c(1, 2, 4), # Display only the 1st, 2nd, and 4th plot
 #'   legend_title = "Penguin Species",
 #'   theme_custom = theme(axis.text = element_text(face = "bold"))
 #' )
-#'}
 BetterVis_Dotplot_Multifacet <- function(
     df,
     classified_var,

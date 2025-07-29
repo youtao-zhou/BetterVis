@@ -75,8 +75,9 @@ It supports both continuous and categorical fill colors, in-bar text labels,
 and a secondary categorical annotation track at the base of the plot.
 }
 \examples{
-\dontrun{
 if (requireNamespace("ggnewscale", quietly = TRUE)) {
+  library(ggplot2)
+  library(dplyr)
   # Load and process the example data
   data("BetterVis_Barplot_Horizontal_example", package = "BetterVis")
   df <- BetterVis_Barplot_Horizontal_example[1:10, ]
@@ -110,6 +111,5 @@ if (requireNamespace("ggnewscale", quietly = TRUE)) {
   geom_point(aes(y = -0.2, size = Count, fill = Category2), shape = 21) +
   scale_size_area(max_size = 15) +
   geom_text(aes(y = -0.2, label = Count), color = "black", size = 5)
-}
 }
 }

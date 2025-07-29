@@ -30,8 +30,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' if (requireNamespace("ggnewscale", quietly = TRUE)) {
+#'   library(ggplot2)
+#'   library(dplyr)
 #'   # Load and process the example data
 #'   data("BetterVis_Barplot_Horizontal_example", package = "BetterVis")
 #'   df <- BetterVis_Barplot_Horizontal_example[1:10, ]
@@ -66,7 +67,6 @@
 #'   scale_size_area(max_size = 15) +
 #'   geom_text(aes(y = -0.2, label = Count), color = "black", size = 5)
 #' }
-#'}
 BetterVis_Barplot_Horizontal2 <- function(data,
                                           x_var, y_var, fill_var, label_y_var, label_other_var = NULL,
                                           bar_width = 0.5, base_size = 35,

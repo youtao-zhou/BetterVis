@@ -66,7 +66,7 @@ BetterVis_Heatmap_Multi_example <-  fread("~/test/BetterVis_Example/04_Heatmap/B
 usethis::use_data(BetterVis_Heatmap_Multi_example, overwrite = TRUE)
 
 
-BetterVis_DotPlot_Heatmap_example <-  fread("~/test/BetterVis_Example/05_Dotplot/BetterVis_DotPlot_Heatmap_example.csv")
+BetterVis_DotPlot_Heatmap_example <-  read.csv("~/test/BetterVis_Example/05_Dotplot/BetterVis_DotPlot_Heatmap_example.csv",row.names = 1)
 usethis::use_data(BetterVis_DotPlot_Heatmap_example, overwrite = TRUE)
 
 
@@ -214,7 +214,9 @@ usethis::use_package("ggraph")
 usethis::use_package("ggforce")
 usethis::use_package("RColorBrewer")
 usethis::use_package("scales")
+usethis::use_package("vegan")
 usethis::use_package("jjPlot")
+usethis::use_package("concaveman")
 usethis::use_package("ggnewscale")
 # 最后运行编写文档
 roxygen2::roxygenise()

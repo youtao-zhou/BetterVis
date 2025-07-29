@@ -28,8 +28,14 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' if (requireNamespace("jjPlot", quietly = TRUE) && requireNamespace("ggnewscale", quietly = TRUE)) {
+#' library(tidyverse)
+#' library(ggtext)
+#' library(dplyr)
+#' library(ggplot2)
+#' library(scales)
+#' library(MetBrewer)
+#'
 #'   # Load example data
 #'   data("BetterVis_Pie_Multi_example_in", package = "BetterVis")
 #'   data("BetterVis_Pie_Multi_example_out", package = "BetterVis")
@@ -58,7 +64,6 @@
 #'     draw_outer_pie = TRUE
 #'   )
 #' }
-#'}
 BetterVis_Pie_Multi <- function(data_in, data_out = NULL, facet_var, x_var, y_var,
                                 fill_var1, pie_var1,
                                 fill_var2 = NULL,

@@ -22,7 +22,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' if (requireNamespace("ggraph", quietly = TRUE) && requireNamespace("tidygraph", quietly = TRUE)) {
 #'   # Load example data from the package
 #'   data("BetterVis_Circos_Ringplot_example", package = "BetterVis")
@@ -30,7 +29,6 @@
 #'   # Generate the plot
 #'   BetterVis_Circos_Ringplot(data = BetterVis_Circos_Ringplot_example, root = "Cough", color = NULL)
 #' }
-#'}
 BetterVis_Circos_Ringplot <- function(data, root, color = NULL) {
   # Add a value column if it doesn't exist, required by gather_graph_node
   if (!"value" %in% colnames(data)) {

@@ -73,7 +73,9 @@ Generates a multi-track Circos plot to visualize relationships and data across d
 The plot can include up to three outer annotation tracks and an optional inner chord diagram to display interactions.
 }
 \examples{
-\dontrun{
+library(dplyr)
+library(ggplot2)
+library(circlize)
 # Load example data from the package
 data("BetterVis_Circos_Interaction_example1", package = "BetterVis")
 data("BetterVis_Circos_Interaction_example2", package = "BetterVis")
@@ -111,5 +113,4 @@ BetterVis_Circos_Interaction(
   color1 = my_color1,
   color2 = my_color2
 )
-}
 }

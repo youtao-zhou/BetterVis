@@ -53,7 +53,7 @@ way to create UpSet plots for visualizing set intersections with enhanced
 control over colors and text scaling.
 }
 \examples{
-\dontrun{
+library(UpSetR)
 # Load example data from the package
 data("BetterVis_Venn_UpsetR_example", package = "BetterVis")
 
@@ -75,5 +75,4 @@ BetterVis_Venn_UpsetR(
   point.size = 5,
   line.size = 2
 )
-}
 }

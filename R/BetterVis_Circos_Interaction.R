@@ -35,7 +35,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' library(dplyr)
+#' library(ggplot2)
+#' library(circlize)
 #' # Load example data from the package
 #' data("BetterVis_Circos_Interaction_example1", package = "BetterVis")
 #' data("BetterVis_Circos_Interaction_example2", package = "BetterVis")
@@ -73,7 +75,6 @@
 #'   color1 = my_color1,
 #'   color2 = my_color2
 #' )
-#' }
 
 BetterVis_Circos_Interaction <- function(
     df,

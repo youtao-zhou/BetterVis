@@ -50,7 +50,14 @@ each node is represented as a pie chart. It uses `ggraph` for layout and plottin
 with options to encircle groups of nodes.
 }
 \examples{
-\dontrun{
+library("stats")
+library("rlang")
+library("ggplot2")
+library("tidygraph")
+library("RColorBrewer")
+library("scales")
+library("tidyr")
+library("dplyr")
 if (requireNamespace("ggraph", quietly = TRUE) && requireNamespace("ggforce", quietly = TRUE)) {
   # Load example data
   data("BetterVis_Network_PPI_nodes", package = "BetterVis")
@@ -75,6 +82,5 @@ if (requireNamespace("ggraph", quietly = TRUE) && requireNamespace("ggforce", qu
   )
   # You can add other ggplot2 layers for further customization
   # + theme(legend.text = element_text(size=12))
-}
 }
 }

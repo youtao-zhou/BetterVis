@@ -22,13 +22,11 @@ data frame with columns representing different levels of a hierarchy (e.g., trai
 SNP, Gene), constructs a graph, and plots it using `ggraph`.
 }
 \examples{
-\dontrun{
 if (requireNamespace("ggraph", quietly = TRUE) && requireNamespace("tidygraph", quietly = TRUE)) {
   # Load example data from the package
   data("BetterVis_Circos_Ringplot_example", package = "BetterVis")
 
   # Generate the plot
   BetterVis_Circos_Ringplot(data = BetterVis_Circos_Ringplot_example, root = "Cough", color = NULL)
-}
 }
 }

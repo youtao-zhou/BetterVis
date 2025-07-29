@@ -45,9 +45,13 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' # Load example data and create color vectors
 #' data("BetterVis_DotPlot_Heatmap_example", package = "BetterVis")
+#' library(scales)
+#' library(grid)
+#' library(ComplexHeatmap)
+#' library(grDevices)
+#' library(MetBrewer)
 #' library(RColorBrewer)
 #' row_colors <- c(brewer.pal(9,"Set3"), brewer.pal(8,"Set2"))
 #' col_colors <- c(brewer.pal(8,"Set1"), brewer.pal(5,"Set2"))
@@ -83,7 +87,6 @@
 #'   row.split = c(rep(1,4), rep(2,4), rep(3,4), rep(4,4), 5),
 #'   col.split = c(rep(4,3), 5, 3, rep(1,5), 2, 5, 2)
 #' )
-#'}
 BetterVis_DotPlot_Heatmap <- function(data_matrix,
                                       scale = TRUE,
                                       rescale = FALSE,

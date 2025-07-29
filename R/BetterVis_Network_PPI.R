@@ -35,7 +35,14 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' library("stats")
+#' library("rlang")
+#' library("ggplot2")
+#' library("tidygraph")
+#' library("RColorBrewer")
+#' library("scales")
+#' library("tidyr")
+#' library("dplyr")
 #' if (requireNamespace("ggraph", quietly = TRUE) && requireNamespace("ggforce", quietly = TRUE)) {
 #'   # Load example data
 #'   data("BetterVis_Network_PPI_nodes", package = "BetterVis")
@@ -61,7 +68,6 @@
 #'   # You can add other ggplot2 layers for further customization
 #'   # + theme(legend.text = element_text(size=12))
 #' }
-#'}
 BetterVis_Network_PPI <- function(nodes_data, edges_data,
                                   fill_vars,
                                   node_size = c(0.1, 0.3),

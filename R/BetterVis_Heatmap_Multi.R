@@ -31,9 +31,9 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' if (requireNamespace("ggnewscale", quietly = TRUE) &&
 #'     requireNamespace("patchwork", quietly = TRUE)) {
+#'    library(MetBrewer)
 #'   # Load example data
 #'   data("BetterVis_Heatmap_Multi_example", package = "BetterVis")
 #'
@@ -46,7 +46,7 @@
 #'
 #'   # Generate the plot
 #'   BetterVis_Heatmap_Multi(
-#'     data = BetterVis_Heatmap_Multi_example,
+#'     df = BetterVis_Heatmap_Multi_example,
 #'     x_var = "case.ID",
 #'     annotation_var = c("Primary Metastasis", "Consensus classification", "UNC classification"),
 #'     color_heatmap = met.brewer("Cassatt1"),
@@ -61,7 +61,7 @@
 #'     )
 #'   )
 #' }
-#'}
+#'
 BetterVis_Heatmap_Multi <- function(df, x_var, number_vars = NULL, annotation_var = NULL,
                                     color_heatmap = MetBrewer::met.brewer("Cassatt1"),
                                     color_annotation = NULL,

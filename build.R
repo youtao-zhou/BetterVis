@@ -19,8 +19,23 @@ BetterVis_Barplot_Horizontal_example <- fread("~/test/BetterVis_Example/02_Barpl
 usethis::use_data(BetterVis_Barplot_Horizontal_example)
 
 
-BetterVis_Ring_example <- fread("~/test/BetterVis_Example/03_Ringplot/BetterVis_Ringplot.csv")
-usethis::use_data(BetterVis_Ring_example)
+
+
+# 在你的 R 控制台中运行一次
+# Load data
+nodes_data <- read.csv("~/test/BetterVis_Example/03_Network/BetterVis_Network_PPI_example1.csv")
+edges_data <- read.csv("~/test/BetterVis_Example/03_Network/BetterVis_Network_PPI_example2.csv")
+
+# Name the data objects
+BetterVis_Network_PPI_nodes <- nodes_data
+BetterVis_Network_PPI_edges <- edges_data
+
+# Save to data/ directory
+usethis::use_data(BetterVis_Network_PPI_nodes, BetterVis_Network_PPI_edges, overwrite = TRUE)
+
+
+
+
 
 
 
@@ -102,11 +117,31 @@ BetterVis_Circos_Interaction_example2 <- fread("~/test/BetterVis_Example/09_Circ
 usethis::use_data(BetterVis_Circos_Interaction_example2)
 
 
+
+
+BetterVis_Circos_Ringplot_example <- fread("~/test/BetterVis_Example/09_Circos/BetterVis_Circos_Ringplot_example.csv")
+usethis::use_data(BetterVis_Circos_Ringplot_example)
+
+
 BetterVis_LinePlot_Chart_example <- fread("~/test/BetterVis_Example/10_Lineplot/BetterVis_LinePlot_Chart_example.csv")
 usethis::use_data(BetterVis_LinePlot_Chart_example)
 
 BetterVis_Pie_Single_example <- fread("~/test/BetterVis_Example/11_Pie/BetterVis_Pie_Single_example.csv")
 usethis::use_data(BetterVis_Pie_Single_example)
+
+
+# 在你的 R 控制台中运行一次
+# Load data
+df_in <- read.csv("~/test/BetterVis_Example/11_Pie/BetterVis_Pie_Multi_example1.csv")
+df_out <- read.csv("~/test/BetterVis_Example/11_Pie/BetterVis_Pie_Multi_example2.csv")
+
+# Name the data objects
+BetterVis_Pie_Multi_example_in <- df_in
+BetterVis_Pie_Multi_example_out <- df_out
+
+# Save to data/ directory
+usethis::use_data(BetterVis_Pie_Multi_example_in, BetterVis_Pie_Multi_example_out, overwrite = TRUE)
+
 
 
 
@@ -129,7 +164,7 @@ usethis::use_package("ggridges")
 usethis::use_package("cowplot")
 
 usethis::use_package("ggbeeswarm")
-usethis::use_package("ggpubr") # Already a dependency from other functions, but good to ensure
+usethis::use_package("ggpubr") # Already a dependency from other functions, but good to ensure0110
 usethis::use_package("Hmisc")    # For median_hilow()
 # 核心依赖
 usethis::use_package("ComplexHeatmap")
@@ -171,6 +206,16 @@ usethis::use_package("tidyverse", type = "depends")
 usethis::use_package("scales") # For brewer_pal
 usethis::use_package("Hmisc")
 usethis::use_package("tidyselect") # For the where() helper
+usethis::use_package("ggnewscale")
+
+usethis::use_package("igraph")
+usethis::use_package("tidygraph")
+usethis::use_package("ggraph")
+usethis::use_package("ggforce")
+usethis::use_package("RColorBrewer")
+usethis::use_package("scales")
+usethis::use_package("jjPlot")
+usethis::use_package("ggnewscale")
 # 最后运行编写文档
 roxygen2::roxygenise()
 

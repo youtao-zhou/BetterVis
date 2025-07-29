@@ -72,20 +72,26 @@ NULL
 
 
 
-#' Ring Example Data
+
+
+#' Example Node Data for a PPI Network Plot
 #'
-#' A dataset to demonstrate the functionality of creating circular dendrogram plots.
-#' It contains hierarchical data representing relationships between traits, SNPs, and genes.
+#' An example data frame representing node information for a network plot,
+#' suitable for the `nodes_data` argument in `BetterVis_Network_PPI`.
 #'
-#' @format A data frame with example rows and 4 variables:
-#' \describe{
-#'   \item{trait}{Character. The highest level of the hierarchy, e.g., a disease or trait.}
-#'   \item{SNP}{Character. Single Nucleotide Polymorphism identifier, the second level.}
-#'   \item{Gene}{Character. Gene identifier, the lowest level of the hierarchy.}
-#'   \item{value}{Numeric. A value associated with each record, used to determine node size.}
-#' }
+#' @format A data frame with columns for node names, numeric values for pie
+#'   chart slices, and optional grouping variables.
 #' @source Simulated data for visualization examples.
-"BetterVis_Ring_example"
+"BetterVis_Network_PPI_nodes"
+
+#' Example Edge Data for a PPI Network Plot
+#'
+#' An example data frame representing edge information for a network plot,
+#' suitable for the `edges_data` argument in `BetterVis_Network_PPI`.
+#'
+#' @format A data frame with 'from', 'to', and 'weight' columns.
+#' @source Simulated data for visualization examples.
+"BetterVis_Network_PPI_edges"
 
 
 
@@ -354,6 +360,21 @@ NULL
 
 
 
+#' Example Data for a Circular Ring Plot
+#'
+#' An example dataset with hierarchical data representing relationships between
+#' traits, SNPs, and genes. Suitable for `BetterVis_Circos_Ringplot`.
+#'
+#' @format A data frame with hierarchical columns:
+#' \describe{
+#'   \item{trait}{Character. The highest level of the hierarchy (e.g., a disease).}
+#'   \item{SNP}{Character. The second level of the hierarchy (e.g., a genetic variant).}
+#'   \item{Gene}{Character. The lowest level of the hierarchy (e.g., an associated gene).}
+#' }
+#' @source Simulated data for visualization examples.
+"BetterVis_Circos_Ringplot_example"
+
+
 #' Example Data for a Summary Line Plot
 #'
 #' A dataset in long format showing values over several days for different
@@ -383,3 +404,22 @@ NULL
 #' }
 #' @source Simulated data for visualization examples, originally from a CSV file.
 "BetterVis_Pie_Single_example"
+
+
+#' Example Inner Pie Data for Multi Pie Plot
+#'
+#' An example dataset in long format suitable for the `data_in` argument of
+#' `BetterVis_Pie_Multi`, defining the inner pie chart slices.
+#'
+#' @format A data frame with columns for positioning, grouping, and proportions.
+#' @source Simulated data for visualization examples.
+"BetterVis_Pie_Multi_example_in"
+
+#' Example Outer Pie Data for Multi Pie Plot
+#'
+#' An example dataset in long format suitable for the `data_out` argument of
+#' `BetterVis_Pie_Multi`, defining the outer pie chart slices.
+#'
+#' @format A data frame with columns for positioning, grouping, and proportions.
+#' @source Simulated data for visualization examples.
+"BetterVis_Pie_Multi_example_out"

@@ -14,5 +14,12 @@
 # 1. 如果尚未安装 devtools 包，请先安装它
 install.packages("devtools")
 
-# 2. 从 GitHub 仓库安装 BetterVis 包
+# 2. 安装相关的依赖包
+devtools::install_github("junjunlab/jjPlot")
+devtools::install_github("Hy4m/linkET", force = TRUE)
+devtools::install_github("jokergoo/ComplexHeatmap")
+devtools::install_github("davidsjoberg/ggsankey")
+install.packages("vegan")
+
+# 3. 从 GitHub 仓库安装 BetterVis 包
 devtools::install_github("youtao-zhou/BetterVis")

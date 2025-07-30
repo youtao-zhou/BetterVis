@@ -9,6 +9,7 @@ BetterVis_Boxplot_MixViolin(
   x_var,
   y_var,
   fill_color,
+  box_size = 0.5,
   title = "",
   title_size = 16,
   title_bold = FALSE,
@@ -115,7 +116,7 @@ colors <- c("#e97257", "#72c5d9", "#58ae9a", "#646e9a", "#efa78e",
             "#b7d3ff", "#ff72cc", "#d4a4ff")
 
 # Example 1: Simple visualization
-BetterVis_Boxplot_MixViolin(data = iris, x_var = "Species", y_var = "Sepal.Length", fill_color = colors)
+BetterVis_Boxplot_MixViolin(data = iris, x_var = "Species", y_var = "Sepal.Length", fill_color = colors,box_size=0.5)
 
 # Example 2: Customized visualization with titles and axes
 BetterVis_Boxplot_MixViolin(

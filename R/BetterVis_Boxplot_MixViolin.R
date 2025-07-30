@@ -61,7 +61,7 @@
 #'             "#b7d3ff", "#ff72cc", "#d4a4ff")
 #'
 #' # Example 1: Simple visualization
-#' BetterVis_Boxplot_MixViolin(data = iris, x_var = "Species", y_var = "Sepal.Length", fill_color = colors)
+#' BetterVis_Boxplot_MixViolin(data = iris, x_var = "Species", y_var = "Sepal.Length", fill_color = colors,box_size=0.5)
 #'
 #' # Example 2: Customized visualization with titles and axes
 #' BetterVis_Boxplot_MixViolin(
@@ -76,8 +76,7 @@
 #'
 #' @export
 
-
-BetterVis_Boxplot_MixViolin <- function(data, x_var, y_var, fill_color, title = "", title_size = 16, title_bold = FALSE,
+BetterVis_Boxplot_MixViolin <- function(data, x_var, y_var, fill_color,  box_size=0.5,title = "", title_size = 16, title_bold = FALSE,
                                         title_hjust = 0.5, title_vjust = 1, axis_x_title = element_text(size = 22, color = "#b35959", face = "bold"),
                                         axis_y_title = element_text(size = 22, color = "#b35959", face = "bold"),
                                         xlab = NULL, ylab = NULL, border = TRUE, panel_background_color = "#f3f6f6",
@@ -107,7 +106,7 @@ BetterVis_Boxplot_MixViolin <- function(data, x_var, y_var, fill_color, title = 
                position = position_jitter(seed = 123456, width = 0.2),
                shape = 21, size = 4) +
     geom_boxplot(aes(fill = .data[[x_var]]),
-                 width = 0.7, size = 1,
+                 width = 0.7, size = box_size,
                  alpha = 0.6, outlier.shape = NA) +
     scale_y_continuous(expand = c(0, 0),
                        limits = c(y_min, y_max),

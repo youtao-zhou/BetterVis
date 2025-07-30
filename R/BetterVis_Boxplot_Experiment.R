@@ -122,15 +122,16 @@
 
 utils::globalVariables(".data")
 BetterVis_Boxplot_Experiment <- function(data, x_var, y_var, fill_var, use_facet = FALSE,
-                               title = NULL, x_label_angle = 45, x_label_bold = FALSE, y_label_bold = FALSE,
-                               axis_titles = c("", ""), axis_title_bold = FALSE, custom_colors = NULL,
-                               jitter = TRUE, jitter_color = NULL, jitter_width = 0.1, jitter_alpha = 1, jitter_size = 1,
-                               legend_show = TRUE, legend_title = NULL,
-                               box_width = 0.75, comparison_col = NULL, comparison = NULL, comparison_method = "wilcox",
-                               box_background = TRUE,
-                               jitter_legend = FALSE, fill_legend = TRUE,
-                               background_color = "white", background_border = TRUE, sig_type = "SYMBOL",
-                               guides_modifications = NULL, violin = FALSE) {
+                                         title = NULL, x_label_angle = 45, x_label_bold = FALSE, y_label_bold = FALSE,
+                                         axis_titles = c("", ""), axis_title_bold = FALSE, custom_colors = NULL,
+                                         jitter = TRUE, jitter_color = NULL, jitter_width = 0.1, jitter_alpha = 1, jitter_size = 1,
+                                         legend_show = TRUE, legend_title = NULL,
+                                         box_width = 0.75, comparison_col = NULL, comparison = NULL, comparison_method = "wilcox",
+                                         box_background = TRUE,
+                                         jitter_legend = FALSE, fill_legend = TRUE,
+                                         background_color = "white", background_border = TRUE, sig_type = "SYMBOL",
+                                         guides_modifications = NULL, violin = FALSE, ylim = NULL) {
+
   if (!all(c(x_var, y_var, fill_var) %in% colnames(data))) {
     stop("确保 x_var, y_var 和 fill_var 是提供的数据框中的列名。")
   }
@@ -187,10 +188,15 @@ BetterVis_Boxplot_Experiment <- function(data, x_var, y_var, fill_var, use_facet
 
   p <- p + scale_fill_manual(values = fill_colors, name = legend_title, guide = ifelse(fill_legend, "legend", "none"))
 
+  # 计算 Y 轴的范围，除非用户提供了 ylim 参数
   y_min <- min(data[[y_var]], na.rm = TRUE)
   y_max <- max(data[[y_var]], na.rm = TRUE)
   y_range <- y_max - y_min
-  p <- p + ylim(y_min - 0.1 * y_range, y_max + 0.2 * y_range)
+  if (is.null(ylim)) {
+    p <- p + ylim(y_min - 0.1 * y_range, y_max + 0.2 * y_range)
+  } else {
+    p <- p + ylim(ylim[1], ylim[2])
+  }
 
   if (!is.null(title)) {
     p <- p + ggtitle(title) + theme(plot.title = element_text(hjust = 0.5, size = 18, face = "bold"))

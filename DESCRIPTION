@@ -45,7 +45,8 @@ Imports:
     ggforce,
     jjPlot,
     vegan,
-    concaveman
+    concaveman,
+    gridExtra
 URL: https://github.com/youtao-zhou/BetterVis
 Description: Provides enhanced visualization tools for data analysis, including advanced plotting techniques and custom themes. 
              Ideal for researchers and analysts looking to improve data presentation.  

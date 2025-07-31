@@ -1,9 +1,48 @@
 #' @importFrom tibble tibble
 NULL
 
-#' Boxplot Example Data
+
+#' Boxplot and Bar Plot Example Data
 #'
-#' A dataset to demonstrate boxplot functionality. It includes measurements
+#' A dataset to demonstrate boxplot and bar plot functionality, containing
+#' measurements for different supplement types and doses. It is structurally
+#' similar to the classic `ToothGrowth` dataset.
+#'
+#' @format A data frame with 60 rows and 3 variables:
+#' \describe{
+#'   \item{len}{Numeric. A measurement of length.}
+#'   \item{supp}{Character. The type of supplement, either `"VC"` or `"OJ"`.}
+#'   \item{dose}{Factor. The dose level of the supplement: `"dose_1"`, `"dose_2"`, or `"dose_3"`.}
+#' }
+#' @source Simulated data for visualization examples.
+"BetterVis_Boxplot_Experiment_example"
+
+
+#' Mixed Violin and Boxplot Example Data
+#'
+#' A modified version of the classic `iris` dataset. It includes two additional
+#' categorical columns, `Group` and `Group2`, which are useful for demonstrating
+#' advanced plotting features like faceting or complex grouping.
+#'
+#' @format A data frame with 150 rows and 7 variables:
+#' \describe{
+#'   \item{Sepal.Length}{Numeric. Length of the sepal.}
+#'   \item{Sepal.Width}{Numeric. Width of the sepal.}
+#'   \item{Petal.Length}{Numeric. Length of the petal.}
+#'   \item{Petal.Width}{Numeric. Width of the petal.}
+#'   \item{Species}{Factor. The species of iris: `"setosa"`, `"versicolor"`, or `"virginica"`.}
+#'   \item{Group}{Factor. An additional grouping variable, from `"Group1"` to `"Group10"`.}
+#'   \item{Group2}{Factor. A second additional grouping variable, from `"Color1"` to `"Color5"`.}
+#' }
+#' @source The base R `iris` dataset with added simulated columns.
+"BetterVis_Boxplot_MixViolin_example"
+
+
+
+
+#' BetterVis_Barplot_Experiment_example
+#'
+#' A dataset to demonstrate Barplot functionality. It includes measurements
 #' for different supplement types and doses.
 #'
 #' @format A data frame with 60 rows and 3 variables:
@@ -13,7 +52,7 @@ NULL
 #'   \item{dose}{Factor. Dose level of the supplement (\code{"dose_1"}, \code{"dose_2"}, or \code{"dose_3"}).}
 #' }
 #' @source Simulated example data.
-"Boxplot_Experiment_example"
+"BetterVis_Barplot_Experiment_example"
 
 
 #' Accumulative Barplot Example Data
@@ -44,6 +83,31 @@ NULL
 #' }
 #' @source Simulated data for visualization examples.
 "BetterVis_Barplot_Bidirectional_example"
+
+
+#' Example Data for a Circular Bar Plot
+#'
+#' An example dataset, likely from a gene enrichment or differential expression
+#' analysis, suitable for creating a circular bar plot with the
+#' `BetterVis_Barplot_Circle` function.
+#'
+#' @format A data frame with 69 rows and 11 variables:
+#' \describe{
+#'   \item{Column1}{Character. An identifier for the gene or row.}
+#'   \item{geneID}{Character. The Entrez Gene ID.}
+#'   \item{geneSymbol}{Character. The official gene symbol, used for labels in the plot.}
+#'   \item{Rho_enrich}{Numeric. Rho value for enrichment.}
+#'   \item{Rho_deplete}{Numeric. Rho value for depletion.}
+#'   \item{best.p}{Numeric. The best p-value from the analysis.}
+#'   \item{best.q}{Numeric. The best q-value (adjusted p-value).}
+#'   \item{direction}{Character. The direction of regulation, e.g., "enrich".}
+#'   \item{med_LFC}{Numeric. The median Log-Fold Change, used for bar height.}
+#'   \item{type}{Character. The comparison group, used for fill color.}
+#'   \item{id}{Numeric. A unique identifier for each bar in the plot.}
+#' }
+#' @source Simulated data for visualization examples.
+"BetterVis_Barplot_Circle_example"
+
 
 
 #' KEGG Pathway Enrichment Data for Horizontal Barplot
@@ -309,6 +373,26 @@ NULL
 #' }
 #' @source Simulated data for visualization examples, originally from a CSV file.
 "BetterVis_Ridgeline_Single_example"
+
+
+
+
+#' Example Data for a Single Flow Sankey Diagram
+#'
+#' A dataset where each row represents an individual observation's flow through
+#' a series of categorical states. This data is suitable for creating a Sankey
+#' diagram with `BetterVis_Sankey_Single`.
+#'
+#' @format A data frame with multiple rows and 4 columns:
+#' \describe{
+#'   \item{AgeGroup}{Factor. The age category of the individual.}
+#'   \item{Diagnosis}{Factor. The diagnosis received by the individual.}
+#'   \item{Treatment}{Factor. The treatment administered.}
+#'   \item{Outcome}{Factor. The final outcome for the individual.}
+#' }
+#' @source Simulated data for visualization examples.
+"BetterVis_Sankey_Single_example"
+
 
 
 #' Example Data for UpSet Plot

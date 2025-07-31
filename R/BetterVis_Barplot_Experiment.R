@@ -53,8 +53,8 @@
 #' library(cowplot)
 #'
 #' ##  示例数据1
-#' data("Boxplot_Experiment_example", package = "BetterVis")
-#' data <- Boxplot_Experiment_example
+#' data("BetterVis_Barplot_Experiment_example", package = "BetterVis")
+#' data <- BetterVis_Barplot_Experiment_example
 #' data$supp<-as.factor(data$supp)
 #' data$dose<-as.factor(data$dose)
 #'

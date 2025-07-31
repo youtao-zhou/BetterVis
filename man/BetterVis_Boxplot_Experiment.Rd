@@ -2,7 +2,7 @@
 % Please edit documentation in R/BetterVis_Boxplot_Experiment.R
 \name{BetterVis_Boxplot_Experiment}
 \alias{BetterVis_Boxplot_Experiment}
-\title{#' BetterVis Boxplot Function}
+\title{BetterVis Boxplot Function}
 \arguments{
 \item{data}{A data frame.}
 
@@ -84,53 +84,23 @@ library(cowplot)
 library(BetterVis)
 
 ##示例数据1
-data("Boxplot_Experiment_example", package = "BetterVis")
-df <- Boxplot_Experiment_example
+data("BetterVis_Boxplot_Experiment_example", package = "BetterVis")
+df <- BetterVis_Boxplot_Experiment_example
 df$supp<-as.factor(df$supp)
 df$dose<-as.factor(df$dose)
 
-set.seed(123)  # 设置随机种子以保证结果可复现
-random_sample <- sample(1:40000, 1000, replace = FALSE)
-df <- data.frame(
-  dose = c(rep("dose1",30), rep("dose2",30),rep("dose3",30),rep("dose1",30), rep("dose2",30),rep("dose3",30)),
-  supp = c(rep("OJ",90),rep("VC",90)),
-  len = c(sample(1:100, 90),sample(200:300, 90))
-)
+iris$Group <- rep(rep(paste0("Group", 1:5), each = 10),3)
+iris$Group <-as.factor(iris$Group)
 
-
-
-
-
-
+## 示例用法1: 分面箱线图
 BetterVis_Boxplot_Experiment(
-  df, x_var = "supp", y_var = "len", fill_var = "dose",
-  use_facet = FALSE,
-  title = "",
-  x_label_angle = 45,
-  x_label_bold = TRUE,
-  y_label_bold = FALSE,
-  axis_titles = c("X Axis", "Y Axis"),
-  axis_title_bold = TRUE,
-  custom_colors = c("#FC5D5C", "#4B6A9D", "#167D7D"),
-  jitter = TRUE,
-  jitter_color = c("black", "black", "black"),
-  legend_show = TRUE,
-  legend_title = "",
-  box_width = 0.6,
-  comparison_col = "supp",
-  comparison = list(c("OJ", "VC")),
-  comparison_method = "t.test",
-  box_background = TRUE,background_color = "white",background_border = TRUE,sig_type = "SYMBOL"
-)
-
-BetterVis_Boxplot_Experiment(
-  data=df, x_var = "supp", y_var = "len", fill_var = "dose",
+  data = df, x_var = "supp", y_var = "len", fill_var = "dose",
   use_facet = TRUE,
-  title = "",
+  title = "Effect of Supplement and Dose on Length",
   x_label_angle = 45,
   x_label_bold = TRUE,
   y_label_bold = TRUE,
-  axis_titles = c("X Axis", "Y Axis"),
+  axis_titles = c("Supplement Type", "Length"),
   axis_title_bold = TRUE,
   custom_colors = c("#FC5D5C", "#4B6A9D", "#167D7D"),
   jitter = TRUE,
@@ -142,9 +112,44 @@ BetterVis_Boxplot_Experiment(
   legend_title = "",
   box_width = 0.6,
   comparison_col = "dose",
-  comparison = list(c("dose_1", "dose_2"),c("dose_1", "dose_3"),c("dose_2", "dose_3")),
-  comparison_method = "t.test",
-  box_background = FALSE,background_color = "white",background_border = TRUE,sig_type = "p.signif",violin = TRUE
+  comparison = list(c("dose_1", "dose_2"), c("dose_1", "dose_3"), c("dose_2", "dose_3")),
+  comparison_method = "wilcox",
+  box_background = TRUE,
+  background_color = "white",
+  background_border = TRUE,
+  sig_type = "SYMBOL",
+  violin = FALSE,
+  ylim = c(0, 40)
 )
-# +theme(axis.title.x = element_blank())+guides(fill=FALSE)
+
+## 示例用法2: 使用 iris 数据集并显示 p 值
+BetterVis_Boxplot_Experiment(
+  data = iris, x_var = "Group", y_var = "Petal.Width", fill_var = "Species",
+  use_facet = TRUE,
+  title = "Petal Width Across Groups and Species",
+  x_label_angle = 45,
+  x_label_bold = TRUE,
+  y_label_bold = TRUE,
+  axis_titles = c("Group", "Petal Width"),
+  axis_title_bold = TRUE,
+  custom_colors = c("#FC5D5C", "#4B6A9D", "#167D7D"),
+  jitter = TRUE,
+  jitter_color = c("#FC5D5C", "#4B6A9D", "#167D7D"),
+  jitter_width = 1,
+  jitter_alpha = 1,
+  jitter_size = 2,
+  legend_show = TRUE,
+  legend_title = "Species",
+  box_width = 0.6,
+  comparison_col = "Species",
+  comparison = list(c("setosa", "versicolor"), c("setosa", "virginica"), c("versicolor", "virginica")),
+  comparison_method = "wilcox",
+  box_background = TRUE,
+  background_color = "white",
+  background_border = TRUE,
+  sig_type = "NUMBER",
+  violin = FALSE,
+  ylim = c(0, 3.5)
+)
+# + theme(axis.title.x = element_blank()) + guides(fill = FALSE)
 }

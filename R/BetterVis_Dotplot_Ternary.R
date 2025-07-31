@@ -20,7 +20,7 @@
 #'
 #' @return A `ggtern` object.
 #'
-#' @importFrom ggtern ggtern theme_bw theme_custom theme_legend_position
+#' @importFrom ggtern ggtern theme_custom theme_legend_position
 #' @importFrom ggplot2 aes_string geom_point scale_size_continuous scale_color_gradientn labs guides guide_legend guide_colorbar theme element_text element_line element_rect
 #' @importFrom MetBrewer met.brewer
 #' @importFrom grid arrow

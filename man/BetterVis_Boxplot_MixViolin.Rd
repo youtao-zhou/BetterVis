@@ -105,12 +105,9 @@ library(dplyr)
 library(rstatix)
 library(BetterVis)
 
-# Generate example data
-iris$Group <- rep(paste0("Group", 1:10), times = 15)
-iris$Group <- as.factor(iris$Group)
-iris$Group2 <- rep(rep(paste0("Color", 1:5), each = 10), 3)
-iris$Group2 <- sample(iris$Group2)
-iris$Group2 <- as.factor(iris$Group2)
+data("BetterVis_Boxplot_MixViolin_example", package = "BetterVis")
+iris <- BetterVis_Boxplot_MixViolin_example
+
 colors <- c("#e97257", "#72c5d9", "#58ae9a", "#646e9a", "#efa78e",
             "#f3a9c4", "#ffbf69", "#b4d33e", "#ed7d31", "#6b83b3",
             "#b7d3ff", "#ff72cc", "#d4a4ff")

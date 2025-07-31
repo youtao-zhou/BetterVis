@@ -1,6 +1,18 @@
 # 创建数据
-Boxplot_Experiment_example <- boxplot_example_1
-usethis::use_data(Boxplot_Experiment_example)
+
+BetterVis_Boxplot_Experiment_example <- fread("~/test/BetterVis_Example/01_Boxplot/BetterVis_Boxplot_Experiment_example.txt")
+usethis::use_data(BetterVis_Boxplot_Experiment_example,overwrite = TRUE)
+
+
+BetterVis_Boxplot_MixViolin_example <- fread("~/test/BetterVis_Example/01_Boxplot/BetterVis_Boxplot_MixViolin_example.csv")
+usethis::use_data(BetterVis_Boxplot_MixViolin_example,overwrite = TRUE)
+
+
+
+
+
+BetterVis_Barplot_Experiment_example <- fread("~/test/BetterVis_Example/02_Barplot/BetterVis_Barplot_Experiment_example.txt")
+usethis::use_data(BetterVis_Barplot_Experiment_example,overwrite = TRUE)
 
 
 BetterVis_Barplot_Accumulative_example <- fread("~/test/BetterVis_Example/02_Barplot/BetterVis_Barplot_Accumulative_example.csv")

@@ -38,16 +38,10 @@ This function generates a customizable pie chart from a data frame using
 data("BetterVis_Pie_Single_example", package = "BetterVis")
 
 # Define a color palette
-pie_colors <- c("#A2D4AB", "#82B3C9", "#E0BBE4", "#FAD0C3", "#C9E4DE", "#FFECB3")
+col <- c("#A2D4AB", "#82B3C9", "#E0BBE4", "#FAD0C3", "#C9E4DE", "#FFECB3")
 
-# Generate the pie chart with in-slice labels
-BetterVis_Pie_Single(
-  df = BetterVis_Pie_Single_example,
-  ID_var = "Company",
-  Proportion_var = "Share",
-  colors = pie_colors,
-  label = TRUE,
-  size_adjust = 1.2
-)
-# You can add other ggplot2 layers for further customization
+BetterVis_Pie_Single(df = BetterVis_Pie_Single_example,ID_var = "Cancer",Proportion_var = "Percent",
+                    colors = col,label = TRUE ,size_adjust = 1)+theme()+guides()
+
+
 }

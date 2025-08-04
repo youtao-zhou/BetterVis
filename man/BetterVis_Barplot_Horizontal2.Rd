@@ -79,13 +79,8 @@ if (requireNamespace("ggnewscale", quietly = TRUE)) {
   library(ggplot2)
   library(dplyr)
   # Load and process the example data
-  data("BetterVis_Barplot_Horizontal_example", package = "BetterVis")
-  df <- BetterVis_Barplot_Horizontal_example[1:10, ]
-  df$LogP <- -log10(as.numeric(df$Bonferroni))
-  df <- dplyr::arrange(df, Bonferroni)
-  df$Description <- sub(".*:", "", df$Description)
-  df$Description <- factor(df$Description, levels = df$Description)
-  df$Category2 <- c(rep("Group1", 4), rep("Group2", 3), rep("Group3", 3))
+  data("BetterVis_Barplot_Horizontal2_example", package = "BetterVis")
+  df <- BetterVis_Barplot_Horizontal2_example
 
   # Example 1: Continuous fill with a categorical annotation track
   BetterVis_Barplot_Horizontal2(

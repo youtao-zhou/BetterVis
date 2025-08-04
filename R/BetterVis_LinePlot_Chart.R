@@ -35,29 +35,36 @@
 #' # Define a color palette
 #' example_colors <- c("#4489C8", "#ED7E7A", "#008F91", "#FFCD44")
 #'
-#' # Example 1: Basic line plot with confidence intervals
-#' BetterVis_LinePlot_Chart(
+#'
+#' BetterVis_LinePlot_Chart (
 #'   df = BetterVis_LinePlot_Chart_example,
-#'   x_var = "Day",
+#'   x_var = "Time",y_var = "value",fill_var = "Treatment",colors = example_colors)
+#'
+#' BetterVis_LinePlot_Chart (
+#'   df = BetterVis_LinePlot_Chart_example,
+#'   x_var = "Time",
 #'   y_var = "value",
 #'   fill_var = "Treatment",
 #'   colors = example_colors,
 #'   confidence = TRUE,
-#'   x_title = "Day", y_title = "Value",
-#'   legend_title = "", legend_position = "top"
-#' )
+#'   x_title = "Time",y_title = "Value",
+#'   legend_title = "",legend_position = "top",
+#'   size_global_adjust = 1
+#' )+theme()+guides()
 #'
-#' # Example 2: Faceted line plot
-#' BetterVis_LinePlot_Chart(
+#' BetterVis_LinePlot_Chart (
 #'   df = BetterVis_LinePlot_Chart_example,
-#'   x_var = "Day",
+#'   x_var = "Time",
 #'   y_var = "value",
 #'   fill_var = "Treatment",
 #'   colors = example_colors,
-#'   x_title = "Day", y_title = "Value",
-#'   facet = TRUE, facet_var = "Group",
-#'   facet_background_color = "#E5E5E5"
-#' )
+#'   confidence = TRUE,
+#'   x_title = "Time",y_title = "Value",
+#'   legend_title = "",legend_position = "top",
+#'   size_global_adjust = 1,
+#'   facet = TRUE, facet_var = "Group",facet_background_color = "grey",facet_background_border=FALSE
+#' )+theme()+guides()
+#'
 BetterVis_LinePlot_Chart <- function(df, x_var, y_var, fill_var, colors,
                                      confidence = TRUE,
                                      x_title = NULL,
@@ -70,30 +77,41 @@ BetterVis_LinePlot_Chart <- function(df, x_var, y_var, fill_var, colors,
                                      facet_background_border = FALSE,
                                      size_global_adjust = 1) {
 
+  x_breaks <- sort(unique(df[[x_var]]))
+
+  formula <- as.formula(paste(y_var, "~", x_var, "+", fill_var))
+
+  means <- aggregate(formula, data = df, FUN = mean, na.rm = TRUE)
+  sems <- aggregate(formula, data = df, FUN = function(x) sd(x, na.rm=TRUE)/sqrt(length(na.omit(x))))
+
+  colnames(sems)[3] <- "sem"
+
+  summary_data <- merge(means, sems)
+  y_max <- max(summary_data[[y_var]] + summary_data$sem, na.rm = TRUE)
   p <- ggplot(df, aes_string(x = x_var, y = y_var, color = fill_var, group = fill_var))
 
   if (confidence) {
     p <- p + stat_summary(geom = "ribbon",
                           fun.data = "mean_cl_normal",
                           aes_string(fill = fill_var),
-                          alpha = 0.2,
-                          color = NA) # Set color to NA to avoid ribbon border
+                          alpha = 0.2, color = NA)
   }
 
   p <- p +
     stat_summary(geom = "line", fun = "mean", linewidth = 1.5) +
     stat_summary(geom = "errorbar",
                  fun.data = "mean_se",
-                 width = 1.2, linewidth = 0.8, color = "black") +
+                 width = (max(x_breaks) - min(x_breaks)) / 25,
+                 linewidth = 0.8, color = "black") +
     stat_summary(geom = "point", fun = "mean", aes_string(fill = fill_var),
                  size = 4, shape = 21, stroke = 1.2, color = 'black') +
     ylab(y_title) +
     xlab(x_title) +
-    coord_cartesian(clip = 'off', expand = FALSE) +
+    coord_cartesian(clip = 'off') +
     scale_fill_manual(name = legend_title, values = colors) +
     scale_color_manual(name = legend_title, values = colors) +
-    scale_x_continuous(expand = c(0, 0), limits = c(0, 40), breaks = c(0, 7, 14, 21, 28, 35)) +
-    scale_y_continuous(expand = c(0, 0), limits = c(0, 60), breaks = seq(0, 60, by = 20)) +
+    scale_x_continuous(breaks = x_breaks) +
+    scale_y_continuous(limits = c(0, y_max * 1.1)) +
     theme_classic(base_size = 18 * size_global_adjust) +
     theme(legend.position = legend_position,
           legend.margin = margin(0, 0, 0, 0),
@@ -105,7 +123,7 @@ BetterVis_LinePlot_Chart <- function(df, x_var, y_var, fill_var, colors,
           axis.line = element_line(linewidth = 1.2),
           axis.ticks = element_line(linewidth = 0.8, color = 'black'),
           strip.background = element_rect(fill = facet_background_color,
-                                          color = if (facet_background_border) "black" else NA),
+                                          color = if(facet_background_border) "black" else NA),
           strip.text = element_text(color = "black", face = "bold", size = 16 * size_global_adjust))
 
   if (facet && !is.null(facet_var)) {

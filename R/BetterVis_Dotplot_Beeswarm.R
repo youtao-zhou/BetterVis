@@ -34,17 +34,15 @@
 #' @examples
 #' # Load example data
 #' data("BetterVis_Dotplot_Beeswarm_example", package = "BetterVis")
-#'
+#' iris<-datasets::iris
 #' # Example 1: Using the provided dataset with t-test comparisons
 #' BetterVis_Dotplot_Beeswarm(
-#'   data = BetterVis_Dotplot_Beeswarm_example, x_var = "Type", y_var = "MPG.city",
-#'   color = c("#68d0ce", "#f4a4c9", "#4955d0", "#e09a2a", "#de6a73", "firebrick"),
-#'   ylim = c(10, 60), y_break = 10,
+#'   data = BetterVis_Dotplot_Beeswarm_example,  x_var = "Patient_Group", y_var = "Biomarker_Min",
+#'   color = c("#68d0ce", "#f4a4c9", "#4955d0", "#e09a2a", "#de6a73","firebrick"),
+#'   ylim = c(0,200), y_break = 50,
 #'   title = "City MPG by Vehicle Type", x_title = "Type", y_title = "Miles Per Gallon (City)",
 #'   sig_symbol = TRUE, sig_type = "SYMBOL",
-#'   comparison_col = "Type",
-#'   comparison_group = list(c("Compact", "Large"), c("Midsize", "Large"), c("Small", "Van")),
-#'   comparison_method = "t.test"
+#'   comparison_col = "Patient_Group",comparison_group = c(c("Healthy Control","Early"),c("Early","Late"),c("Middle","Late")),comparison_method = "t.test"
 #' )
 #'
 #' # Example 2: Using the iris dataset with Wilcoxon test and p-values

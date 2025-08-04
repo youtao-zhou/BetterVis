@@ -113,17 +113,34 @@ colors <- c("#e97257", "#72c5d9", "#58ae9a", "#646e9a", "#efa78e",
             "#b7d3ff", "#ff72cc", "#d4a4ff")
 
 # Example 1: Simple visualization
-BetterVis_Boxplot_MixViolin(data = iris, x_var = "Species", y_var = "Sepal.Length", fill_color = colors,box_size=0.5)
+BetterVis_Boxplot_MixViolin(data = iris, x_var = "Species", y_var = "Sepal.Length", fill_color = colors,
+box_size = 0.5, y_max_adjust = 2, y_min_adjust = 1)
 
 # Example 2: Customized visualization with titles and axes
 BetterVis_Boxplot_MixViolin(
   data = iris, x_var = "Species", y_var = "Sepal.Length", fill_color = colors,
-  title = "Sepal Length by Species", title_size = 25, title_bold = TRUE,
+  title = "",title_size = 25,title_bold = FALSE, title_hjust = 0.5,title_vjust = 0,
   xlab = "Species", ylab = "Sepal Length",
   axis_x_title = element_text(size = 22, color = "#b35959", face = "bold"),
   axis_y_title = element_text(size = 22, color = "#b35959", face = "bold"),
   legend_show = TRUE, legend_title = "Species", legend_title_size = 15,
   stat_compare_means = TRUE, compare_symbol = "SYMBOL"
 )
+
+
+BetterVis_Boxplot_MixViolin(
+  data = iris,x_var = "Group2",y_var = "Sepal.Length",fill_color = colors,
+  y_max_adjust = 2,y_min_adjust = 1,box_size = 0.5,
+  title = "You can write title here",title_size = 25,title_bold = FALSE, title_hjust = 0.5,title_vjust = 0,
+  xlab = "Group2",ylab = "Sepal.Length",
+  border = TRUE,panel_background_color = "#f3f6f6",
+  axis_x_title =element_text(size = 22,color = "#b35959",face = "bold"),
+  axis_y_title =element_text(size = 22,color = "#b35959",face = "bold"),
+  legend_show = TRUE,legend_title = "Group2",legend_title_size = 15,legend_title_bold = FALSE,
+  legend_text_size=12,legend_text_bold = FALSE,stat_compare_means = TRUE,compare_symbol = "SYMBOL")
+
+
+
+
 
 }

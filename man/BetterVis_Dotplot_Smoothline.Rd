@@ -23,7 +23,6 @@ BetterVis_Dotplot_Smoothline(
   x_title = NULL,
   y_title = NULL,
   legend = TRUE,
-  legend_title = NULL,
   legend_position = "right",
   global_size_adjust = 1
 )
@@ -59,11 +58,11 @@ BetterVis_Dotplot_Smoothline(
 
 \item{legend}{Logical. If `TRUE`, the legend is displayed. Default is `TRUE`.}
 
-\item{legend_title}{Character string for the legend title.}
-
 \item{legend_position}{Character string specifying the legend position (e.g., "right", "bottom"). Default is `"right"`.}
 
 \item{global_size_adjust}{A single numeric value to uniformly scale all text elements. Default is `1`.}
+
+\item{legend_title}{Character string for the legend title.}
 }
 \value{
 A `ggplot` object.
@@ -79,33 +78,45 @@ if (requireNamespace("ggprism", quietly = TRUE) &&
   # Load example data
   data("BetterVis_Dotplot_Smoothline_example", package = "BetterVis")
 
+  data("BetterVis_Dotplot_Smoothline_example2", package = "BetterVis")
+
+
+
+
   # Example 1: Using a manual color palette and sizing points by a variable
   BetterVis_Dotplot_Smoothline(
     data = BetterVis_Dotplot_Smoothline_example,
     x_var = "Sepal.Width", y_var = "Sepal.Length", classified_var = "Species",
     size_var = "Petal.Length",
     color = c("#FBA72A", "#78B7C5", "#7294D4"),
-    cor_position = c(3.8, 4.5)
+    cor_position = c(3.7, 3.5)
    )
 
+  BetterVis_Dotplot_Smoothline(data =  BetterVis_Dotplot_Smoothline_example2, x_var = "Blood_Pressure", y_var = "Cholesterol_Level", classified_var = "Patient_Group",
+     size_var = "Blood_Pressure", color = c("#FBA72A", "#78B7C5", "#7294D4"), cor_position = c(90,300))
+
+
+
+
+
+
   # Example 2: More customization and using default paletteer colors
-  BetterVis_Dotplot_Smoothline(
-    data = BetterVis_Dotplot_Smoothline_example,
-    x_var = "Sepal.Width", y_var = "Sepal.Length", classified_var = "Species",
-    size_var = "Petal.Length",
-    color = NULL, # Let paletteer choose colors
-    point_size = 20,
-    smoothline_width = 2,
-    smoothline_color = "#FB8072",
-    cor_method = "pearson",
-    cor_position = c(3.8, 4.5),
-    title = "Iris Sepal Dimensions",
-    x_title = "Sepal Width",
-    y_title = "Sepal Length",
-    legend_title = "Species",
-    global_size_adjust = 1.2
-  )
-  # You can add other ggplot2 layers, like facets:
-  # + ggplot2::facet_wrap(vars(Species), drop = TRUE)
+BetterVis_Dotplot_Smoothline(data = BetterVis_Dotplot_Smoothline_example, x_var = "Sepal.Width", y_var = "Sepal.Length", classified_var = "Species",
+                             size_var = "Sepal.Length", color = c("#BEBADA", "#80B1D3", "#FDB462"),  point_size = 15,
+                             smoothline = TRUE, smoothline_width = 2, smoothline_color = "#FB8072",
+                             cor_test = TRUE, cor_method = "spearman", cor_color = "black", cor_position = c(2, 4),
+                             title = "Title", x_title = "Sepal.Width ", y_title = "Sepal.Length",
+                             legend = TRUE, legend_position = "right",
+                             global_size_adjust = 1)
+##+facet_wrap(vars(Species),drop = TRUE)
+BetterVis_Dotplot_Smoothline(data =  BetterVis_Dotplot_Smoothline_example2, x_var = "Blood_Pressure", y_var = "Cholesterol_Level", classified_var = "Patient_Group",
+                             size_var = "Blood_Pressure", color = c("#BEBADA", "#80B1D3", "#FDB462"),  point_size = 15,
+                             smoothline = TRUE, smoothline_width = 2, smoothline_color = "#FB8072",
+                             cor_test = TRUE, cor_method = "spearman", cor_color = "black", cor_position = c(90,300),
+                             title = "Title", x_title = "Blood_Pressure ", y_title = "Cholesterol_Level",
+                             legend = TRUE, legend_position = "right",
+                             global_size_adjust = 1)
+##+facet_wrap(vars(Species),drop = TRUE)
+
 }
 }

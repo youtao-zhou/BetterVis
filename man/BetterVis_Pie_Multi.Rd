@@ -61,8 +61,8 @@ library(scales)
 library(MetBrewer)
 
   # Load example data
-  data("BetterVis_Pie_Multi_example_in", package = "BetterVis")
-  data("BetterVis_Pie_Multi_example_out", package = "BetterVis")
+  data("BetterVis_Pie_Multi_example1", package = "BetterVis")
+  data("BetterVis_Pie_Multi_example2", package = "BetterVis")
 
   # Define color palettes
   color1 <- c("#FED439B2", "#709AE1B2", "#8A9197B2", "#D2AF81B2",
@@ -70,19 +70,19 @@ library(MetBrewer)
               "#71D0F5B2", "#C6CDF7", "#91331FB2", "#1A9993B2",
               "#FD8CC1B2", "#FAD510", "#0A9F9D", "#3B9AB2",
               "#FF0000", "#969BC7", "#B695BC", "#6F9954")
-  color2 <- c("#FBA72A", "#969BC7")
+  color2 <- c("#FBA72A", "#969BC7"); names(color2) <- c("Cured", "Improved")
 
   # Generate the plot
   BetterVis_Pie_Multi(
-    data_in = BetterVis_Pie_Multi_example_in,
-    data_out = BetterVis_Pie_Multi_example_out,
-    facet_var = "Habitat",
-    x_var = "type",
-    y_var = "Group",
-    fill_var1 = "Phylum",
-    pie_var1 = "Proportion",
-    fill_var2 = "name",
-    pie_var2 = "value",
+    data_in = BetterVis_Pie_Multi_example1,
+    data_out = BetterVis_Pie_Multi_example2,
+    facet_var = "Pie_Label",
+    x_var = "Treatment",
+    y_var = "Patient_Stage",
+    fill_var1 = "Microbe_Phylum",
+    pie_var1 = "Abundance",
+    fill_var2 = "Outcome",
+    pie_var2 = "Proportion",
     in_color = color1,
     out_color = color2,
     draw_outer_pie = TRUE

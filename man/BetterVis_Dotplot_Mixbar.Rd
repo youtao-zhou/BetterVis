@@ -74,37 +74,18 @@ calculates and displays group medians with error bars (representing standard dev
 data("BetterVis_Dotplot_Mixbar_example", package = "BetterVis")
 library(ggplot2)
 # Example 1: Basic plot with marginal density bars
-BetterVis_Dotplot_Mixbar(
-  df = BetterVis_Dotplot_Mixbar_example,
-  x_var = "bill_length_mm",
-  y_var = "bill_depth_mm",
-  classified_var = "species",
-  size_var = "body_mass_g",
-  color = c("#FBA72A", "#78B7C5", "#7294D4"),
-  x_title = "Bill Length (mm)",
-  y_title = "Bill Depth (mm)"
-)
+BetterVis_Dotplot_Mixbar(df = BetterVis_Dotplot_Mixbar_example, x_var = "Tumor_Size_mm", y_var = "Biomarker_Level", classified_var = "Cancer_Type", size_var = "Age",
+                         color =  c("#0D6B9C", "#953594", "#38A498") ,Mixbar = TRUE,error_bar = TRUE,
+                         x_title = "Tumor Size mm", y_title = "Biomarker Level")#'
+BetterVis_Dotplot_Mixbar(df = BetterVis_Dotplot_Mixbar_example, x_var = "Tumor_Size_mm", y_var = "Biomarker_Level",
+                         classified_var = "Cancer_Type", size_var = "Age",color =  c("#0D6B9C", "#953594", "#38A498"),
+                         point_shape = 16, point_size = 4,
+                         error_bar = TRUE ,errorbar_width = 0.6, errorbar_size = 1,
+                         legend = FALSE, title = "", x_title = "Tumor Size mm",
+                         y_title = "Biomarker Level" , legend_title = "Species",
+                         theme_custom =theme(axis.title.x = element_text(size = 15)),
+                         guides_custom=guides(color="none",fill="none"),Mixbar = TRUE)
 
-# Example 2: More customized plot without the marginal bars
-BetterVis_Dotplot_Mixbar(
-  df = BetterVis_Dotplot_Mixbar_example,
-  x_var = "bill_length_mm",
-  y_var = "bill_depth_mm",
-  classified_var = "species",
-  size_var = "body_mass_g",
-  color = c("#FBA72A", "#78B7C5", "#7294D4"),
-  point_shape = 16,
-  point_size = 4,
-  error_bar = TRUE,
-  errorbar_width = 0.6,
-  errorbar_size = 1,
-  legend = FALSE,
-  title = "Penguin Bill Dimensions",
-  x_title = "Bill Length (mm)",
-  y_title = "Bill Depth (mm)",
-  legend_title = "Species",
-  theme_custom = theme(axis.title.x = element_text(size = 20)),
-  guides_custom = guides(color = "none", fill = "none"),
-  Mixbar = FALSE
-)
+
+
 }

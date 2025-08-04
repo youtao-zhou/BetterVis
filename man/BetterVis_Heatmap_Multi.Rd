@@ -48,35 +48,36 @@ data stacked below an annotation heatmap for categorical data. It uses `patchwor
 for layout and `ggnewscale` to support multiple color scales.
 }
 \examples{
-if (requireNamespace("ggnewscale", quietly = TRUE) &&
-    requireNamespace("patchwork", quietly = TRUE)) {
-   library(MetBrewer)
-  # Load example data
-  data("BetterVis_Heatmap_Multi_example", package = "BetterVis")
 
-  # Define a list of color palettes for the annotations
-  color_annotation <- list(
-    c("#E31A1C", "#FDBF6F"),
-    c("#A6CEE3", "#1F78B4", "#B2DF8A", "#33A02C", "#FB9A99"),
-    c("#FF7F00", "#CAB2D6")
-  )
+library(MetBrewer)
+data("BetterVis_Heatmap_Multi_example", package = "BetterVis")#'
+mtcars$Group <- c(rep("Group2",16),rep("Group1",16))
+mtcars$Group <-as.factor(mtcars$Group)
+mtcars$Group2 <- sample(rep(rep(paste0("Group", 1:4), each = 8)))
+mtcars$Group2 <-as.factor(mtcars$Group2)
+mtcars$sampleaa <- rownames(mtcars)#'
+color_annotation<-list(c("#E31A1C","#FDBF6F"),
+                       c("#A6CEE3","#1F78B4","#B2DF8A","#FB9A99"),
+                        c("#FF7F00","#CAB2D6"))#'
+BetterVis_Heatmap_Multi(BetterVis_Heatmap_Multi_example, x_var = "case.ID",number_vars = NULL, annotation_var = c("Metastasis_Status","Tumor_Stage","Treatment_Status"),
+                        color_heatmap = met.brewer("Cassatt1"),
+                        color_annotation = color_annotation)#'
 
-  # Generate the plot
-  BetterVis_Heatmap_Multi(
-    df = BetterVis_Heatmap_Multi_example,
-    x_var = "case.ID",
-    annotation_var = c("Primary Metastasis", "Consensus classification", "UNC classification"),
-    color_heatmap = met.brewer("Cassatt1"),
-    color_annotation = color_annotation,
-    legend_heatmap_position = c(1.08, 0.7),
-    legend_annotation_position = c(1.22, -4),
-    heatmap_theme = theme(axis.text.y = element_text(face = "bold")),
-    annotation_theme = theme(
-      axis.text.y = element_text(face = "bold"),
-      legend.title = element_text(face = "bold"),
-      legend.text = element_text(face = "bold")
-    )
-  )
-}
+BetterVis_Heatmap_Multi(df = BetterVis_Heatmap_Multi_example, x_var = "case.ID",number_vars = NULL, annotation_var = c("Metastasis_Status","Tumor_Stage","Treatment_Status"),
+                        color_heatmap = met.brewer("Cassatt1"),color_annotation = color_annotation,
+                        legend_heatmap_position = c(1.08,0.7),legend_annotation_position = c(1.22,-4),
+                        heatmap_plot_margin = unit(c(0, 4, -20, 0.5), "cm"),
+                        heatmap_theme = theme(axis.text.y = element_text(face="bold")),
+                        annotation_theme =theme(axis.text.y = element_text(face="bold"),
+                                                legend.title =element_text(face="bold"),
+                                                legend.text =element_text(face="bold") ))
+BetterVis_Heatmap_Multi(df = mtcars, x_var = "sampleaa", number_vars = NULL,annotation_var = c("Group2","Group"),
+                        color_heatmap = met.brewer("Cassatt1"),
+                        legend_heatmap_position = c(1.15,0.4),legend_annotation_position = c(1.15,-2),
+                        heatmap_plot_margin = unit(c(0, 3, -20, 0.5), "cm"),
+                        heatmap_theme = theme(axis.text.y = element_text(face="bold")),
+                        annotation_theme =theme(axis.text.y = element_text(face="bold"),
+                                                legend.title =element_text(face="bold"),
+                                                legend.text =element_text(face="bold")))
 
 }

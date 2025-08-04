@@ -66,27 +66,34 @@ data("BetterVis_LinePlot_Chart_example", package = "BetterVis")
 # Define a color palette
 example_colors <- c("#4489C8", "#ED7E7A", "#008F91", "#FFCD44")
 
-# Example 1: Basic line plot with confidence intervals
-BetterVis_LinePlot_Chart(
+
+BetterVis_LinePlot_Chart (
   df = BetterVis_LinePlot_Chart_example,
-  x_var = "Day",
+  x_var = "Time",y_var = "value",fill_var = "Treatment",colors = example_colors)
+
+BetterVis_LinePlot_Chart (
+  df = BetterVis_LinePlot_Chart_example,
+  x_var = "Time",
   y_var = "value",
   fill_var = "Treatment",
   colors = example_colors,
   confidence = TRUE,
-  x_title = "Day", y_title = "Value",
-  legend_title = "", legend_position = "top"
-)
+  x_title = "Time",y_title = "Value",
+  legend_title = "",legend_position = "top",
+  size_global_adjust = 1
+)+theme()+guides()
 
-# Example 2: Faceted line plot
-BetterVis_LinePlot_Chart(
+BetterVis_LinePlot_Chart (
   df = BetterVis_LinePlot_Chart_example,
-  x_var = "Day",
+  x_var = "Time",
   y_var = "value",
   fill_var = "Treatment",
   colors = example_colors,
-  x_title = "Day", y_title = "Value",
-  facet = TRUE, facet_var = "Group",
-  facet_background_color = "#E5E5E5"
-)
+  confidence = TRUE,
+  x_title = "Time",y_title = "Value",
+  legend_title = "",legend_position = "top",
+  size_global_adjust = 1,
+  facet = TRUE, facet_var = "Group",facet_background_color = "grey",facet_background_border=FALSE
+)+theme()+guides()
+
 }

@@ -57,6 +57,7 @@ if (requireNamespace("MetBrewer", quietly = TRUE) && requireNamespace("ggtext", 
   # Load example data
   library(ggplot2)
   data("BetterVis_Heatmap_Bicontinuous_example", package = "BetterVis")
+  data("BetterVis_Heatmap_Bicontinuous_example2", package = "BetterVis")
   library(MetBrewer)
   # Example 1: Basic usage
   BetterVis_Heatmap_Bicontinuous(
@@ -69,14 +70,24 @@ if (requireNamespace("MetBrewer", quietly = TRUE) && requireNamespace("ggtext", 
   BetterVis_Heatmap_Bicontinuous(
     data = BetterVis_Heatmap_Bicontinuous_example,
     x_var = "ID", y_var = "name", fill_var = "value",
-    vline_position = 0.5, hline_position = 5,
-    vline_color = "blue", hline_color = "red", hline_linetype = "solid",
-    heatmap_color = rev(met.brewer("Isfahan1")),
-    legend_break = 2,
-    legend_title = "**Fold Change**", # Example of markdown title
-    legend_position = "right",
-    legend_title_position = "top"
-  ) +
-  theme(axis.text = element_text(size = 12, face = "bold"))
+    vline_position = 0.25, hline_position = 0,
+    vline_color = "black", hline_color = "black", hline_linetype = "dashed",
+    heatmap_color =  rev(met.brewer("Hiroshige")),
+    legend_break = 1, legend_title = "Change",legend_position = "bottom",legend_title_position = "bottom") +
+  theme(axis.text = element_text(size = 12))
+
+
+  BetterVis_Heatmap_Bicontinuous(BetterVis_Heatmap_Bicontinuous_example2, x_var ="ID", y_var ="name", fill_var ="value",
+                               vline_position = 15, hline_position = 300,
+                               vline_color = "black", hline_color = "black", hline_linetype = "dashed",
+                               heatmap_color =  rev(met.brewer("Klimt")),
+                               legend_break = 1, legend_title = "Change",legend_position = "bottom",legend_title_position = "bottom") +
+  theme(axis.text = element_text(size = 12))
+
 }
+
+
+
+
+
 }

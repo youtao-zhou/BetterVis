@@ -36,7 +36,7 @@
 #' BetterVis_Color(type = "discrete", odd_or_even = "even",  n = 9, style = "Science", option = 2,paired = TRUE, pair_num = 3)
 
 #' # 连续型取色
-#' BetterVis_Color(type = "continuous", n = 9, style = "Nature", option = 1)
+#' BetterVis_Color(type = "continuous", n = 9, style = "Science", option = 1)
 
 #' @export
 
@@ -48,7 +48,7 @@ BetterVis_Color <- function(type = c("discrete", "continuous"),
                             pair_num = NULL,
                             n = NULL,
                             option = 1,
-                            style = c("Nature", "Science", "Cell", "Lancet")) {
+                            style = c("rcolorbrewer", "Science", "Cell", "Lancet")) {
   type <- match.arg(type)
   style <- match.arg(style)
   color_library <- .get_color_library()

@@ -65,7 +65,11 @@
 #' df$celltype <- factor(df$celltype,levels=rev(unique(df$celltype)))
 #' df$Patient <- factor(df$Patient,levels=c("P21","P48","P53","P54","P08")) #指定柱内顺序
 #' df = ddply(df,'celltype',transform,percent=cell_num/sum(cell_num))
-
+#'
+#' barplot_color = c("#ABDDDE", "#FAD510", "#C6CDF7", "#F4B5BD",  "#FAEED1",
+#' "#0A9F9D",  "#005295", "#E6A0C4", "#C52E19", "orange")
+#'
+#'
 #' ## 示例数据2
 #' iris$Group <- rep(paste0("Group", 1:10), times = 15)
 #' iris$Group <-as.factor(iris$Group)
@@ -77,40 +81,44 @@
 #' iris = ddply(iris,'Group',transform,percent=Petal.Width/sum(Petal.Width))
 #'
 #' BetterVis_Barplot_Accumulative(
-#' data = df, x_var = "celltype", y1_var = "cell_num", y2_var = "percent", fill_var = "Patient",
-#' display = 3, barplot_color = BetterVis_Color(type = "continuous", n = 5, style = "Nature", option = 1),
-#' ylim1 = c(0, 15000), ylim2 = c(0, 1),
-#' axis_titles_x = "Cell Types", x_label_angle = 0, x_label_bold = TRUE, axis_title_x_size = 14,
-#' axis_titles_y1 = "Cell Count", axis_titles_y2 = "Sample Ratio",
-#' y1_label_bold = TRUE,y2_label_bold =  TRUE, axis_title_y1_size = 14,axis_title_y2_size = 14,
-#' title1 = "Cell Number Distribution", title2 = "Sample Ratio Distribution",
-#' title_size = 10,title_bold = TRUE,
-#' legend_show = TRUE, legend_title = "Legend", legend_size = 14, legend_position = "bottom",
-#' background_color = "white",
-#' coord_flip = TRUE,
-#' grid_ncol = 2,grid_layout  = rbind(c(1, 1, 1, 1, 1, 2, 2),
-#'                                    c(1, 1, 1, 1, 1, 2, 2))
+#'   data = BetterVis_Barplot_Accumulative_example, x_var = "celltype", y1_var = "cell_num", y2_var = "percent", fill_var = "Patient",
+#'   display = 3, barplot_color = barplot_color,
+#'   ylim1 = c(0, 15000), ylim2 = c(0, 1),
+#'   coord_flip = TRUE
 #' )
-
-
-
+#' BetterVis_Barplot_Accumulative(
+#'   data = df, x_var = "celltype", y1_var = "cell_num", y2_var = "percent", fill_var = "Patient",
+#'   display = 3, barplot_color = barplot_color,
+#'   ylim1 = c(0, 15000), ylim2 = c(0, 1),
+#'   axis_titles_x = "Cell Types", x_label_angle = 0, x_label_bold = TRUE, axis_title_x_size = 14,
+#'   axis_titles_y1 = "Cell Count", axis_titles_y2 = "Sample Ratio",
+#'   y1_label_bold = TRUE,y2_label_bold =  TRUE, axis_title_y1_size = 14,axis_title_y2_size = 14,
+#'   title1 = "Cell Number Distribution", title2 = "Sample Ratio Distribution",
+#'   title_size = 10,title_bold = TRUE,
+#'   legend_show = TRUE, legend_title = "Legend", legend_size = 14, legend_position = "bottom", legend_row = NULL,legend_col=NULL,
+#'   background_color = "white",
+#'   coord_flip = TRUE,
+#'   grid_ncol = 2,grid_layout  = rbind(c(1, 1, 1, 1, 1, 2, 2),
+#'                                                   c(1, 1, 1, 1, 1, 2, 2)),
+#'   p1_theme = NULL,p2_theme = NULL,p1_guide = NULL,p2_guide = NULL
+#' )
 #' BetterVis_Barplot_Accumulative(
 #'   data = iris, x_var = "Group", y1_var = "Petal.Width", y2_var = "percent", fill_var = "Group2",
-#'   display = 3, barplot_color = BetterVis_Color(type = "continuous", n = 5, style = "Nature", option = 1),
+#'   display = 3, barplot_color = barplot_color,
 #'   ylim1 = c(0, 4.5), ylim2 = c(0, 1),
 #'   axis_titles_x = "Cll Types", x_label_angle = 0, x_label_bold = TRUE, axis_title_x_size = 14,
 #'   axis_titles_y1 = "Cell Count", axis_titles_y2 = "Sample Ratio",
 #'   y1_label_bold = TRUE,y2_label_bold =  TRUE, axis_title_y1_size = 14,axis_title_y2_size = 14,
 #'   title1 = "Cell Number Distribution", title2 = "Sample Ratio Distribution",
 #'   title_size = 16,title_bold = TRUE,
-#'   title1_size = 16, title1_bold = TRUE, title2_size = 16, title2_bold =TRUE,
+#'   title1_size = 16, title1_bold = TRUE, title2_size = 16, title2_bold = TRUE,
 #'   legend_show = TRUE, legend_title = "Legend", legend_size = 14, legend_position = "bottom",
 #'   background_color = "white",
 #'   coord_flip = TRUE,
 #'   grid_ncol = 2,grid_layout  = rbind(c(1, 1, 1, 1, 1, 2, 2),
-#'                                      c(1, 1, 1, 1, 1, 2, 2))
+#'                                      c(1, 1, 1, 1, 1, 2, 2)),
+#'   p1_theme = NULL,p2_theme = NULL,p1_guide = NULL,p2_guide = NULL
 #' )
-#'
 #'
 #' @export
 BetterVis_Barplot_Accumulative <- function(data, x_var, y1_var, y2_var, fill_var, display = 3, barplot_color = NULL,

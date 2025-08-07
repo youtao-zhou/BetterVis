@@ -50,7 +50,7 @@ BetterVis_Circos_Ringplot <- function(data, root, color = NULL) {
 
   # Generate or validate colors
   if (is.null(color)) {
-    plot_colors <- BetterVis_Color(type = "discrete", odd_or_even = "even", n = length(unique_traits), style = "Nature", option = 1)
+    plot_colors <- BetterVis_Color(type = "discrete", odd_or_even = "even", n = length(unique_traits), style = "Science", option = 1)
   } else {
     plot_colors <- color
   }

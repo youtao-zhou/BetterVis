@@ -132,39 +132,56 @@ BetterVis_Color <- function(type = c("discrete", "continuous"),
     odd = list(
       Nature = list(
         `1` = list(
-          c("#1b9e77"),
-          c("#d95f02"),
-          c("#7570b3")
+          c("#E05B5B"),
+          c("#519CBA"),
+          c("#79C377")
         ),
         `3` = list(
-          c("#1b9e77", "#d95f02", "#7570b3"),
-          c("#66a61e", "#e6ab02", "#a6761d"),
-          c("#fc8d59", "#fee08b", "#d7191c")
+          c("#b8b8bb", "#80bcc8", "#d88f91"),
+          c("#2C91E0", "#3ABF99", "#F0A73A"),
+          c("#252323", "#313b87", "#dc252a")
         ),
         `5` = list(
-          c("#1b9e77", "#d95f02", "#7570b3", "#e7298a", "#66a61e"),
-          c("#e6ab02", "#a6761d", "#666666", "#fc8d59", "#fee08b"),
-          c("#d7191c", "#abd9e9", "#66c2a5", "#fc8d59", "#fee08b")
+          c("#e3716e", "#eca680", "#7ac7e2", "#f7df87", "#54beaa"),
+          c("#ECA8A9", "#74AED4", "#D3E2B7", "#CFAFD4", "#F7C97E"),
+          c("#67ADB7", "#F5E1D8", "#E4A6BD", "#F3D8E1", "#AFACB7")
+        )
+      ),
+      Nature = list(
+        `1` = list(
+          c("#009000"),
+          c("#FF9E04"),
+          c("#3179F0")
+        ),
+        `3` = list(
+          c("#EF767A", "#456990", "#48C0AA"),
+          c("#99b9e9", "#b0d992", "#fccccb"),
+          c("#e3716e", "#7ac7e2", "#54beaa")
+        ),
+        `5` = list(
+          c("#A6D5DB", "#EAA9C1", "#FACABC", "#C0BFDF", "#CCDCAD"),
+          c("#F3A17C", "#FAC45A", "#78A040", "#36600E", "#E6E0B0"),
+          c("#6CBE45", "#3954A5", "#25AAE2", "#F6EA1C", "#949599")
         )
       ),
       Science = list(
         `1` = list(
-          c("#377eb8"),
-          c("#4daf4a"),
-          c("#984ea3")
+          c("#929292"),
+          c("#202020"),
+          c("#FF2500")
         ),
         `3` = list(
-          c("#377eb8", "#4daf4a", "#984ea3"),
-          c("#ff7f00", "#ffff33", "#a65628"),
-          c("#f781bf", "#999999", "#e41a1c")
+          c("#3B54A3", "#CD61A4", "#CD1C68"),
+          c("#BD554E", "#88B37E", "#AEDFE4"),
+          c("#3BCACA", "#138787", "#EFDB30")
         ),
         `5` = list(
-          c("#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33"),
-          c("#a65628", "#f781bf", "#999999", "#e41a1c", "#d7191c"),
+          c("#9DD0C7", "#9180AC", "#D9BDD8", "#E58579", "#8AB1D2"),
+          c("#D2BCDE", "#6E348C", "#B5D4E9", "#ED7C72", "#1D75B5"),
           c("#66c2a5", "#fc8d59", "#fee08b", "#d7191c", "#abd9e9")
         )
       ),
-      Cell = list(
+      ggsci_npg = list(
         `1` = list(
           c("#8dd3c7"),
           c("#ffffb3"),
@@ -176,62 +193,79 @@ BetterVis_Color <- function(type = c("discrete", "continuous"),
           c("#b3de69", "#fccde5", "#bc80bd")
         ),
         `5` = list(
-          c("#8dd3c7", "#ffffb3", "#bebada", "#fb8072", "#80b1d3"),
-          c("#fdb462", "#b3de69", "#fccde5", "#bc80bd", "#ffed6f"),
-          c("#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99")
+          c("#E64B35FF", "#4DBBD5FF", "#00A087FF", "#3C5488FF", "#F39B7FFF"),#npg
+          c("#F39B7FFF", "#8491B4FF", "#91D1C2FF", "#DC0000FF", "#B09C85FF"),
+          c("#BC3C29FF", "#0072B5FF", "#E18727FF", "#20854EFF", "#7876B1FF")#NEJM
         )
       ),
-      Lancet = list(
+      ggsci_lancet = list(
         `1` = list(
           c("#e41a1c"),
           c("#377eb8"),
-          c("#4daf4a")
+          c("#FBEB66")
         ),
         `3` = list(
-          c("#e41a1c", "#377eb8", "#4daf4a"),
+          c("#4EA660", "#79CAFB", "#5292F7"),
           c("#984ea3", "#ff7f00", "#ffff33"),
           c("#a65628", "#f781bf", "#999999")
         ),
         `5` = list(
-          c("#e41a1c", "#377eb8", "#4daf4a", "#984ea3", "#ff7f00"),
-          c("#ffff33", "#a65628", "#f781bf", "#999999", "#d73027"),
-          c("#4575b4", "#91bfdb", "#fc8d59", "#fee090", "#d73027")
+          c("#00468BFF", "#ED0000FF", "#42B540FF", "#0099B4FF", "#925E9FFF"),
+          c("#00468B99", "#ED000099", "#42B54099", "#0099B499", "#925E9F99"),
+          c("#4DBBD5B2", "#00A087B2", "#F39B7FB2", "#8491B4B2", "#DC0000B2")
         )
       )
     ),
     even = list(
       Nature = list(
         `2` = list(
-          c("#1b9e77", "#d95f02"),
-          c("#66a61e", "#e6ab02"),
-          c("#fc8d59", "#fee08b")
+          c("#3A53A4", "#6999D1"),
+          c("#ED2224", "#F99F44"),
+          c("#32B44A", "#ADD694")
         ),
         `4` = list(
-          c("#1b9e77", "#d95f02", "#7570b3", "#e7298a"),
-          c("#66a61e", "#e6ab02", "#a6761d", "#666666"),
-          c("#fc8d59", "#fee08b", "#d7191c", "#abd9e9")
+          c("#E9292A", "#2D2B2B", "#9C9CA0", "#3B54A3"),
+          c("#E48B9A", "#B3E3F4", "#BE1D2C", "#8EB5CB"),
+          c("#FFE35E", "#FBB050", "#98694E", "#C85C19")
         ),
         `6` = list(
-          c("#1b9e77", "#d95f02", "#7570b3", "#e7298a", "#66a61e", "#e6ab02"),
-          c("#a6761d", "#666666", "#fc8d59", "#fee08b", "#d7191c", "#abd9e9"),
-          c("#66c2a5", "#fc8d59", "#fee08b", "#d7191c", "#abd9e9", "#e6ab02")
+          c("#F3BA1E", "#43B6E1", "#80539F", "#ED7B7B", "#BCD53B", "#4D6CAA"),
+          c("#F89C74", "#5DE0DD", "#DCB0F2", "#C9DB74", "#1C66A7", "#F6CF71"),
+          c("#2D80B9", "#F98519", "#F1BCE1", "#3CA63B", "#BFC02C", "#DA3839")
         )
       ),
       Science = list(
         `2` = list(
-          c("#377eb8", "#4daf4a"),
-          c("#984ea3", "#ff7f00"),
-          c("#ffff33", "#a65628")
+          c("#85BAD9", "#5488BF"),
+          c("#A91E22", "#E04832"),
+          c("#FBBA73", "#FDE39F")
         ),
         `4` = list(
-          c("#377eb8", "#4daf4a", "#984ea3", "#ff7f00"),
-          c("#ffff33", "#a65628", "#f781bf", "#999999"),
-          c("#e41a1c", "#d7191c", "#66c2a5", "#fc8d59")
+          c("#015493", "#019092", "#999999", "#F4A99B"),
+          c("#909090", "#0095FF", "#019092", "#6FDCB5"),
+          c("#069DFF", "#808080", "#A4E048", "#010101")
         ),
         `6` = list(
-          c("#377eb8", "#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628"),
-          c("#f781bf", "#999999", "#e41a1c", "#d7191c", "#66c2a5", "#fc8d59"),
-          c("#4daf4a", "#984ea3", "#ff7f00", "#ffff33", "#a65628", "#f781bf")
+          c("#0C4E9B", "#6B98C4", "#C72228", "#F5867F", "#F98F34", "#FFBC80"),
+          c("#3B549D", "#6BBC46", "#9EAAD1", "#B4DEA2", "#D3272B", "#F29091"),
+          c("#354898", "#6B6B6B", "#73ABCF", "#972D36", "#C55645", "#FAAE5F")
+        )
+      ),
+      BMJ = list(
+        `2` = list(
+          c("#4484b1", "#F2A24F"),
+          c("#9BBAD6", "#F6B88F"),
+          c("#FBEB66", "#79CAFB")
+        ),
+        `4` = list(
+          c("#c2d0ea", "#0070b8", "#00b3b0", "#d40d8c"),
+          c("#7b95c6", "#49c2d9", "#a1d8e8", "#a2c986"),
+          c("#4EA660", "#79CAFB", "#5292F7", "#AA77E9")
+        ),
+        `6` = list(
+          c("#168676", "#27447C", "#4871B3", "#991F22", "#B88640", "#E73C36"),
+          c("#80B1D3", "#8DD1C6", "#BDBADB", "#F47F72", "#FBB463", "#FBF8B4"),
+          c("#F59B7B", "#ED8828", "#81B21F", "#8D73BA", "#ABD7E8", "#33ABC1")
         )
       )
     )
@@ -239,31 +273,31 @@ BetterVis_Color <- function(type = c("discrete", "continuous"),
 
   # 连续型颜色库
   continuous_colors <- list(
-    Nature = list(
-      c("#1b9e77", "#66a61e", "#e6ab02"),
-      c("#7570b3", "#e7298a", "#66a61e"),
-      c("#e6ab02", "#a6761d", "#fc8d59")
+    rcolorbrewer = list(
+      c("#9EBCDA", "#8C96C6", "#8C6BB1"),
+      c("#99D8C9", "#66C2A4", "#41AE76"),
+      c("#9ECAE1", "#6BAED6", "#4292C6"),
+      c("#FEE08B", "#FDAE61", "#F46D43")
     ),
     Science = list(
-      c("#377eb8", "#4daf4a", "#ff7f00"),
-      c("#ffff33", "#a65628", "#f781bf"),
-      c("#999999", "#e41a1c", "#d7191c")
+      c("#58B893", "#9AD6BD", "#CEEADC"),
+      c("#F07651", "#FBAE95", "#FCD6C9"),
+      c("#7B8DBD", "#ABB0CD", "#D9DCEF")
     ),
     Cell = list(
-      c("#8dd3c7", "#80b1d3", "#fdb462"),
-      c("#b3de69", "#fccde5", "#bc80bd"),
-      c("#a6cee3", "#33a02c", "#fb9a99")
+      c("#E071B6", "#EBAAD4", "#F5D4E9"),
+      c("#004A80", "#0079AF", "#9BCCE3"),
+      c("#C85C19", "#F58228", "#FBB050")
     ),
     Lancet = list(
-      c("#e41a1c", "#377eb8", "#4daf4a"),
-      c("#984ea3", "#ff7f00", "#ffff33"),
-      c("#a65628", "#f781bf", "#999999")
+      c("#af8fd0", "#caadd8", "#f0ecf7"),
+      c("#80CDC1", "#35978F", "#01665E"),
+      c("#C51B7D", "#DE77AE", "#F1B6DA")
     )
   )
 
   return(list(discrete = discrete_colors, continuous = continuous_colors))
 }
-
 
 
 

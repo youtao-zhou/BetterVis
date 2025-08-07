@@ -27,3 +27,6 @@ install.packages("vegan")
 
 # 3. 从 GitHub 仓库安装 BetterVis 包
 devtools::install_github("youtao-zhou/BetterVis")
+
+
+

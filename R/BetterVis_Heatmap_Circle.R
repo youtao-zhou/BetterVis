@@ -33,6 +33,7 @@
 #'  library(dplyr)
 #' ## Data Input
 #' data("BetterVis_Heatmap_Circle_example",package="BetterVis")
+#' BetterVis_Heatmap_Circle_example$value <- abs(BetterVis_Heatmap_Circle_example$value)
 #' BetterVis_Heatmap_Circle(data = BetterVis_Heatmap_Circle_example, value_var = "value", classified_text_var = "id", classified_value_var = "name")
 #' BetterVis_Heatmap_Circle(data = BetterVis_Heatmap_Circle_example, value_var = "value", classified_text_var = "id", classified_value_var = "name",
 #' heatmap_color = alpha(met.brewer("Hiroshige"), 1),

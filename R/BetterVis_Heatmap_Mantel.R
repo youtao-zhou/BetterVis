@@ -27,7 +27,6 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
 #' library(linkET)
 #' library(dplyr)
 #' library(ggplot2)
@@ -57,7 +56,6 @@
 #'     phenotype_text_size = 5
 #'   ) +
 #'   theme(legend.text = element_text(size = 16), legend.title = element_text(size = 18))
-#'}
 BetterVis_Heatmap_Mantel <- function(phenotype_data, expression_data, spec_select,
                                      significant_symbol = TRUE,
                                      heatmap_color = RColorBrewer::brewer.pal(11, "PuOr"),

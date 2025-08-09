@@ -76,7 +76,7 @@ library(ggplot2)
 # Example 1: Basic plot with marginal density bars
 BetterVis_Dotplot_Mixbar(df = BetterVis_Dotplot_Mixbar_example, x_var = "Tumor_Size_mm", y_var = "Biomarker_Level", classified_var = "Cancer_Type", size_var = "Age",
                          color =  c("#0D6B9C", "#953594", "#38A498") ,Mixbar = TRUE,error_bar = TRUE,
-                         x_title = "Tumor Size mm", y_title = "Biomarker Level")#'
+                         x_title = "Tumor Size mm", y_title = "Biomarker Level")
 BetterVis_Dotplot_Mixbar(df = BetterVis_Dotplot_Mixbar_example, x_var = "Tumor_Size_mm", y_var = "Biomarker_Level",
                          classified_var = "Cancer_Type", size_var = "Age",color =  c("#0D6B9C", "#953594", "#38A498"),
                          point_shape = 16, point_size = 4,

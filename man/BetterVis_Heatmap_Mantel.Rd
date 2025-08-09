@@ -41,13 +41,13 @@ dataset with the results of a Mantel test linking it to a second dataset. It
 heavily relies on the `linkET` package.
 }
 \examples{
+\dontrun{
 library(linkET)
 library(dplyr)
 library(ggplot2)
 library(tidyverse)
 library(RColorBrewer)
 library(vegan)
-if (requireNamespace("linkET", quietly = TRUE)) {
   # Load example data
   data("BetterVis_Heatmap_Mantel_example1", package = "BetterVis")
   data("BetterVis_Heatmap_Mantel_example2", package = "BetterVis")

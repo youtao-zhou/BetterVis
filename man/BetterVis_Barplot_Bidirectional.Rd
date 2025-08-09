@@ -122,68 +122,61 @@ Generates bidirectional bar plots meant to display data comparison across catego
 Creates bidirectional bar plots with extensive customization options. This function provides users with the ability to tailor themes, axes, titles, legends, and additional graphic elements such as arrows and annotations.
 }
 \examples{
-
-
-library(ggpubr)
-library(ggplot2)
-library(RColorBrewer)
-library(dplyr)
-library(cowplot)
+library(BetterVis)
 library(grid)
 
-##  示例数据1
+##  Data Input
 data("BetterVis_Barplot_Bidirectional_example", package = "BetterVis")
-df <- BetterVis_Barplot_Bidirectional_example
-df$pathway<-as.factor(df$pathway)
-df$group<-as.factor(df$group)
-df$Species<-as.factor(df$Species)
 
-## 示例数据2
+## Simple Example
+BetterVis_Barplot_Bidirectional(
+data = BetterVis_Barplot_Bidirectional_example,x_var = "Percentage", y_var = "pathway", fill_var = "Species",
+barplot_color = c("#ABDDDE", "#FAD510", "#C6CDF7", "#F4B5BD", "#0A9F9D", "#FAEED1", "#005295", "#E6A0C4", "#C52E19", "orange"),
+title = "Species Contribution to Pathways",legend_title = "Species Contribution",
+ylim = c(1, 8),
+arrow = FALSE,plot_margin = unit(c(1,0.3,0.3,0.3),unit="cm"))
+
+
+
+##  Advanced Example
+BetterVis_Barplot_Bidirectional(
+data = BetterVis_Barplot_Bidirectional_example,x_var = "Percentage", y_var = "pathway", fill_var = "Species",
+barplot_color = c("#ABDDDE", "#FAD510", "#C6CDF7", "#F4B5BD", "#0A9F9D",
+                    "#FAEED1", "#005295", "#E6A0C4", "#C52E19", "orange"),
+axis_titles_x = "", x_label_angle = 0, x_label_bold = TRUE, axis_title_x_size = 14,
+axis_titles_y = "", y_label_bold = TRUE, y_label_angle = 0,axis_title_y_size = 14,
+title = "Species Contribution to Pathways", title_size = 16, title_bold = TRUE,
+legend_show = TRUE, legend_title = "Species Contribution", legend_size = 10,
+background_color = "white",
+ylim = c(1, 8),
+plot_margin = unit(c(2,0.3,0.3,0.3),unit="cm"),
+arrow = TRUE,
+arrow_x1 = c(0.35, 0.2), arrow_x2 = c(0.48, 0.63),
+arrow_y1 = c(0.88, 0.88), arrow_y2 = c(0.88, 0.88),
+arrow_col = "black", arrow_size = 0.5,
+arrow_text = c("Enriched in Enriched in Disease Group","Enriched in Control Group"),arrow_text_size = 12,arrow_text_adjust = 0.03,
+right_text = TRUE,right_text1 = "n = 154 for Disease",right_text2 = "n = 192 for Control",right_text_hjust = 1.2,right_text_vjust = -3,right_text_size =4
+)
+
+## We have modified the iris dataset to create these boxplots
 iris$Group <- c(rep("Group2",75),rep("Group1",75))
 iris$Group <-as.factor(iris$Group)
 iris$Group2 <- rep(rep(paste0("Group", 1:10), each = 5),3)
 iris$Group2 <-as.factor(iris$Group2)
-
-
-
-
-# Example usage with provided datasets:
 BetterVis_Barplot_Bidirectional(
-  data = df,x_var = "Percentage", y_var = "pathway", fill_var = "Species",
-  barplot_color = c("#ABDDDE", "#FAD510", "#C6CDF7", "#F4B5BD", "#0A9F9D",
-                    "#FAEED1", "#005295", "#E6A0C4", "#C52E19", "orange"),
-  axis_titles_x = "", x_label_angle = 0, x_label_bold = TRUE, axis_title_x_size = 14,
-  axis_titles_y = "", y_label_bold = TRUE, y_label_angle = 0,axis_title_y_size = 14,
-  title = "Species Contribution to Pathways", title_size = 16, title_bold = TRUE,
-  legend_show = TRUE, legend_title = "Species Contribution", legend_size = 10,
-  background_color = "white",
-  ylim = c(0, 8),
-  plot_margin = unit(c(2,0.3,0.3,0.3),unit="cm"),
-  arrow = TRUE,
-  arrow_x1 = c(0.35, 0.2), arrow_x2 = c(0.48, 0.63),
-  arrow_y1 = c(0.88, 0.88), arrow_y2 = c(0.88, 0.88),
-  arrow_col = "black", arrow_size = 0.5,
-  arrow_text = c("Enriched in stable low DDS","Enriched in stable high DDS"),arrow_text_size = 12,arrow_text_adjust = 0.03,
-  right_text = TRUE,right_text1 = "n = 154 for stable high DDS",right_text2 = "n = 192 for stable low DDS",right_text_hjust = 1.2,right_text_vjust = -3.5,right_text_size =4
-)
-
-BetterVis_Barplot_Bidirectional(
-  data = iris,x_var = "Petal.Width",  y_var = "Group2", fill_var = "Species",
-  barplot_color = c("#ABDDDE", "#FAD510", "#C6CDF7", "#F4B5BD", "#0A9F9D",
-                    "#FAEED1", "#005295", "#E6A0C4", "#C52E19", "orange"),
-  axis_titles_x = "", x_label_angle = 0, x_label_bold = TRUE, axis_title_x_size = 14,
-  axis_titles_y = "", y_label_bold = TRUE, y_label_angle = 0,axis_title_y_size = 14,
-  title = "Species Contribution to Pathways", title_size = 16, title_bold = TRUE,
-  legend_show = TRUE, legend_title = "Species Contribution", legend_size = 10,
-  background_color = "white",
-  ylim = c(1, 10),
-  plot_margin = unit(c(2,2,1,0.5),unit="cm"),
-  arrow = TRUE,
-  arrow_x1 = c(0.35, 0.2), arrow_x2 = c(0.48, 0.63),
-  arrow_y1 = c(0.88, 0.88), arrow_y2 = c(0.88, 0.88),
-  arrow_col = "black", arrow_size = 0.5,
-  arrow_text = c("Enriched in stable low DDS","Enriched in stable high DDS"),arrow_text_size = 12,arrow_text_adjust = 0.03,
-  right_text = TRUE,right_text1 = "n = 154 for stable high DDS",right_text2 = "n = 192 for stable low  DDS",right_text_hjust = 1.2,right_text_vjust = -6,right_text_size =4
-)
-# +theme(axis.title.x = element_blank())+guides(fill=F)
+data = iris,x_var = "Petal.Width",  y_var = "Group2", fill_var = "Species",
+barplot_color = c("#ABDDDE", "#FAD510", "#C6CDF7", "#F4B5BD", "#0A9F9D","#FAEED1", "#005295", "#E6A0C4", "#C52E19", "orange"),
+axis_titles_x = "", x_label_angle = 0, x_label_bold = TRUE, axis_title_x_size = 14,
+axis_titles_y = "", y_label_bold = TRUE, y_label_angle = 0,axis_title_y_size = 14,
+title = "Species Contribution to Pathways", title_size = 16, title_bold = TRUE,
+legend_show = TRUE, legend_title = "Species Contribution", legend_size = 10,
+background_color = "white",
+ylim = c(1, 10),
+plot_margin = unit(c(2,2,1,0.5),unit="cm"),
+arrow = TRUE,
+arrow_x1 = c(0.35, 0.2), arrow_x2 = c(0.48, 0.63),
+arrow_y1 = c(0.88, 0.88), arrow_y2 = c(0.88, 0.88),
+arrow_col = "black", arrow_size = 0.5,
+arrow_text = c("Enriched in stable low DDS","Enriched in stable high DDS"),arrow_text_size = 12,arrow_text_adjust = 0.03,right_text = TRUE,right_text1 = "n = 154 for stable high DDS",right_text2 = "n = 192 for stable low  DDS",right_text_hjust = 1.2,right_text_vjust = -6,right_text_size =4)
+# +theme(axis.title.x = element_blank())+guides(fill=FALSE)
 }

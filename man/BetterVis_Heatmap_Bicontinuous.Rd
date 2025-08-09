@@ -53,41 +53,33 @@ where two variables map to the x and y axes, and a third continuous variable
 maps to the fill color.
 }
 \examples{
-if (requireNamespace("MetBrewer", quietly = TRUE) && requireNamespace("ggtext", quietly = TRUE)) {
-  # Load example data
-  library(ggplot2)
-  data("BetterVis_Heatmap_Bicontinuous_example", package = "BetterVis")
-  data("BetterVis_Heatmap_Bicontinuous_example2", package = "BetterVis")
-  library(MetBrewer)
-  # Example 1: Basic usage
-  BetterVis_Heatmap_Bicontinuous(
-    data = BetterVis_Heatmap_Bicontinuous_example,
-    x_var = "ID", y_var = "name", fill_var = "value",
-    legend_title = "Change"
-  )
+library(BetterVis)
+library(MetBrewer)
 
-  # Example 2: More customized plot
-  BetterVis_Heatmap_Bicontinuous(
-    data = BetterVis_Heatmap_Bicontinuous_example,
-    x_var = "ID", y_var = "name", fill_var = "value",
-    vline_position = 0.25, hline_position = 0,
-    vline_color = "black", hline_color = "black", hline_linetype = "dashed",
-    heatmap_color =  rev(met.brewer("Hiroshige")),
-    legend_break = 1, legend_title = "Change",legend_position = "bottom",legend_title_position = "bottom") +
-  theme(axis.text = element_text(size = 12))
+## Data Input
+data("BetterVis_Heatmap_Bicontinuous_example",package="BetterVis")
+data("BetterVis_Heatmap_Bicontinuous_example2",package="BetterVis")
+
+## Simple Example
+BetterVis_Heatmap_Bicontinuous(data = BetterVis_Heatmap_Bicontinuous_example, x_var = "ID", y_var = "name", fill_var = "value",legend_title = "Change")
 
 
-  BetterVis_Heatmap_Bicontinuous(BetterVis_Heatmap_Bicontinuous_example2, x_var ="ID", y_var ="name", fill_var ="value",
-                               vline_position = 15, hline_position = 300,
-                               vline_color = "black", hline_color = "black", hline_linetype = "dashed",
-                               heatmap_color =  rev(met.brewer("Klimt")),
-                               legend_break = 1, legend_title = "Change",legend_position = "bottom",legend_title_position = "bottom") +
-  theme(axis.text = element_text(size = 12))
-
-}
-
+## Advanced Example
+BetterVis_Heatmap_Bicontinuous(BetterVis_Heatmap_Bicontinuous_example, x_var ="ID", y_var ="name", fill_var ="value",
+vline_position = 0.25, hline_position = 0,
+vline_color = "black", hline_color = "black", hline_linetype = "dashed",
+heatmap_color =  rev(met.brewer("Hiroshige")),
+legend_break = 1, legend_title = "Change",legend_position = "bottom",legend_title_position = "bottom") +
+theme(axis.text = element_text(size = 12))
 
 
+## We have generated a new dataset to verify its validity
+BetterVis_Heatmap_Bicontinuous(BetterVis_Heatmap_Bicontinuous_example2, x_var ="ID", y_var ="name", fill_var ="value",
+vline_position = 15, hline_position = 300,
+vline_color = "black", hline_color = "black", hline_linetype = "dashed",
+heatmap_color =  rev(met.brewer("Hiroshige")),
+legend_break = 1, legend_title = "Change",legend_position = "bottom",legend_title_position = "bottom") +
+theme(axis.text = element_text(size = 12))
 
 
 }

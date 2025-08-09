@@ -75,36 +75,44 @@ It supports both continuous and categorical fill colors, in-bar text labels,
 and a secondary categorical annotation track at the base of the plot.
 }
 \examples{
-if (requireNamespace("ggnewscale", quietly = TRUE)) {
   library(ggplot2)
   library(dplyr)
   # Load and process the example data
-  data("BetterVis_Barplot_Horizontal2_example", package = "BetterVis")
-  df <- BetterVis_Barplot_Horizontal2_example
+  data("BetterVis_Barplot_Horizontal_example2", package = "BetterVis")
+
+
+  # Simple Example
+BetterVis_Barplot_Horizontal2(
+data = BetterVis_Barplot_Horizontal_example2,x_var = "Description",y_var = "Count",fill_var = "LogP",label_y_var = "Description", label_other_var = "Genes",
+fill_gradient = list(low = "#486b98", mid = "#f5f2b1", high = "#b93735", midpoint = 3),y_label_out = FALSE,
+label_other_display = TRUE,Category_Var = "Category2",category_var_color = c("#c3e1e6","#f3dfb7","#dcc6dc"),
+annot_y_offset = -1,annot_y_width = 0.5)
+
+
 
   # Example 1: Continuous fill with a categorical annotation track
-  BetterVis_Barplot_Horizontal2(
-    data = df, x_var = "Description", y_var = "Count", fill_var = "LogP",
-    label_y_var = "Description", label_other_var = "Genes",
-    fill_gradient = list(low = "#486b98", mid = "#f5f2b1", high = "#b93735", midpoint = 3),
-    y_label_out = FALSE, label_other_display = TRUE,
-    Category_Var = "Category2",
-    category_var_color = c("Group1" = "#c3e1e6", "Group2" = "#f3dfb7", "Group3" = "#dcc6dc"),
-    annot_y_offset = -1, annot_y_width = 0.5
-  )
+BetterVis_Barplot_Horizontal2(
+data = BetterVis_Barplot_Horizontal_example2,x_var = "Description",y_var = "LogP",fill_var = "Category2",fill_var_color = c("#c3e1e6","#f3dfb7","#dcc6dc"),
+ label_y_var = "Description", label_other_var = "Genes",
+ y_label_out = FALSE,label_other_display = TRUE,Category_Var = "Category2",category_var_color = c("#c3e1e6","#f3dfb7","#dcc6dc"),
+annot_y_offset = -1,annot_y_width = 0.2,fill_legend = TRUE,fill_legend_title = "Group",ylab_text = "LogP"
+)+geom_point(aes(y=-0.5,size=Count,fill=Category2),shape=21)+scale_size_area(max_size = 15) +
+geom_text(aes(y = -0.5, label = Count), color = "black", size = 5)
 
-  # Example 2: Categorical fill with additional geom_point layers
-  BetterVis_Barplot_Horizontal2(
-    data = df, x_var = "Description", y_var = "LogP", fill_var = "Category2",
-    fill_var_color = c("Group1" = "#c3e1e6", "Group2" = "#f3dfb7", "Group3" = "#dcc6dc"),
-    label_y_var = "Description", label_other_var = "Genes",
-    y_label_out = FALSE,
-    Category_Var = "Category2",
-    annot_y_offset = -0.5, annot_y_width = 0.2, fill_legend = TRUE,
-    fill_legend_title = "Group", ylab_text = "LogP"
-  ) +
-  geom_point(aes(y = -0.2, size = Count, fill = Category2), shape = 21) +
-  scale_size_area(max_size = 15) +
-  geom_text(aes(y = -0.2, label = Count), color = "black", size = 5)
-}
+  # Advanced Example
+BetterVis_Barplot_Horizontal2(
+data = BetterVis_Barplot_Horizontal_example2,x_var = "Description",y_var = "Count",fill_var = "LogP",
+label_y_var = "Description", label_other_var = "Genes",
+bar_width = 0.4,base_size = 30,
+label_y_start = 0.5,label_y_size = 5,label_y_hjust = 0,label_y_vjust = 1,
+label_other_start = 0.5,label_other_size = 4.5,label_other_hjust = 0,label_other_vjust = 2.4,
+fill_gradient = list(low = "#486b98", mid = "#f5f2b1", high = "#b93735", midpoint = 3),
+color_gradient = list(low = "#486b98", mid = "#f5f2b1", high = "#b93735", midpoint = 3),
+fill_legend = TRUE, fill_legend_title="logp",color_legend = FALSE,color_legend_title = "col_lengend",
+legend_title_size = 16, legend_text_size = 16,
+xlab_text = " Names",ylab_text = "Gene Count", plot_title = "KEGG Enrichment Analysis",
+y_label_out = FALSE,label_other_display = TRUE,Category_Var = "Category2",category_var_color = c("#c3e1e6","#f3dfb7","#dcc6dc"),
+annot_y_offset = -1.5,annot_y_width = 0.8,category_text_display=TRUE,category_text_angle=90
+)
+##+theme(axis.title.x = element_blank())
 }

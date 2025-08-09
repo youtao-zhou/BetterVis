@@ -45,62 +45,56 @@
 #' @importFrom grid unit
 #' @examples
 #'
-#' library(ggpubr)
-#' library(ggplot2)
-#' library(RColorBrewer)
-#' library(dplyr)
-#' library(cowplot)
 #' library(BetterVis)
 #'
 #' ##示例数据1
 #' data("BetterVis_Boxplot_Experiment_example", package = "BetterVis")
-#' df <- BetterVis_Boxplot_Experiment_example
-#' df$supp<-as.factor(df$supp)
-#' df$dose<-as.factor(df$dose)
-#'
 #' iris$Group <- rep(rep(paste0("Group", 1:5), each = 10),3)
 #' iris$Group <-as.factor(iris$Group)
 #'
 
-#' ## 示例用法1: 分面箱线图
+#' ## Simple Example
 #' BetterVis_Boxplot_Experiment(
-#'   data = df, x_var = "supp", y_var = "len", fill_var = "dose",
+#'   data=BetterVis_Boxplot_Experiment_example,
+#'   x_var = "supp", y_var = "len", fill_var = "dose",
 #'   use_facet = TRUE,
-#'   title = "Effect of Supplement and Dose on Length",
-#'   x_label_angle = 45,
-#'   x_label_bold = TRUE,
-#'   y_label_bold = TRUE,
-#'   axis_titles = c("Supplement Type", "Length"),
+#'   custom_colors = c("#FC5D5C", "#4B6A9D", "#167D7D"),
+#'   comparison_col = "dose",
+#'   comparison = list(c("dose_1","dose_2"),c("dose_1","dose_3"),c("dose_2","dose_3")),
+#'   ylim = c(0,40)
+#' )
+#'
+#' ## Advanced Example
+#' BetterVis_Boxplot_Experiment(
+#'   data=BetterVis_Boxplot_Experiment_example, x_var = "supp", y_var = "len", fill_var = "dose",
+#'   use_facet = TRUE, title = "",
+#'   x_label_angle = 45, x_label_bold = TRUE,
+#'   y_label_bold = TRUE, axis_titles = c("X Axis", "Y Axis"),
 #'   axis_title_bold = TRUE,
 #'   custom_colors = c("#FC5D5C", "#4B6A9D", "#167D7D"),
 #'   jitter = TRUE,
 #'   jitter_color = c("#FC5D5C", "#4B6A9D", "#167D7D"),
-#'   jitter_width = 1,
-#'   jitter_alpha = 1,
-#'   jitter_size = 2,
-#'   legend_show = FALSE,
-#'   legend_title = "",
+#'   jitter_width = 1,jitter_alpha = 1,jitter_size = 2,
+#'   legend_show = FALSE, legend_title = "",
 #'   box_width = 0.6,
 #'   comparison_col = "dose",
-#'   comparison = list(c("dose_1", "dose_2"), c("dose_1", "dose_3"), c("dose_2", "dose_3")),
+#'   comparison = list(c("dose_1","dose_2"),c("dose_1","dose_3"),c("dose_2","dose_3")),
 #'   comparison_method = "wilcox",
-#'   box_background = TRUE,
-#'   background_color = "white",
-#'   background_border = TRUE,
-#'   sig_type = "SYMBOL",
-#'   violin = FALSE,
-#'   ylim = c(0, 40)
-#' )
+#'   box_background = TRUE,background_color = "white",background_border = TRUE,sig_type = "SYMBOL",violin = FALSE,ylim = c(0,40)
+#' )+theme()+guides()
 #'
-#' ## 示例用法2: 使用 iris 数据集并显示 p 值
+#' ## We have modified the iris dataset to create these boxplots
+#' iris$Group <- rep(rep(paste0("Group", 1:5), each = 10),3)
+#' iris$Group <-as.factor(iris$Group)
+#'
 #' BetterVis_Boxplot_Experiment(
-#'   data = iris, x_var = "Group", y_var = "Petal.Width", fill_var = "Species",
+#'   iris, x_var = "Group", y_var = "Petal.Width", fill_var = "Species",
 #'   use_facet = TRUE,
-#'   title = "Petal Width Across Groups and Species",
+#'   title = "",
 #'   x_label_angle = 45,
 #'   x_label_bold = TRUE,
 #'   y_label_bold = TRUE,
-#'   axis_titles = c("Group", "Petal Width"),
+#'   axis_titles = c("X Axis", "Y Axis"),
 #'   axis_title_bold = TRUE,
 #'   custom_colors = c("#FC5D5C", "#4B6A9D", "#167D7D"),
 #'   jitter = TRUE,
@@ -109,19 +103,17 @@
 #'   jitter_alpha = 1,
 #'   jitter_size = 2,
 #'   legend_show = TRUE,
-#'   legend_title = "Species",
+#'   legend_title = "",
 #'   box_width = 0.6,
 #'   comparison_col = "Species",
-#'   comparison = list(c("setosa", "versicolor"), c("setosa", "virginica"), c("versicolor", "virginica")),
+#'   comparison = list(c("setosa", "versicolor"),c("setosa", "virginica"),c("versicolor", "virginica")),
 #'   comparison_method = "wilcox",
-#'   box_background = TRUE,
-#'   background_color = "white",
-#'   background_border = TRUE,
-#'   sig_type = "NUMBER",
-#'   violin = FALSE,
-#'   ylim = c(0, 3.5)
+#'   box_background = TRUE,background_color = "white",background_border = TRUE,sig_type = "NUMBER",violin = FALSE,ylim = c(0,3.5)
 #' )
-#' # + theme(axis.title.x = element_blank()) + guides(fill = FALSE)
+#' #+theme(axis.title.x = element_blank())+guides(fill=FALSE) #'
+#'
+#'
+#'
 
 #' @export
 

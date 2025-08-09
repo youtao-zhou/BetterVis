@@ -64,15 +64,9 @@ BetterVis_Venn_UpsetR(BetterVis_Venn_UpsetR_example, all_text_adjust = 1.5)
 BetterVis_Venn_UpsetR(BetterVis_Venn_UpsetR_example, all_text_adjust = c(1.5, 1, 1.5, 1, 2, 1.2))
 
 # Example 3: Customizing colors and labels
-BetterVis_Venn_UpsetR(
-  input_list = BetterVis_Venn_UpsetR_example,
-  ratio = c(0.6, 0.4),
-  y.label = "Common Elements",
-  x.label = "Total Elements",
-  main.bar.color = "skyblue",
-  sets.bar.color = "navyblue",
-  matrix.color = "red",
-  point.size = 5,
-  line.size = 2
-)
+BetterVis_Venn_UpsetR(BetterVis_Venn_UpsetR_example,ratio = c(0.7,0.3),
+y.label = "Intersection size",x.label = "Set Size",
+main.bar.color = "#FCB2AF",sets.bar.color = "#9BDFDF",matrix.color = "#8C9FCA",
+point.size = 3,line.size=1,
+all_text_adjust = 2)
 }

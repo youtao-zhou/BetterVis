@@ -50,15 +50,12 @@ for layout and `ggnewscale` to support multiple color scales.
 \examples{
 
 library(MetBrewer)
-data("BetterVis_Heatmap_Multi_example", package = "BetterVis")#'
-mtcars$Group <- c(rep("Group2",16),rep("Group1",16))
-mtcars$Group <-as.factor(mtcars$Group)
-mtcars$Group2 <- sample(rep(rep(paste0("Group", 1:4), each = 8)))
-mtcars$Group2 <-as.factor(mtcars$Group2)
-mtcars$sampleaa <- rownames(mtcars)#'
+data("BetterVis_Heatmap_Multi_example", package = "BetterVis")
 color_annotation<-list(c("#E31A1C","#FDBF6F"),
                        c("#A6CEE3","#1F78B4","#B2DF8A","#FB9A99"),
-                        c("#FF7F00","#CAB2D6"))#'
+                        c("#FF7F00","#CAB2D6"))
+
+##  Usage Example
 BetterVis_Heatmap_Multi(BetterVis_Heatmap_Multi_example, x_var = "case.ID",number_vars = NULL, annotation_var = c("Metastasis_Status","Tumor_Stage","Treatment_Status"),
                         color_heatmap = met.brewer("Cassatt1"),
                         color_annotation = color_annotation)#'
@@ -71,6 +68,14 @@ BetterVis_Heatmap_Multi(df = BetterVis_Heatmap_Multi_example, x_var = "case.ID",
                         annotation_theme =theme(axis.text.y = element_text(face="bold"),
                                                 legend.title =element_text(face="bold"),
                                                 legend.text =element_text(face="bold") ))
+## We have modified the mtcars dataset to create these boxplots
+mtcars$Group <- c(rep("Group2",16),rep("Group1",16))
+mtcars$Group <-as.factor(mtcars$Group)
+mtcars$Group2 <- sample(rep(rep(paste0("Group", 1:4), each = 8)))
+mtcars$Group2 <-as.factor(mtcars$Group2)
+mtcars$sampleaa <- rownames(mtcars)#'
+
+
 BetterVis_Heatmap_Multi(df = mtcars, x_var = "sampleaa", number_vars = NULL,annotation_var = c("Group2","Group"),
                         color_heatmap = met.brewer("Cassatt1"),
                         legend_heatmap_position = c(1.15,0.4),legend_annotation_position = c(1.15,-2),

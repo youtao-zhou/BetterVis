@@ -98,48 +98,66 @@ The function allows users to apply different themes, customize axes, add statist
 }
 \examples{
 # Load necessary libraries
-library(ggpubr)
-library(ggplot2)
-library(RColorBrewer)
-library(dplyr)
-library(rstatix)
 library(BetterVis)
-
+library(dplyr)
 data("BetterVis_Boxplot_MixViolin_example", package = "BetterVis")
-iris <- BetterVis_Boxplot_MixViolin_example
+barplot_color = c("#ABDDDE", "#FAD510", "#C6CDF7", "#F4B5BD", "#FAEED1","#0A9F9D",  "#005295", "#E6A0C4","#C52E19","orange")
 
-colors <- c("#e97257", "#72c5d9", "#58ae9a", "#646e9a", "#efa78e",
-            "#f3a9c4", "#ffbf69", "#b4d33e", "#ed7d31", "#6b83b3",
-            "#b7d3ff", "#ff72cc", "#d4a4ff")
-
+## Simple Example
 # Example 1: Simple visualization
-BetterVis_Boxplot_MixViolin(data = iris, x_var = "Species", y_var = "Sepal.Length", fill_color = colors,
-box_size = 0.5, y_max_adjust = 2, y_min_adjust = 1)
-
-# Example 2: Customized visualization with titles and axes
-BetterVis_Boxplot_MixViolin(
-  data = iris, x_var = "Species", y_var = "Sepal.Length", fill_color = colors,
-  title = "",title_size = 25,title_bold = FALSE, title_hjust = 0.5,title_vjust = 0,
-  xlab = "Species", ylab = "Sepal Length",
-  axis_x_title = element_text(size = 22, color = "#b35959", face = "bold"),
-  axis_y_title = element_text(size = 22, color = "#b35959", face = "bold"),
-  legend_show = TRUE, legend_title = "Species", legend_title_size = 15,
-  stat_compare_means = TRUE, compare_symbol = "SYMBOL"
+BetterVis_Barplot_Accumulative(
+data = BetterVis_Barplot_Accumulative_example, x_var = "celltype", y1_var = "cell_num", y2_var = "percent", fill_var = "Patient",
+display = 3, barplot_color = barplot_color,
+ylim1 = c(0, 15000), ylim2 = c(0, 1),
+coord_flip = TRUE
 )
 
 
-BetterVis_Boxplot_MixViolin(
-  data = iris,x_var = "Group2",y_var = "Sepal.Length",fill_color = colors,
-  y_max_adjust = 2,y_min_adjust = 1,box_size = 0.5,
-  title = "You can write title here",title_size = 25,title_bold = FALSE, title_hjust = 0.5,title_vjust = 0,
-  xlab = "Group2",ylab = "Sepal.Length",
-  border = TRUE,panel_background_color = "#f3f6f6",
-  axis_x_title =element_text(size = 22,color = "#b35959",face = "bold"),
-  axis_y_title =element_text(size = 22,color = "#b35959",face = "bold"),
-  legend_show = TRUE,legend_title = "Group2",legend_title_size = 15,legend_title_bold = FALSE,
-  legend_text_size=12,legend_text_bold = FALSE,stat_compare_means = TRUE,compare_symbol = "SYMBOL")
+## Advanced Example
+# Example 2: Customized visualization with titles and axes
+BetterVis_Barplot_Accumulative(
+data = BetterVis_Barplot_Accumulative_example, x_var = "celltype", y1_var = "cell_num", y2_var = "percent", fill_var = "Patient",
+display = 3, barplot_color = barplot_color,
+ylim1 = c(0, 15000), ylim2 = c(0, 1),
+axis_titles_x = "Cell Types", x_label_angle = 0, x_label_bold = TRUE, axis_title_x_size = 14,
+axis_titles_y1 = "Cell Count", axis_titles_y2 = "Sample Ratio",
+y1_label_bold = TRUE,y2_label_bold =  TRUE, axis_title_y1_size = 14,axis_title_y2_size = 14,
+title1 = "Cell Number Distribution", title2 = "Sample Ratio Distribution",
+title_size = 10,title_bold = TRUE,
+legend_show = TRUE, legend_title = "Legend", legend_size = 14, legend_position = "bottom", legend_row = NULL,legend_col=NULL,
+background_color = "white",
+coord_flip = TRUE,
+grid_ncol = 2,grid_layout  = rbind(c(1, 1, 1, 1, 1, 2, 2),
+                                     c(1, 1, 1, 1, 1, 2, 2)),
+p1_theme = NULL,p2_theme = NULL,p1_guide = NULL,p2_guide = NULL
+)
 
-
+##  We have modified the iris dataset to create these boxplots
+iris$Group <- rep(paste0("Group", 1:10), times = 15)
+iris$Group <-as.factor(iris$Group)
+iris$Group2 <- rep(rep(paste0("Color", 1:5), each = 10),3)
+iris$Group2 <- sample(iris$Group2)
+iris$Group2 <-as.factor(iris$Group2)
+iris<-iris\%>\%dplyr::select(Petal.Width,Group2,Group)
+iris<-distinct(iris,Group,Group2,.keep_all = TRUE)
+iris = plyr::ddply(iris,'Group',transform,percent=Petal.Width/sum(Petal.Width))
+BetterVis_Barplot_Accumulative(
+data = iris, x_var = "Group", y1_var = "Petal.Width", y2_var = "percent", fill_var = "Group2",
+display = 3, barplot_color = barplot_color,
+ylim1 = c(0, 4.5), ylim2 = c(0, 1),
+axis_titles_x = "Cell Types", x_label_angle = 0, x_label_bold = TRUE, axis_title_x_size = 14,
+axis_titles_y1 = "Cell Count", axis_titles_y2 = "Sample Ratio",
+y1_label_bold = TRUE,y2_label_bold =  TRUE, axis_title_y1_size = 14,axis_title_y2_size = 14,
+title1 = "Cell Number Distribution", title2 = "Distribution",
+title_size = 16,title_bold = TRUE,
+title1_size = 16, title1_bold = TRUE, title2_size = 16, title2_bold = TRUE,
+legend_show = TRUE, legend_title = "Legend", legend_size = 14, legend_position = "bottom",
+background_color = "white",
+coord_flip = TRUE,
+grid_ncol = 2,grid_layout  = rbind(c(1, 1, 1, 1, 1, 2, 2),
+                                     c(1, 1, 1, 1, 1, 2, 2)),
+p1_theme = NULL,p2_theme = NULL,p1_guide = NULL,p2_guide = NULL
+)
 
 
 

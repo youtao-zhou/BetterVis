@@ -29,14 +29,15 @@
 #' @importFrom grid unit
 #'
 #' @examples
-#' # 离散型非配对取色
+#' # Discrete And Unpaired color selection
 #' BetterVis_Color(type = "discrete", odd_or_even = "even",  n = 10, style = "Science", option = 1)
 
-#' # 离散型配对取色
+#' # Discrete And paired color selection
 #' BetterVis_Color(type = "discrete", odd_or_even = "even",  n = 9, style = "Science", option = 2,paired = TRUE, pair_num = 3)
 
-#' # 连续型取色
-#' BetterVis_Color(type = "continuous", n = 9, style = "Science", option = 1)
+#' # Continuous color extraction连续型取色
+#' BetterVis_Color(type = "discrete", odd_or_even = "even",  n = 9, style = "Science", option = 2,paired = TRUE, pair_num = 3)
+
 
 #' @export
 

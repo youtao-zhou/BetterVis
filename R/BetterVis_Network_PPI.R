@@ -35,39 +35,27 @@
 #' @export
 #'
 #' @examples
-#' library("stats")
-#' library("rlang")
-#' library("ggplot2")
-#' library("tidygraph")
-#' library("RColorBrewer")
-#' library("scales")
-#' library("tidyr")
-#' library("dplyr")
-#' if (requireNamespace("ggraph", quietly = TRUE) && requireNamespace("ggforce", quietly = TRUE)) {
-#'   # Load example data
-#'   data("BetterVis_Network_PPI_nodes", package = "BetterVis")
-#'   data("BetterVis_Network_PPI_edges", package = "BetterVis")
+#' library(BetterVis)
 #'
-#'   # Define a color palette
-#'   ppi_colors <- c('#CD8280', '#54D0B4', '#78C3ED', '#E69F00', '#E98FBD')
+#' ## Data Input
+#' data("BetterVis_Network_PPI_nodes",package="BetterVis")
+#' data("BetterVis_Network_PPI_edges",package="BetterVis")
+#' colors<-c('#CD8280','#54D0B4','#78C3ED', '#E69F00', '#E98FBD')
 #'
-#'   # Generate the network plot
-#'   BetterVis_Network_PPI(
-#'     nodes_data = BetterVis_Network_PPI_nodes,
-#'     edges_data = BetterVis_Network_PPI_edges,
-#'     fill_vars = c("full", "within5", "after5", "early", "late"),
-#'     fill_color = ppi_colors,
-#'     group_var = "manual_grp",
-#'     node_size = c(0.08, 0.25),
-#'     node_text_size = 4,
-#'     line_size = c(0.5, 2.5),
-#'     line_color = "grey65",
-#'     niter = 800,
-#'     display_border = TRUE
-#'   )
-#'   # You can add other ggplot2 layers for further customization
-#'   # + theme(legend.text = element_text(size=12))
-#' }
+#' ## Usage Example
+#' BetterVis_Network_PPI(nodes_data = BetterVis_Network_PPI_nodes ,edges_data =  BetterVis_Network_PPI_edges,
+#' fill_vars = c("full","within5","after5","early","late"),
+#' fill_color = colors,
+#' group_var = "manual_grp",
+#' node_size = c(0.08, 0.25),node_text_size = 4,
+#' line_size = c(0.5, 2.5),line_color = "grey65",
+#' niter = 800,display_border = TRUE)
+#' #+theme(legend.text = element_text(size=12))+guides()
+#'
+#'
+#'
+#'
+
 BetterVis_Network_PPI <- function(nodes_data, edges_data,
                                   fill_vars,
                                   node_size = c(0.1, 0.3),

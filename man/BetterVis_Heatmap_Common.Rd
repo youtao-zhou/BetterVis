@@ -52,7 +52,6 @@ This function generates a classic heatmap from a data frame or matrix using
 options for aesthetic customization.
 }
 \examples{
-if (requireNamespace("MetBrewer", quietly = TRUE)) {
   # Load example data
   library(magrittr)
   library(MetBrewer)
@@ -63,23 +62,11 @@ if (requireNamespace("MetBrewer", quietly = TRUE)) {
   BetterVis_Heatmap_Common(BetterVis_Heatmap_Common_example, trans = FALSE)
 
   # Example 2: More customized plot
-  BetterVis_Heatmap_Common(
-    data = BetterVis_Heatmap_Common_example,
-    trans = FALSE,
-    heatmap_color = met.brewer("Isfahan1"),
-    legend_break = 2,
-    legend_position = "bottom",
-    legend_title = "Value",
-    legend_text_size = 8,
-    legend_text_bold = TRUE,
-    x_text_size = 10,
-    x_text_bold = TRUE,
-    x_text_angle = 45,
-    y_text_size = 10,
-    y_text_bold = FALSE
-  )
-  # You can add other ggplot2 layers:
-  # + guides(fill = "none")
-  # + theme(axis.text.x = element_text(size = 15))
-}
+BetterVis_Heatmap_Common(BetterVis_Heatmap_Common_example, trans = FALSE,
+heatmap_color = met.brewer("Hiroshige"),legend_break = 1,
+legend_position = "top", legend_title = "",legend_text_size = 8,legend_text_bold = TRUE,
+x_text_size = 12,x_text_bold = TRUE,x_text_angle = 90,
+y_text_size = 12,y_text_bold = TRUE)
+#+guides(fill="none")
+#+theme(axis.x.text=element_text(size=15)
 }

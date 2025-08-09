@@ -96,7 +96,7 @@ BetterVis_Dotplot_Multifacet(
   classified_var = "Species",
   color = c("#BEBADA", "#80B1D3", "#FDB462","#FB8072"),
   ncol = 3,
-  subset_display = c(1, 2, 4), # Display only the 1st, 2nd, and 4th plot
+  # subset_display = c(1, 2, 4), # Display only the 1st, 2nd, and 4th plot
   legend_title = "Penguin Species",
   theme_custom = theme(axis.text = element_text(face = "bold"))
 )

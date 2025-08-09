@@ -121,48 +121,55 @@ library(RColorBrewer)
 library(dplyr)
 library(cowplot)
 
-##  示例数据1
+##  Data Input
 data("BetterVis_Barplot_Experiment_example", package = "BetterVis")
-data <- BetterVis_Barplot_Experiment_example
-data$supp<-as.factor(data$supp)
-data$dose<-as.factor(data$dose)
 
-## 示例数据2
+##  Simple Example
+BetterVis_Barplot_Experiment(
+data = BetterVis_Barplot_Experiment_example,x_var = "supp",y_var = "len",fill_var = "dose",
+comparison_col = "dose",comparison_method = "t.test",
+comparison = list(c("dose_1", "dose_2"),c("dose_1", "dose_3"),c("dose_2", "dose_3")),
+barplot_color = c("#E84A32", "#4CBCD2", "#00A18A"),
+facet = TRUE,
+ylim = c(0,45)
+)
+
+## Advanced Example
+
+BetterVis_Barplot_Experiment(
+data = BetterVis_Barplot_Experiment_example,x_var = "supp",y_var = "len",fill_var = "dose",
+jitter = TRUE,jitter_color =c("black","black","black"),
+jitter_width = 0.2,jitter_alpha = 0.7,jitter_size = 3,
+legend_show = FALSE,legend_title = "Dose",
+comparison_col = "dose",comparison_method = "t.test",
+comparison = list(c("dose_1", "dose_2"),c("dose_1", "dose_3"),c("dose_2", "dose_3")),
+barplot_color = c("#E84A32", "#4CBCD2", "#00A18A"),
+facet = TRUE,facet_title_size = 16,
+y_label_bold = TRUE,axis_titles_y = "",
+x_label_angle = 45,x_label_bold = TRUE,axis_titles_x = c(""),
+title = "",axis_title_bold = TRUE,
+error_bar_width = 0.5,error_bar_size = 0.5,bar_border = TRUE,bar_border_size = 0.8,
+background_color = "white",sig_type = "SYMBOL",ylim = c(0,45)
+)+theme()+guides()
+
+
+## We have modified the iris dataset to create these boxplots
 iris$Group <- rep(rep(paste0("Group", 1:5), each = 10),3)
 iris$Group <-as.factor(iris$Group)
-
-
 BetterVis_Barplot_Experiment(
-  data = data,x_var = "supp",y_var = "len",fill_var = "dose",
-  jitter = TRUE,jitter_color =c("black","black","black"),
-  jitter_width = 0.2,jitter_alpha = 0.7,jitter_size = 3,
-  legend_show = FALSE,legend_title = "Dose",
-  comparison_col = "dose",comparison_method = "t.test",
-  comparison = list(c("dose_1", "dose_2"),c("dose_1", "dose_3"),c("dose_2", "dose_3")),
-  barplot_color = c("#E84A32", "#4CBCD2", "#00A18A"),
-  facet = TRUE,facet_title_size = 16,
-  y_label_bold = TRUE,axis_titles_y = "",
-  x_label_angle = 45,x_label_bold = TRUE,axis_titles_x = c(""),
-  title = "",axis_title_bold = TRUE,
-  error_bar_width = 0.5,error_bar_size = 0.5,bar_border = TRUE,bar_border_size = 0.8,
-  background_color = "white",sig_type = "SYMBOL",ylim = c(0,45)
+data = iris,x_var = "Group",y_var = "Petal.Width",fill_var = "Species",
+jitter = TRUE,jitter_color =c("black","black","black"),
+jitter_width = 0.2,jitter_alpha = 0.7,jitter_size = 3,
+legend_show = FALSE,legend_title = "Dose",
+comparison_col = "Species",comparison_method = "t.test",
+comparison = list(c("setosa", "versicolor"),c("versicolor", "virginica"),c("setosa", "virginica")),
+barplot_color = c("#E84A32", "#4CBCD2", "#00A18A"),
+facet = TRUE,facet_title_size = 16,
+y_label_bold = TRUE,axis_titles_y = "",
+x_label_angle = 45,x_label_bold = TRUE,axis_titles_x = c("a"),
+title = "",axis_title_bold = TRUE,
+error_bar_width = 0.5,error_bar_size = 0.5,bar_border = TRUE,bar_border_size = 0.8,
+background_color = "white",sig_type = "SYMBOL",ylim = c(0,4)
 )
 
-
-BetterVis_Barplot_Experiment(
-  data = iris,x_var = "Group",y_var = "Petal.Width",fill_var = "Species",
-  jitter = TRUE,jitter_color =c("black","black","black"),
-  jitter_width = 0.2,jitter_alpha = 0.7,jitter_size = 3,
-  legend_show = FALSE,legend_title = "Dose",
-  comparison_col = "Species",comparison_method = "t.test",
-  comparison = list(c("setosa", "versicolor"),c("versicolor", "virginica"),c("setosa", "virginica")),
-  barplot_color = c("#E84A32", "#4CBCD2", "#00A18A"),
-  facet = TRUE,facet_title_size = 16,
-  y_label_bold = TRUE,axis_titles_y = "",
-  x_label_angle = 45,x_label_bold = TRUE,axis_titles_x = c("a"),
-  title = "",axis_title_bold = TRUE,
-  error_bar_width = 0.5,error_bar_size = 0.5,bar_border = TRUE,bar_border_size = 0.8,
-  background_color = "white",sig_type = "SYMBOL",ylim = c(0,4)
-)
-# +theme(axis.title.x = element_blank())+guides(fill=F)
 }

@@ -9,7 +9,7 @@ BetterVis_Heatmap_Circle(
   value_var,
   classified_text_var,
   classified_value_var,
-  heatmap_color = alpha(MetBrewer::met.brewer("Hiroshige"), 1),
+  heatmap_color = alpha(met.brewer("Hiroshige"), 1),
   text_size = 4,
   barwidth = 9,
   barheight = 0.5,
@@ -52,16 +52,19 @@ coordinate system with curved text labels.
  library(MetBrewer)
  library(geomtextpath)
  library(dplyr)
+## Data Input
+data("BetterVis_Heatmap_Circle_example",package="BetterVis")
+BetterVis_Heatmap_Circle(data = BetterVis_Heatmap_Circle_example, value_var = "value", classified_text_var = "id", classified_value_var = "name")
+BetterVis_Heatmap_Circle(data = BetterVis_Heatmap_Circle_example, value_var = "value", classified_text_var = "id", classified_value_var = "name",
+heatmap_color = alpha(met.brewer("Hiroshige"), 1),
+text_size =4,barwidth = 9, barheight = 0.5,legend_break = 1,legend_text_size=12,
+classified_value_var_label_size = 10)
 
-
-  iris$Group <- rep(paste0("Group", 1:10), times = 15)
-  iris$Group <-as.factor(iris$Group)
-  iris$Group2 <- rep(rep(paste0("Color", 1:5), each = 10),3)
-  iris$Group2 <- sample(iris$Group2)
-  iris$Group2 <-as.factor(iris$Group2)
-  BetterVis_Heatmap_Circle(data = iris, value_var = "Sepal.Width", classified_text_var = "Group", classified_value_var = "Group2")
-
-
-
-
+## We have modified the iris dataset to create these boxplots
+iris$Group <- rep(paste0("Group", 1:10), times = 15)
+iris$Group <-as.factor(iris$Group)
+iris$Group2 <- rep(rep(paste0("Color", 1:5), each = 10),3)
+iris$Group2 <- sample(iris$Group2)
+iris$Group2 <-as.factor(iris$Group2)
+BetterVis_Heatmap_Circle(data = iris, value_var = "Sepal.Width", classified_text_var = "Group", classified_value_var = "Group2")
 }

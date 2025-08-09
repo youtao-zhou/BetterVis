@@ -80,26 +80,21 @@ library(dplyr)
 library(ggtext)
 
 
-##  示例数据1
-data("BetterVis_Barplot_Circle_example", package = "BetterVis")
-df <- BetterVis_Barplot_Circle_example
-df <-df \%>\% select(geneSymbol,med_LFC,type,id)
-df <- df \%>\% mutate(id =1:nrow(df))
+##   Data Input
+data("BetterVis_Barplot_Circle_example", package ="BetterVis")
+barplot_color = c("#ABDDDE", "#FAD510", "#C6CDF7")
 
-## 示例数据2
-barplot_color  <-  c("#FC5D5C", "#4B6A9D", "#167D7D")
-BetterVis_Barplot_Circle(data = df,x_var = "id",y_var="med_LFC",fill_var = "type",label_var = "geneSymbol",
-                         barplot_color = barplot_color)
+BetterVis_Barplot_Circle(data = BetterVis_Barplot_Circle_example,x_var = "id",y_var="med_LFC",
+fill_var = "type",label_var = "geneSymbol",barplot_color = barplot_color,y_continuous_limit = c(-3, 3))
 
 
-BetterVis_Barplot_Circle(data = df, x_var = "id", y_var = "med_LFC", fill_var = "type",label_var = "geneSymbol",
-                         barplot_color = barplot_color,
-                         y_continuous_limit = c(-4, 3),
-                         point_shape = 19,point_alpha = 0.7,
-                         text_adjust = 0.5, text_size = 4,text_alpha = 0.9, text_bold = TRUE,
-                         size_legend = FALSE, fill_legend = TRUE,
-                         legend_bold = TRUE,legend_size = 10,legend_title_size = 12,legend_title_bold = TRUE)
+##  Advanced Example
+BetterVis_Barplot_Circle(data = BetterVis_Barplot_Circle_example, x_var = "id", y_var = "med_LFC", fill_var = "type",label_var = "geneSymbol",
+barplot_color = barplot_color,
+y_continuous_limit = c(-6, 3),
+point_shape = 19,point_alpha = 0.7,
+text_adjust = 0.5, text_size = 4,text_alpha = 0.9, text_bold = TRUE,
+size_legend = FALSE, fill_legend = TRUE,
+legend_bold = TRUE,legend_size = 10,legend_title_size = 12,legend_title_bold = TRUE)
 #+theme(legend.position = "bottom") + guides(size = guide_legend(title = "Size Legend"))
-
-
 }

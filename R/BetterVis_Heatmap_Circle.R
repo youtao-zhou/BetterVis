@@ -31,41 +31,44 @@
 #'  library(MetBrewer)
 #'  library(geomtextpath)
 #'  library(dplyr)
+#' ## Data Input
+#' data("BetterVis_Heatmap_Circle_example",package="BetterVis")
+#' BetterVis_Heatmap_Circle(data = BetterVis_Heatmap_Circle_example, value_var = "value", classified_text_var = "id", classified_value_var = "name")
+#' BetterVis_Heatmap_Circle(data = BetterVis_Heatmap_Circle_example, value_var = "value", classified_text_var = "id", classified_value_var = "name",
+#' heatmap_color = alpha(met.brewer("Hiroshige"), 1),
+#' text_size =4,barwidth = 9, barheight = 0.5,legend_break = 1,legend_text_size=12,
+#' classified_value_var_label_size = 10)
 #'
-#'
-#'   iris$Group <- rep(paste0("Group", 1:10), times = 15)
-#'   iris$Group <-as.factor(iris$Group)
-#'   iris$Group2 <- rep(rep(paste0("Color", 1:5), each = 10),3)
-#'   iris$Group2 <- sample(iris$Group2)
-#'   iris$Group2 <-as.factor(iris$Group2)
-#'   BetterVis_Heatmap_Circle(data = iris, value_var = "Sepal.Width", classified_text_var = "Group", classified_value_var = "Group2")
-#'
-#'
-#'
-#'
+#' ## We have modified the iris dataset to create these boxplots
+#' iris$Group <- rep(paste0("Group", 1:10), times = 15)
+#' iris$Group <-as.factor(iris$Group)
+#' iris$Group2 <- rep(rep(paste0("Color", 1:5), each = 10),3)
+#' iris$Group2 <- sample(iris$Group2)
+#' iris$Group2 <-as.factor(iris$Group2)
+#' BetterVis_Heatmap_Circle(data = iris, value_var = "Sepal.Width", classified_text_var = "Group", classified_value_var = "Group2")
 BetterVis_Heatmap_Circle <- function(data, value_var, classified_text_var, classified_value_var,
-                                     heatmap_color = alpha(MetBrewer::met.brewer("Hiroshige"), 1),
+                                     heatmap_color=alpha(met.brewer("Hiroshige"), 1),
                                      text_size = 4, barwidth = 9, barheight = 0.5,
-                                     legend_break = 1, legend_text_size = 12, classified_value_var_label_size = 10) {
+                                     legend_break=1,legend_text_size=12,classified_value_var_label_size= 10) {
 
   factor_levels_count <- length(unique(data[[classified_value_var]]))
 
-  min_value <- floor(min(data[[value_var]], na.rm = TRUE))
-  max_value <- ceiling(max(data[[value_var]], na.rm = TRUE))
+  min_value <- round(min(data[[value_var]], na.rm = TRUE))
+  max_value <- round(max(data[[value_var]], na.rm = TRUE))
 
   breaks_value <- seq(min_value, max_value, by = legend_break)
 
   p <- ggplot(data, aes(x = !!sym(classified_text_var), y = !!sym(classified_value_var), fill = !!sym(value_var))) +
     geom_tile(color = "white", linewidth = 1) +
-    scale_fill_gradientn(colors = heatmap_color, na.value = NA, breaks = breaks_value) +
+    scale_fill_gradientn(colors = heatmap_color, na.value = NA,breaks = breaks_value) +
     scale_x_discrete(expand = c(0, 0)) +
     scale_y_discrete(expand = c(0, 0)) +
     coord_radial(start = 0.02, end = pi * 2, inner.radius = 0.6) +
     geom_rect(aes(xmin = -Inf, xmax = Inf, ymin = factor_levels_count + 2, ymax = factor_levels_count + 2),
               linewidth = 7, color = "#85D4E3", fill = NA) +
-    guides(fill = guide_colorbar(
-      barwidth = unit(barwidth, "cm"),
-      barheight = unit(barheight, "cm")
+    guides(fill = guide_colorbar(position = "inside",
+                                 barwidth = unit(barwidth, "cm"),
+                                 barheight = unit(barheight, "cm"),
     )) +
     theme(axis.text = element_blank(),
           axis.title = element_blank(),
@@ -73,25 +76,20 @@ BetterVis_Heatmap_Circle <- function(data, value_var, classified_text_var, class
           panel.background = element_blank(),
           axis.text.r = element_text(colour = "black", size = classified_value_var_label_size, vjust = 0.5,
                                      margin = margin(r = -0.5, unit = "cm")),
-          legend.position = "inside",
-          legend.position.inside = c(0.5, 0.5),
           legend.title = element_blank(),
           legend.direction = "horizontal",
-          legend.text = element_text(size = legend_text_size))
+          legend.text = element_text(size=legend_text_size))
 
-  # Add text labels for values in each ring
   for (i in seq_along(unique(data[[classified_value_var]]))) {
     p <- p + geom_textpath(data = data %>% filter(!!sym(classified_value_var) == unique(data[[classified_value_var]])[i]),
                            aes(label = round(!!sym(value_var), digits = 2)),
                            y = i,
-                           size = text_size,
-                           vjust = 0.5) # Center text vertically
+                           size = text_size)
   }
 
-  # Add text labels for the outer ring
   p <- p + geom_textpath(aes(label = !!sym(classified_text_var), y = factor_levels_count + 1),
                          size = text_size,
-                         vjust = 0.5) # Center text vertically
+                         parse = TRUE)
 
   return(p)
 }

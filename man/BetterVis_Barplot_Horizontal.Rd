@@ -110,22 +110,26 @@ library(dplyr)
 
 ##  示例数据1
 data("BetterVis_Barplot_Horizontal_example", package = "BetterVis")
-df <- BetterVis_Barplot_Horizontal_example
-df$LogP <- -log10(as.numeric(df$Bonferroni))
-df<-arrange(df,Bonferroni)
-df$Description <- sub(".*:", "", df$Description)
-df$Description <- factor(df$Description, levels = df$Description[order(df$LogP)])
-
+## Simple Example
 
 BetterVis_Barplot_Horizontal(
-  data = df,x_var = "Description",y_var = "Count",fill_var = "LogP",
+data = BetterVis_Barplot_Horizontal_example,x_var = "Description",y_var = "Count",fill_var = "LogP",
+label_y_var = "Description", label_other_var = "Genes",fill_legend_title = "logP",
+fill_gradient = list(low = "#486b98", mid = "#f5f2b1", high = "#b93735", midpoint = 3),
+y_label_out = TRUE,label_other_display = TRUE
+)
+
+
+## Advanced Example
+BetterVis_Barplot_Horizontal(
+data = BetterVis_Barplot_Horizontal_example,x_var = "Description",y_var = "Count",fill_var = "LogP",
   label_y_var = "Description",label_other_var = "Genes",
   bar_width = 0.4,base_size = 30,
   label_y_start = 0.5,label_y_size = 5,label_y_hjust = 0,label_y_vjust = 1,
   label_other_start = 0.5,label_other_size = 4.5,label_other_hjust = 0,label_other_vjust = 2.4,
   fill_gradient = list(low = "#486b98", mid = "#f5f2b1", high = "#b93735", midpoint = 3),
   color_gradient = list(low = "#486b98", mid = "#f5f2b1", high = "#b93735", midpoint = 3),
-  fill_legend = TRUE, fill_legend_title="logp",color_legend = FALSE, color_legend_title = "col_lengend",
+  fill_legend = TRUE, fill_legend_title="logp",color_legend = FALSE,color_legend_title = "col_lengend",
   legend_title_size = 16, legend_text_size = 16,
   xlab_text = " Names",ylab_text = "Gene Count", plot_title = "KEGG Enrichment Analysis",
   y_label_out = TRUE,label_other_display = TRUE

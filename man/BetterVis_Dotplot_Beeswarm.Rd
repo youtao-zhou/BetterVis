@@ -80,6 +80,18 @@ BetterVis_Dotplot_Beeswarm(
   comparison_col = "Patient_Group",comparison_group = c(c("Healthy Control","Early"),c("Early","Late"),c("Middle","Late")),comparison_method = "t.test"
 )
 
+
+BetterVis_Dotplot_Beeswarm(data = BetterVis_Dotplot_Beeswarm_example, x_var = "Patient_Group", y_var = "Biomarker_Min",
+color = c("#68d0ce", "#f4a4c9", "#4955d0", "#e09a2a", "#de6a73"),
+ylim =c(0,200),y_break = 50,
+point_size = 2,point_alpha = 0.6,
+median_bar = TRUE,border=TRUE,
+title = "You can write title here",x_title = "Species",y_title = "Sepal.Width",
+sig_symbol = TRUE,sig_type="NUMBER",
+comparison_col = "Patient_Group",comparison_group = c(c("Healthy Control","Early"),c("Early","Late"),c("Middle","Late")),comparison_method = "t.test")
+## +theme(axis.text.x = element_text(size=18))
+
+
 # Example 2: Using the iris dataset with Wilcoxon test and p-values
 BetterVis_Dotplot_Beeswarm(
   data = iris, x_var = "Species", y_var = "Sepal.Width",

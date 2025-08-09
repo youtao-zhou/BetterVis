@@ -55,15 +55,17 @@
 #'   main_col_color_classify = "type_main",
 #'   col1_name = "type_col1",
 #'   col2_name = "type_col2",
+#'   #col3_name = "type_main",
 #'   main_col_color = my_main_col_color,
 #'   color1 = my_color1,
 #'   color2 = my_color2,
+#'   #color3 = my_color3,
 #'   link_source_col = "ID",
 #'   link_target_col = "Gene",
 #'   link_value_col = "Correlation",
-#'   link_pvalue_col = "Pvalue"
+#'   link_pvalue_col = "Pvalue" ,
+#'   main_col_text = TRUE,col1_text = TRUE,col2_text = TRUE,col3_text = TRUE
 #' )
-#'
 #' # Example 2: Plot without interaction links
 #' BetterVis_Circos_Interaction(
 #'   df = BetterVis_Circos_Interaction_example1,
@@ -71,9 +73,12 @@
 #'   main_col_color_classify = "type_main",
 #'   col1_name = "type_col1",
 #'   col2_name = "type_col2",
+#'   #col3_name = "type_main",
 #'   main_col_color = my_main_col_color,
 #'   color1 = my_color1,
-#'   color2 = my_color2
+#'   color2 = my_color2,
+#'   #color3 = my_color3,
+#'   main_col_text = TRUE,col1_text = TRUE,col2_text = TRUE,col3_text = TRUE
 #' )
 
 BetterVis_Circos_Interaction <- function(
